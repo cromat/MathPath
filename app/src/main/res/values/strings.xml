@@ -8,4 +8,6 @@
     <string name="category">Category</string>
     <string name="elementary">Elementary</string>
     <string name="share">Share</string>
+    <string name="next">Next</string>
+    <string name="quit">Quit</string>
 </resources>

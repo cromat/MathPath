@@ -1,9 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relative_solving"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/main_background"
     tools:context="com.example.cromat.mathpath.SolvingActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:id="@+id/relative_solving_elements"
+        >
+
+        <TextView
+            android:id="@+id/txtViewEquation"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textSize="@dimen/default_text"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/edtViewAnswer"
+            />
+
+        <EditText
+            android:id="@+id/edtViewAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text"
+            android:layout_toRightOf="@id/txtViewEquation"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:inputType="number"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnQuit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BtnGray"
+        android:layout_below="@+id/relative_solving_elements"
+        android:text="@string/quit"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/btn_start_end_margin"
+        android:layout_marginStart="@dimen/btn_start_end_margin"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BtnRed"
+        android:layout_below="@+id/relative_solving_elements"
+        android:text="@string/next"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/btn_start_end_margin"
+        android:layout_marginEnd="@dimen/btn_start_end_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        />
+
+</RelativeLayout>
