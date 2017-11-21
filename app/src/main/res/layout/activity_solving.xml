@@ -68,4 +68,18 @@
         android:layout_alignParentRight="true"
         />
 
+    <ProgressBar
+        android:id="@+id/progressBarSolving"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/btnQuit"
+        android:layout_marginLeft="@dimen/btn_start_end_margin"
+        android:layout_marginStart="@dimen/btn_start_end_margin"
+        android:layout_marginRight="@dimen/btn_start_end_margin"
+        android:layout_marginEnd="@dimen/btn_start_end_margin"
+        android:layout_marginTop="58dp"
+        android:max="100"
+        />
+
 </RelativeLayout>

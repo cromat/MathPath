@@ -1,10 +1,11 @@
 package com.example.cromat.mathpath
 
+import android.opengl.Visibility
 import java.util.Random
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.View
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_solving.*
 import org.mvel2.MVEL
 
@@ -15,21 +16,37 @@ class SolvingActivity : AppCompatActivity() {
     private val MAX_NUM : Int = 10
     private val OPERATORS = listOf("+", "-", "*")
 
+    private var SCORE : Int= 0
+    private var TASK_NUM : Int = 1
+    private var RIGHT_ANS : String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solving)
 
-        val equationText = generateEquation()
-        txtViewEquation.text = equationText + "="
-        val rightAns = MVEL.eval(equationText).toString()
+        nextEquation()
 
         btnNext.setOnClickListener(View.OnClickListener {
-            val userAns = edtViewAnswer.text.toString()
-            if (rightAns == userAns)
-                Toast.makeText(applicationContext, "RIGHT!", Toast.LENGTH_SHORT).show()
-            else
-                Toast.makeText(applicationContext, "BAD ANSWER", Toast.LENGTH_SHORT).show()
+            if (TASK_NUM < 10) {
+                val userAns = edtViewAnswer.text.toString()
+
+                if (userAns == RIGHT_ANS)
+                    SCORE++
+
+                edtViewAnswer.text = SpannableStringBuilder("")
+                nextEquation()
+                TASK_NUM++
+            }
+            else {
+                edtViewAnswer.visibility = View.INVISIBLE
+                btnNext.text = "FINISH"
+                txtViewEquation.text = "Your score: " + SCORE.toString() + "/10"
+                btnNext.setOnClickListener(View.OnClickListener {
+                    finish()
+                })
+            }
+            progressBarSolving.incrementProgressBy(10)
         })
     }
 
@@ -43,5 +60,11 @@ class SolvingActivity : AppCompatActivity() {
 
         equation = equation.dropLast(1)
         return equation
+    }
+
+    private fun nextEquation() {
+        val equationText = generateEquation()
+        txtViewEquation.text = equationText + "="
+        RIGHT_ANS = MVEL.eval(equationText).toString()
     }
 }
