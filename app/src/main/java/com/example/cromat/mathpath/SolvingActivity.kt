@@ -27,6 +27,7 @@ class SolvingActivity : AppCompatActivity() {
 
         nextEquation()
 
+        // Next
         btnNext.setOnClickListener(View.OnClickListener {
             if (TASK_NUM < 10) {
                 val userAns = edtViewAnswer.text.toString()
@@ -47,6 +48,11 @@ class SolvingActivity : AppCompatActivity() {
                 })
             }
             progressBarSolving.incrementProgressBy(10)
+        })
+
+        // Quit
+        btnQuit.setOnClickListener(View.OnClickListener {
+            finish()
         })
     }
 

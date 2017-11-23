@@ -5,10 +5,13 @@
 
     <item android:title="@string/category">
         <menu>
-            <item
-                android:id="@+id/nav_category"
-                android:icon="@drawable/ic_menu_category"
-                android:title="@string/elementary" />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_category"
+                    android:icon="@drawable/ic_menu_category"
+                    android:title="@string/elementary"
+                    />
+            </group>
         </menu>
     </item>
 
@@ -17,8 +20,18 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="@string/share" />
+                android:title="@string/share"
+                />
 
+        </menu>
+    </item>
+
+    <item android:title="@string/stats">
+        <menu>
+            <item
+                android:id="@+id/nav_stats"
+                android:icon="@drawable/ic_menu_stats"
+                android:title="@string/stats" />
         </menu>
     </item>
 

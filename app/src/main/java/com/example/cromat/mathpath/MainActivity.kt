@@ -65,12 +65,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_category -> {
                 Toast.makeText(applicationContext, "Book", Toast.LENGTH_SHORT).show()
             }
+
             R.id.nav_settings -> {
 
             }
 
             R.id.nav_share -> {
 
+            }
+
+            R.id.nav_stats -> {
+                startActivity(Intent(applicationContext, GraphActivity::class.java))
             }
         }
 

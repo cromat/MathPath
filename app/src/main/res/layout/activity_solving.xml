@@ -80,6 +80,7 @@
         android:layout_marginEnd="@dimen/btn_start_end_margin"
         android:layout_marginTop="58dp"
         android:max="100"
+        android:layout_marginBottom="140dp"
         />
 
 </RelativeLayout>
