@@ -1,13 +1,15 @@
 package com.example.cromat.mathpath
 
-import android.opengl.Visibility
-import java.util.Random
+import android.content.ContentValues
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_solving.*
 import org.mvel2.MVEL
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SolvingActivity : AppCompatActivity() {
 
@@ -19,6 +21,8 @@ class SolvingActivity : AppCompatActivity() {
     private var SCORE : Int= 0
     private var TASK_NUM : Int = 1
     private var RIGHT_ANS : String = ""
+
+    private val db = DbHelper(applicationContext).writableDatabase
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +48,16 @@ class SolvingActivity : AppCompatActivity() {
                 btnNext.text = "FINISH"
                 txtViewEquation.text = "Your score: " + SCORE.toString() + "/10"
                 btnNext.setOnClickListener(View.OnClickListener {
+
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    val currentDateTime = dateFormat.format(Date()).toString()
+
+                    Toast.makeText(applicationContext, currentDateTime, Toast.LENGTH_SHORT).show()
+
+                    val values = ContentValues()
+                    values.put("score", SCORE)
+                    values.put("date", currentDateTime)
+                    db.insert(DbHelper.TABLE_RESULT, null, values)
                     finish()
                 })
             }

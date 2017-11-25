@@ -22,6 +22,10 @@ android {
     }
 }
 
+buildscript{
+    ext.anko_version='0.10.1'
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -33,4 +37,5 @@ dependencies {
     compile 'com.android.support:design:26.1.0'
     compile group: 'org.mvel', name: 'mvel2', version: '2.4.0.Final'
     compile 'com.jjoe64:graphview:4.2.1'
+    compile "org.jetbrains.anko:anko-sqlite:$anko_version"
 }
