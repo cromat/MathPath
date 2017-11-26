@@ -32,3 +32,6 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
         db.dropTable(TABLE_RESULT, true)
     }
 }
+
+val Context.database: DbHelper
+    get() = DbHelper.getInstance(getApplicationContext())

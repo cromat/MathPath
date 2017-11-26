@@ -17,13 +17,9 @@ class SolvingActivity : AppCompatActivity() {
     private val MIN_NUM_FIELDS: Int = 2
     private val MAX_NUM : Int = 10
     private val OPERATORS = listOf("+", "-", "*")
-
     private var SCORE : Int= 0
     private var TASK_NUM : Int = 1
     private var RIGHT_ANS : String = ""
-
-    private val db = DbHelper(applicationContext).writableDatabase
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +45,7 @@ class SolvingActivity : AppCompatActivity() {
                 txtViewEquation.text = "Your score: " + SCORE.toString() + "/10"
                 btnNext.setOnClickListener(View.OnClickListener {
 
-                    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
                     val currentDateTime = dateFormat.format(Date()).toString()
 
                     Toast.makeText(applicationContext, currentDateTime, Toast.LENGTH_SHORT).show()
@@ -57,7 +53,9 @@ class SolvingActivity : AppCompatActivity() {
                     val values = ContentValues()
                     values.put("score", SCORE)
                     values.put("date", currentDateTime)
-                    db.insert(DbHelper.TABLE_RESULT, null, values)
+                    database.use {
+                        insert(DbHelper.TABLE_RESULT, null, values)
+                    }
                     finish()
                 })
             }

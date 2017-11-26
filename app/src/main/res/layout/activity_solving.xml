@@ -35,7 +35,7 @@
             android:layout_toRightOf="@id/txtViewEquation"
             android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:inputType="number"
+            android:inputType="numberSigned"
             />
 
     </RelativeLayout>

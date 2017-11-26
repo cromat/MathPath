@@ -23,7 +23,7 @@ android {
 }
 
 buildscript{
-    ext.anko_version='0.10.1'
+    ext.anko_version='0.10.3'
 }
 
 dependencies {
@@ -38,4 +38,5 @@ dependencies {
     compile group: 'org.mvel', name: 'mvel2', version: '2.4.0.Final'
     compile 'com.jjoe64:graphview:4.2.1'
     compile "org.jetbrains.anko:anko-sqlite:$anko_version"
+    compile 'com.android.support:cardview-v7:26.1.0'
 }
