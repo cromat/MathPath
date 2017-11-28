@@ -3,84 +3,111 @@ package com.example.cromat.mathpath
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter
-import com.jjoe64.graphview.series.BarGraphSeries
-import com.jjoe64.graphview.series.DataPoint
-import com.jjoe64.graphview.series.LineGraphSeries
-import com.jjoe64.graphview.series.PointsGraphSeries
+import com.github.mikephil.charting.data.*
 import kotlinx.android.synthetic.main.activity_graph.*
-import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.parseList
 import org.jetbrains.anko.db.rowParser
 import org.jetbrains.anko.db.select
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
+import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import kotlin.collections.HashMap
 
 
 class GraphActivity : AppCompatActivity() {
 
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    val dateFormatCroShort = SimpleDateFormat("dd.MM.")
+    val parser = rowParser {
+        id: Int, score: Int, date: String ->
+        Result(id, dateFormat.parse(date), score)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)
 
-        graph.setBackgroundColor(Color.WHITE)
-        graph.gridLabelRenderer.labelFormatter = DateAsXAxisLabelFormatter(applicationContext)
-        graph.gridLabelRenderer.numHorizontalLabels = 3
-        graph.gridLabelRenderer.numVerticalLabels = 11
-        graph.viewport.setMinY(0.0)
-        graph.viewport.setMaxY(100.0)
-        graph.viewport.isYAxisBoundsManual = true
-        graph.gridLabelRenderer.isHumanRounding = false
-
         getWeekly()
+        getPie()
     }
 
-    fun getWeekly(){
-
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-        val dateFormatCro = SimpleDateFormat("dd.MM.yyyy")
-
-        val parser = rowParser {
-            id: Int, score: Int, date: String ->
-            Result(id, dateFormat.parse(date), score)
-        }
+    private fun getWeekly(){
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+        val sundayStr = dateFormat.format(calendar.time)
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        val mondayStr = dateFormat.format(calendar.time)
 
         val results = database.use {
-            select(DbHelper.TABLE_RESULT).exec { parseList(parser) }
+            select(DbHelper.TABLE_RESULT).whereArgs("date >= '" + mondayStr + "' and date <= '" + sundayStr + "';" ).exec { parseList(parser) }
         }
 
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-        val minX = calendar.time.time.toDouble()
-
-        var dataPoints = arrayListOf<DataPoint>()
         val resultDateStr = results.map { result -> dateFormat.format(result.date) }
+        val entries = ArrayList<Entry>()
+        val datesMap = HashMap<Float, String>()
 
         for (i in 1..7){
-            if (dateFormat.format(calendar.time) in resultDateStr) {
-                val res = results.filter { result -> dateFormat.format(result.date) == dateFormat.format(calendar.time) }
+            val calStr = dateFormat.format(calendar.time)
+            val calStrShort = dateFormatCroShort.format(calendar.time)
+            if (calStr in resultDateStr) {
+                val res = results.filter { result -> dateFormat.format(result.date) == calStr }
                 val scorePercent = (res.sumBy { result -> result.score }.toDouble() / res.size) * 10
-                dataPoints.add(DataPoint(calendar.time, scorePercent))
+                entries.add(Entry(i.toFloat(), scorePercent.toFloat()))
             }
             else {
-                dataPoints.add(DataPoint(calendar.time, 0.0))
+                entries.add(Entry(i.toFloat(), 0f))
             }
+            datesMap[i.toFloat()] = calStrShort
             calendar.add(Calendar.DATE, 1)
         }
 
-        calendar.add(Calendar.DATE, -1)
-        val maxX = calendar.time.time.toDouble()
+        val dataSet = LineDataSet(entries, "Weekly scores")
+        dataSet.setColor(Color.RED)
+        dataSet.setCircleColor(Color.GRAY)
+        val lineData = LineData(dataSet)
+        lineChart.description.isEnabled = false
+        lineChart.data = lineData
 
-        val series = PointsGraphSeries<DataPoint>(dataPoints.toTypedArray())
-        val series2 = LineGraphSeries<DataPoint>(dataPoints.toTypedArray())
+        val xAxis = lineChart.xAxis
+        xAxis.setValueFormatter { value, axis -> datesMap.get(value) }
+        xAxis.position = XAxisPosition.BOTTOM
 
-        graph.addSeries(series)
-        graph.addSeries(series2)
-        graph.viewport.setMinX(minX)
-        graph.viewport.setMaxX(maxX)
-        graph.viewport.isXAxisBoundsManual = true
+        val yAxisRight = lineChart.axisRight
+        yAxisRight.isEnabled = false
+
+        val yAxisLeft = lineChart.axisLeft
+        yAxisLeft.axisMinimum = 0f
+        yAxisLeft.axisMaximum = 100f
+        lineChart.isClickable = false
+        lineChart.isDoubleTapToZoomEnabled = false
+        lineChart.setPinchZoom(false)
+        lineChart.isScaleXEnabled = false
+        lineChart.isScaleYEnabled = false
+        lineChart.invalidate()
+    }
+
+    private fun getPie(){
+        val results = database.use {
+            select(DbHelper.TABLE_RESULT).exec { parseList(parser) }
+        }
+        val sumRight = results.sumBy { result -> result.score }
+        val sumBad = 10 * results.size - sumRight
+        val entries = ArrayList<PieEntry>()
+        entries.add(PieEntry(sumRight.toFloat(), "Right"))
+        entries.add(PieEntry(sumBad.toFloat(), "Bad"))
+
+        val dataSet = PieDataSet(entries, "Right and False answers")
+        dataSet.valueTextSize = 12f
+        dataSet.setColors(Color.parseColor("#cc0004"), Color.parseColor("#8c8c8c"))
+        val pieData = PieData(dataSet)
+        pieChart.setEntryLabelTextSize(12f)
+        pieChart.data = pieData
+        pieChart.description.isEnabled = false
+        pieChart.centerText = "Answers"
+        pieChart.setBackgroundColor(Color.parseColor("#eeeeee"))
+        pieChart.setCenterTextSize(18f)
+        pieChart.setCenterTextColor(Color.GRAY)
+        pieChart.invalidate()
     }
 }

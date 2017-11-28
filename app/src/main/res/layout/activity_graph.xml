@@ -9,25 +9,40 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_above="@id/cv"
-            />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        >
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="273dp"
             android:layout_margin="5dp"
-            android:id="@+id/cv"
+            android:id="@+id/cvBarChart"
+            app:cardBackgroundColor="#eeeeee"
             >
 
-            <com.jjoe64.graphview.GraphView
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
                 android:layout_width="match_parent"
-                android:layout_height="200dip"
-                android:id="@+id/graph" />
+                android:layout_height="match_parent"
+                />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="273dp"
+            android:layout_margin="5dp"
+            android:id="@+id/cvPieChart"
+            android:layout_below="@id/cvBarChart"
+            app:cardBackgroundColor="#ffebee"
+            >
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
 
         </android.support.v7.widget.CardView>
 
