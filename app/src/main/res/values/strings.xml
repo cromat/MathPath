@@ -11,4 +11,6 @@
     <string name="next">Next</string>
     <string name="quit">Quit</string>
     <string name="stats">Stats</string>
+    <string name="elementary1">Elementary 1</string>
+    <string name="elementary2">Elementary 2</string>
 </resources>

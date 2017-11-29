@@ -3,13 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="@string/category">
+    <item android:title="@string/category"
+        android:id="@+id/item_categ">
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_category"
+                    android:id="@+id/elementary1"
                     android:icon="@drawable/ic_menu_category"
-                    android:title="@string/elementary"
+                    android:title="@string/elementary1"
+                    />
+                <item
+                    android:id="@+id/elementary2"
+                    android:icon="@drawable/ic_menu_category"
+                    android:title="@string/elementary2"
                     />
             </group>
         </menu>

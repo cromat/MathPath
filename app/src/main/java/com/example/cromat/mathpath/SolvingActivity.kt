@@ -25,6 +25,7 @@ class SolvingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solving)
 
+        val checkedCateg = intent.getStringExtra("checkedCateg")
         nextEquation()
 
         // Next

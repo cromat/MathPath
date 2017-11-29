@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -32,7 +33,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // Onclick buttons
         btnStart.setOnClickListener {
-            startActivity(Intent(applicationContext, SolvingActivity::class.java))
+            var checkedCateg = "elementary1"
+            val categMenu = nav_view.menu.getItem(0).subMenu
+            for (i in 0 until categMenu.size()) {
+                if (categMenu.getItem(i).isChecked){
+                    checkedCateg = resources.getResourceEntryName(categMenu.getItem(i).itemId)
+                    break
+                }
+            }
+            val intent = Intent(applicationContext, SolvingActivity::class.java)
+            intent.putExtra("checkedCateg",checkedCateg)
+            startActivity(intent)
         }
 
     }
@@ -44,7 +55,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             super.onBackPressed()
         }
     }
-    
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
@@ -60,9 +71,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
 
-            R.id.nav_category -> {
-                Toast.makeText(applicationContext, "Book", Toast.LENGTH_SHORT).show()
-            }
+//            R.id.nav_elementary1 -> {
+//                Toast.makeText(applicationContext, "Book", Toast.LENGTH_SHORT).show()
+//            }
 
             R.id.nav_settings -> {
 
