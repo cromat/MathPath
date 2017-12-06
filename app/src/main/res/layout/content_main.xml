@@ -1,40 +1,380 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.cromat.mathpath.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    >
 
-    <Button
-        android:id="@+id/btnOptions"
-        style="@style/BtnGray"
-        android:layout_width="146dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="208dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Options"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
-    <Button
-        android:id="@+id/btnStart"
-        style="@style/BtnRed"
-        android:layout_width="146dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Start"
-        app:layout_constraintBottom_toTopOf="@+id/btnOptions"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.968" />
+        <!--Game type-->
+        <RelativeLayout
+            android:id="@+id/relativeGameType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            >
 
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/game_type"
+                android:id="@+id/textGameType"
+                android:textSize="@dimen/default_text_view"
+                />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textGameType"
+                >
+
+                <RadioButton
+                    android:id="@+id/radioSteps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/steps"
+                    android:checked="true"
+                    />
+
+                <RadioButton
+                    android:id="@+id/radioTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time"
+                    />
+
+            </RadioGroup>
+
+            <!--Steps configuration-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step_num"
+                android:id="@+id/textSteps"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/default_text_view"
+                />
+
+            <EditText
+                android:id="@+id/editSteps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textSteps"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="10"
+                android:inputType="number"
+                android:textSize="@dimen/default_text"
+                />
+
+            <!--Time configuration-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_seconds"
+                android:id="@+id/textTime"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/default_text_view"
+                android:visibility="gone"
+                />
+
+            <EditText
+                android:id="@+id/editTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textTime"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="60"
+                android:inputType="number"
+                android:textSize="@dimen/default_text"
+                android:visibility="gone"
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_below="@+id/relativeGameType"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            />
+
+        <!--Numbers range-->
+        <RelativeLayout
+            android:id="@+id/relativeNumRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
+            android:padding="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/numbers_range"
+                android:id="@+id/textNumRange"
+                android:textSize="@dimen/default_text_view"
+                />
+
+            <me.bendik.simplerangeview.SimpleRangeView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rangeNumbers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:count="100"
+                app:start="0"
+                app:end="10"
+                app:showFixedLine="true"
+                app:startFixed="0"
+                app:endFixed="100"
+                android:layout_marginTop="40dp"
+                />
+
+            <!--TODO: Check custom inputs (e.g. if bigger than range)-->
+            <EditText
+                android:id="@+id/editRangeNumStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_below="@id/rangeNumbers"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="100dp"
+                android:layout_marginStart="100dp"
+                android:textSize="@dimen/default_text"
+                android:text="0"
+                />
+
+            <EditText
+                android:id="@+id/editRangeNumEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_below="@id/rangeNumbers"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="100dp"
+                android:layout_marginEnd="100dp"
+                android:textSize="@dimen/default_text"
+                android:text="10"
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_below="@id/relativeNumRange"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            />
+
+        <!--Operators-->
+        <RelativeLayout
+            android:id="@+id/relativeOperators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line2"
+            android:padding="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/operators"
+                android:id="@+id/textOperators"
+                android:textSize="@dimen/default_text_view"
+                android:layout_marginBottom="10dp"
+                />
+
+            <RelativeLayout
+                android:id="@+id/relativeCheckboxes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/textOperators"
+                >
+
+                <!--TODO: At least one checked-->
+
+                <CheckBox
+                    android:id="@+id/checkPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="@dimen/default_text"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:checked="true"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkMinus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="@dimen/default_text"
+                    android:layout_toRightOf="@id/checkPlus"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:checked="true"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkMul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textSize="@dimen/default_text"
+                    android:layout_below="@id/checkPlus"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkDiv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
+                    android:textSize="@dimen/default_text"
+                    android:layout_toRightOf="@id/checkMul"
+                    android:layout_below="@+id/checkMinus"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line3"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_below="@id/relativeOperators"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            />
+
+        <!--Number of operands-->
+        <RelativeLayout
+            android:id="@+id/relativeNumOperands"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line3"
+            android:padding="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/operands"
+                android:id="@+id/textOperands"
+                android:textSize="@dimen/default_text_view"
+                android:layout_marginBottom="10dp"
+                />
+
+            <me.bendik.simplerangeview.SimpleRangeView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rangeOperands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:count="4"
+                app:start="0"
+                app:end="1"
+                app:showFixedLine="true"
+                app:startFixed="0"
+                app:endFixed="4"
+                android:layout_marginTop="40dp"
+                app:minDistance="1"
+                />
+
+            <EditText
+                android:id="@+id/editRangeOperStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_below="@id/rangeOperands"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="100dp"
+                android:layout_marginStart="100dp"
+                android:textSize="@dimen/default_text"
+                android:text="2"
+                />
+
+            <EditText
+                android:id="@+id/editRangeOperEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_below="@id/rangeOperands"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="100dp"
+                android:layout_marginEnd="100dp"
+                android:textSize="@dimen/default_text"
+                android:text="3"
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line4"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_below="@id/relativeNumOperands"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            />
+
+        <Button
+            android:id="@+id/btnStart"
+            style="@style/BtnRed"
+            android:layout_width="146dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Start"
+            android:layout_below="@id/line4"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+
+</ScrollView>

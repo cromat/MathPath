@@ -20,8 +20,8 @@ class GraphActivity : AppCompatActivity() {
     val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     val dateFormatCroShort = SimpleDateFormat("dd.MM.")
     val parser = rowParser {
-        id: Int, score: Int, date: String ->
-        Result(id, dateFormat.parse(date), score)
+        id: Int, date: String, score: Int, numAns: Int ->
+        Result(id, dateFormat.parse(date), score, numAns, "")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,7 +92,7 @@ class GraphActivity : AppCompatActivity() {
             select(DbHelper.TABLE_RESULT).exec { parseList(parser) }
         }
         val sumRight = results.sumBy { result -> result.score }
-        val sumBad = 10 * results.size - sumRight
+        val sumBad = results.sumBy { result -> result.numAns } - sumRight
         val entries = ArrayList<PieEntry>()
         entries.add(PieEntry(sumRight.toFloat(), "Right"))
         entries.add(PieEntry(sumBad.toFloat(), "Bad"))

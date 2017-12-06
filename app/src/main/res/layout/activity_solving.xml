@@ -1,22 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/relative_solving"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center"
-    android:gravity="center"
     android:background="@drawable/main_background"
     tools:context="com.example.cromat.mathpath.SolvingActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/solvingHeaders"
+        android:layout_marginTop="@dimen/btn_start_end_margin"
+        >
+
+        <TextView
+            android:id="@+id/solvingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/btn_start_end_margin"
+            android:layout_marginStart="@dimen/btn_start_end_margin"
+            />
+
+        <TextView
+            android:id="@+id/timerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/btn_start_end_margin"
+            android:layout_marginEnd="@dimen/btn_start_end_margin"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:id="@+id/relative_solving_elements"
+        android:layout_below="@id/solvingHeaders"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
         >
+
 
         <TextView
             android:id="@+id/txtViewEquation"
@@ -80,7 +117,6 @@
         android:layout_marginEnd="@dimen/btn_start_end_margin"
         android:layout_marginTop="58dp"
         android:max="100"
-        android:layout_marginBottom="140dp"
         />
 
 </RelativeLayout>

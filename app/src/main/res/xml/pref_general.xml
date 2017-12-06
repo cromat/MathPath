@@ -1,0 +1,12 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="steps"
+        android:entries="@array/pref_list_game_type"
+        android:entryValues="@array/pref_list_game_type_values"
+        android:key="game_type_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_game_type" />
+
+</PreferenceScreen>
