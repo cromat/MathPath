@@ -96,4 +96,5 @@
     <string name="operators">Operators</string>
     <string name="operands">Operands</string>
     <string name="time_seconds">Seconds</string>
+    <string name="show_answers"><u>Show Answers</u></string>
 </resources>

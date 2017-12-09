@@ -1,16 +1,17 @@
 package com.example.cromat.mathpath
 
 import android.content.ContentValues
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.SpannableStringBuilder
 import android.view.View
 import kotlinx.android.synthetic.main.activity_solving.*
-import org.jetbrains.anko.defaultSharedPreferences
 import org.mvel2.MVEL
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class SolvingActivity : AppCompatActivity() {
 
@@ -18,20 +19,22 @@ class SolvingActivity : AppCompatActivity() {
     private var TASK_NUM : Int = 1
     private var RIGHT_ANS : String = ""
     private var equationConfig: EquationConfig = EquationConfig()
+    private val listAnswers = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solving)
 
-        val prefs = this.defaultSharedPreferences
+//        val prefs = this.defaultSharedPreferences
         equationConfig  = intent.getSerializableExtra("equationConfig") as EquationConfig
-        val gameType = prefs.getString("game_type_list", equationConfig.GAME_TYPE)
+        solvingTitle.text = "Game Type: " + getString(resources.getIdentifier(equationConfig.GAME_TYPE,
+                "string", packageName));
 
         // Create first equation
         nextEquation()
 
         // Next
-        when (gameType){
+        when (equationConfig.GAME_TYPE){
             GameType.STEPS.toString() -> {
                 btnNext.setOnClickListener {
                     stepGame()
@@ -52,6 +55,13 @@ class SolvingActivity : AppCompatActivity() {
         // Quit
         btnQuit.setOnClickListener {
             finish()
+        }
+
+        // Show Answers
+        textShowAnswers.setOnClickListener {
+            val intent = Intent(applicationContext, AnswerListActivity::class.java)
+            intent.putStringArrayListExtra("listAnswers", listAnswers)
+            startActivity(intent)
         }
     }
 
@@ -84,6 +94,10 @@ class SolvingActivity : AppCompatActivity() {
             if (userAns == RIGHT_ANS)
                 SCORE++
 
+//            listAnswers.add(Answer(txtViewEquation.text.toString(), userAns, RIGHT_ANS))
+            listAnswers.add(txtViewEquation.text.toString() + ";" + userAns + ";" + RIGHT_ANS)
+
+//            listAnswers.add("blaa")
             edtViewAnswer.text = SpannableStringBuilder("")
             nextEquation()
             TASK_NUM++
@@ -92,6 +106,7 @@ class SolvingActivity : AppCompatActivity() {
             edtViewAnswer.visibility = View.INVISIBLE
             btnNext.text = "FINISH"
             txtViewEquation.text = "Your score: " + SCORE.toString() + "/" + equationConfig.STEPS_NUM.toString()
+            textShowAnswers.visibility = View.VISIBLE
             btnNext.setOnClickListener(View.OnClickListener {
 
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -107,6 +122,7 @@ class SolvingActivity : AppCompatActivity() {
                 finish()
             })
         }
+
         progressBarSolving.incrementProgressBy(10)
     }
 
@@ -115,6 +131,11 @@ class SolvingActivity : AppCompatActivity() {
         if (userAns == RIGHT_ANS)
             SCORE++
 
+//        listAnswers.add(Answer(txtViewEquation.text.toString(), userAns, RIGHT_ANS))
+        listAnswers.add(txtViewEquation.text.toString() + ";" + userAns + ";" + RIGHT_ANS)
+
+
+//        listAnswers.add("beee")
         edtViewAnswer.text = SpannableStringBuilder("")
         nextEquation()
         TASK_NUM++
@@ -133,7 +154,7 @@ class SolvingActivity : AppCompatActivity() {
                 edtViewAnswer.visibility = View.INVISIBLE
                 btnNext.text = "FINISH"
                 txtViewEquation.text = "Your score: " + SCORE.toString() + "/" + (TASK_NUM - 1).toString()
-                btnNext.setOnClickListener(View.OnClickListener {
+                btnNext.setOnClickListener {
 
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd")
                     val currentDateTime = dateFormat.format(Date()).toString()
@@ -146,7 +167,7 @@ class SolvingActivity : AppCompatActivity() {
                         insert(DbHelper.TABLE_RESULT, null, values)
                     }
                     finish()
-                })
+                }
             }
         }.start()
     }

@@ -94,62 +94,6 @@ class SettingsActivity : AppCompatPreferenceActivity() {
         }
     }
 
-    /**
-     * This fragment shows notification preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    class NotificationPreferenceFragment : PreferenceFragment() {
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            addPreferencesFromResource(R.xml.pref_notification)
-            setHasOptionsMenu(true)
-
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"))
-        }
-
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            val id = item.itemId
-            if (id == android.R.id.home) {
-                startActivity(Intent(activity, SettingsActivity::class.java))
-                return true
-            }
-            return super.onOptionsItemSelected(item)
-        }
-    }
-
-    /**
-     * This fragment shows data and sync preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    class DataSyncPreferenceFragment : PreferenceFragment() {
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            addPreferencesFromResource(R.xml.pref_data_sync)
-            setHasOptionsMenu(true)
-
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("sync_frequency"))
-        }
-
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            val id = item.itemId
-            if (id == android.R.id.home) {
-                startActivity(Intent(activity, SettingsActivity::class.java))
-                return true
-            }
-            return super.onOptionsItemSelected(item)
-        }
-    }
-
     companion object {
 
         /**

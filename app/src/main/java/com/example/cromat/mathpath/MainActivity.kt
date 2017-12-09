@@ -13,12 +13,7 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import me.bendik.simplerangeview.SimpleRangeView
 import org.jetbrains.annotations.NotNull
-import android.view.MenuInflater
 import android.preference.PreferenceActivity
-
-
-
-
 
 
 class MainActivity : AppCompatActivity() {
