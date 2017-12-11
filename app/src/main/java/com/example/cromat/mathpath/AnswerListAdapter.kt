@@ -1,11 +1,13 @@
 package com.example.cromat.mathpath
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 
 
 class AnswerListAdapter: ArrayAdapter<String> {
@@ -34,10 +36,19 @@ class AnswerListAdapter: ArrayAdapter<String> {
         val answerListItemEquation = convertView.findViewById<TextView>(R.id.answerListItemEquation)
         val answerListItemUserAns = convertView.findViewById<TextView>(R.id.answerListItemUserAns)
         val answerListItemRightAns = convertView.findViewById<TextView>(R.id.answerListItemRightAns)
+        val linearAnswerListItem = convertView.findViewById<LinearLayout>(R.id.linearAnswerListItem)
+
+        if (userAns == rightAns)
+            linearAnswerListItem.setBackgroundColor(ContextCompat.getColor(context, R.color.colorGreenLight))
+        else
+            linearAnswerListItem.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRedLight))
 
         answerListItemNum.text = "#"
-        if (position > 0)
+        if (position == 0)
+            linearAnswerListItem.setBackgroundColor(ContextCompat.getColor(context, R.color.colorGrayLight))
+        else
             answerListItemNum.text = (position + 1).toString()
+
         answerListItemEquation.text = equation
         answerListItemUserAns.text = userAns
         answerListItemRightAns.text = rightAns

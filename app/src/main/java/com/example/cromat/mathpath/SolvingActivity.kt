@@ -36,6 +36,7 @@ class SolvingActivity : AppCompatActivity() {
         // Next
         when (equationConfig.GAME_TYPE){
             GameType.STEPS.toString() -> {
+                progressBarSolving.max = equationConfig.STEPS_NUM
                 btnNext.setOnClickListener {
                     stepGame()
                 }
@@ -72,9 +73,26 @@ class SolvingActivity : AppCompatActivity() {
         val RAND_NUM_OPERANDS = rand.nextInt(equationConfig.MAX_NUM_OPERANDS - equationConfig.MIN_NUM_OPERANDS) +
                 equationConfig.MIN_NUM_OPERANDS
 
+        var OPERATOR = ""
+        var RAND_NUM = 0
         for (i in 0..RAND_NUM_OPERANDS){
-            val RAND_NUM = rand.nextInt(equationConfig.MAX_NUM - equationConfig.MIN_NUM) + equationConfig.MIN_NUM
-            equation += RAND_NUM.toString() + equationConfig.OPERATORS[rand.nextInt(equationConfig.OPERATORS.size)]
+            if(OPERATOR == "/"){
+                val lastNum = RAND_NUM
+                RAND_NUM = 1
+                if (lastNum > 1) {
+                    for(j in 2 until lastNum){
+                        if(lastNum % j == 0) {
+                            RAND_NUM = j
+                            break
+                        }
+                    }
+                }
+            }
+            else {
+                RAND_NUM = rand.nextInt(equationConfig.MAX_NUM - equationConfig.MIN_NUM) + equationConfig.MIN_NUM
+            }
+            OPERATOR = equationConfig.OPERATORS[rand.nextInt(equationConfig.OPERATORS.size)]
+            equation += RAND_NUM.toString() + OPERATOR
         }
 
         equation = equation.dropLast(1)
@@ -84,7 +102,8 @@ class SolvingActivity : AppCompatActivity() {
     private fun nextEquation() {
         val equationText = generateEquation()
         txtViewEquation.text = equationText + "="
-        RIGHT_ANS = MVEL.eval(equationText).toString()
+        val evaluated : Double = MVEL.eval(equationText) as Double
+        RIGHT_ANS = evaluated.toInt().toString()
     }
 
     private fun stepGame(){
@@ -94,10 +113,7 @@ class SolvingActivity : AppCompatActivity() {
             if (userAns == RIGHT_ANS)
                 SCORE++
 
-//            listAnswers.add(Answer(txtViewEquation.text.toString(), userAns, RIGHT_ANS))
             listAnswers.add(txtViewEquation.text.toString() + ";" + userAns + ";" + RIGHT_ANS)
-
-//            listAnswers.add("blaa")
             edtViewAnswer.text = SpannableStringBuilder("")
             nextEquation()
             TASK_NUM++
@@ -107,7 +123,7 @@ class SolvingActivity : AppCompatActivity() {
             btnNext.text = "FINISH"
             txtViewEquation.text = "Your score: " + SCORE.toString() + "/" + equationConfig.STEPS_NUM.toString()
             textShowAnswers.visibility = View.VISIBLE
-            btnNext.setOnClickListener(View.OnClickListener {
+            btnNext.setOnClickListener {
 
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd")
                 val currentDateTime = dateFormat.format(Date()).toString()
@@ -120,10 +136,10 @@ class SolvingActivity : AppCompatActivity() {
                     insert(DbHelper.TABLE_RESULT, null, values)
                 }
                 finish()
-            })
+            }
         }
 
-        progressBarSolving.incrementProgressBy(10)
+        progressBarSolving.incrementProgressBy(1)
     }
 
     private fun timeGame() {
@@ -131,11 +147,7 @@ class SolvingActivity : AppCompatActivity() {
         if (userAns == RIGHT_ANS)
             SCORE++
 
-//        listAnswers.add(Answer(txtViewEquation.text.toString(), userAns, RIGHT_ANS))
         listAnswers.add(txtViewEquation.text.toString() + ";" + userAns + ";" + RIGHT_ANS)
-
-
-//        listAnswers.add("beee")
         edtViewAnswer.text = SpannableStringBuilder("")
         nextEquation()
         TASK_NUM++

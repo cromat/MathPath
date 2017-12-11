@@ -21,7 +21,6 @@
             android:id="@+id/solvingTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
             android:layout_centerHorizontal="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -33,7 +32,6 @@
             android:id="@+id/timerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="60"
             android:visibility="gone"
             android:layout_centerHorizontal="true"
             android:layout_alignParentRight="true"
@@ -75,25 +73,25 @@
             android:inputType="numberSigned"
             />
 
-        <TextView
-            android:id="@+id/textShowAnswers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/default_text_view"
-            android:layout_below="@id/txtViewEquation"
-            android:text="@string/show_answers"
-            android:gravity="center_horizontal"
-            android:visibility="gone"
-            />
-
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textShowAnswers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/default_text_view"
+        android:layout_below="@id/relative_solving_elements"
+        android:text="@string/show_answers"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        />
 
     <Button
         android:id="@+id/btnQuit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/BtnGray"
-        android:layout_below="@+id/relative_solving_elements"
+        android:layout_below="@+id/textShowAnswers"
         android:text="@string/quit"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="@dimen/btn_start_end_margin"
@@ -107,7 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/BtnRed"
-        android:layout_below="@+id/relative_solving_elements"
+        android:layout_below="@+id/textShowAnswers"
         android:text="@string/next"
         android:layout_marginTop="10dp"
         android:layout_marginRight="@dimen/btn_start_end_margin"
