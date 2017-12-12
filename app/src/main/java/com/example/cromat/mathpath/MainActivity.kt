@@ -81,7 +81,9 @@ class MainActivity : AppCompatActivity() {
 
         // Open Db and create tables if not existing
         DbHelper(applicationContext)
+        database.onUpgrade(database.writableDatabase, 1, 2)
 
+        database.onCreate(database.writableDatabase)
         // Start
         btnStart.setOnClickListener {
 
@@ -201,7 +203,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT).show()
             return false
         }
-
         return true
     }
 }

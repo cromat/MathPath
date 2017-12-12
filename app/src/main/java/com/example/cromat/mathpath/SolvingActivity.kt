@@ -122,13 +122,14 @@ class SolvingActivity : AppCompatActivity() {
 
     private fun stepGame(){
         stepperText.text = (TASK_NUM + 1).toString() + "/" + equationConfig.STEPS_NUM.toString()
+        val userAns = edtViewAnswer.text.toString()
+
+        if (userAns == RIGHT_ANS)
+            SCORE++
+
+        listAnswers.add(txtViewEquation.text.toString() + ";" + userAns + ";" + RIGHT_ANS)
         if (TASK_NUM < equationConfig.STEPS_NUM) {
-            val userAns = edtViewAnswer.text.toString()
 
-            if (userAns == RIGHT_ANS)
-                SCORE++
-
-            listAnswers.add(txtViewEquation.text.toString() + ";" + userAns + ";" + RIGHT_ANS)
             edtViewAnswer.text = SpannableStringBuilder("")
             nextEquation()
             TASK_NUM++
@@ -148,6 +149,7 @@ class SolvingActivity : AppCompatActivity() {
                 values.put("score", SCORE)
                 values.put("date", currentDateTime)
                 values.put("numAns", equationConfig.STEPS_NUM)
+                values.put("gameType", GameType.STEPS.toString())
                 database.use {
                     insert(DbHelper.TABLE_RESULT, null, values)
                 }
@@ -191,6 +193,7 @@ class SolvingActivity : AppCompatActivity() {
                     values.put("score", SCORE)
                     values.put("date", currentDateTime)
                     values.put("numAns", TASK_NUM - 1)
+                    values.put("gameType", GameType.TIME.toString())
                     database.use {
                         insert(DbHelper.TABLE_RESULT, null, values)
                     }

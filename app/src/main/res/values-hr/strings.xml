@@ -24,4 +24,16 @@
     <string name="time">Vrijeme</string>
     <string name="pref_header_general">Glavne postavke</string>
     <string name="title_activity_settings">Postavke</string>
+
+    <string-array name="graph_range_array">
+        <item>7 dana</item>
+        <item>1 mjesec</item>
+    </string-array>
+
+    <string-array name="graph_type_array">
+        <item>Sve</item>
+        <item>Koraci</item>
+        <item>Vrijeme</item>
+    </string-array>
+
 </resources>

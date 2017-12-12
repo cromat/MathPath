@@ -23,8 +23,10 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
         // Results table
         db.createTable(TABLE_RESULT, true,
                 "id" to INTEGER + PRIMARY_KEY + UNIQUE,
+                "date" to TEXT,
                 "score" to INTEGER,
-                "date" to TEXT)
+                "numAns" to INTEGER,
+                "gameType" to TEXT)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

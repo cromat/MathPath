@@ -13,6 +13,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import kotlin.collections.HashMap
+import android.widget.ArrayAdapter
+
+
 
 
 class GraphActivity : AppCompatActivity() {
@@ -20,13 +23,25 @@ class GraphActivity : AppCompatActivity() {
     val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     val dateFormatCroShort = SimpleDateFormat("dd.MM.")
     val parser = rowParser {
-        id: Int, date: String, score: Int, numAns: Int ->
-        Result(id, dateFormat.parse(date), score, numAns, "")
+        id: Int, date: String, score: Int, numAns: Int, gameType: String ->
+        Result(id, dateFormat.parse(date), score, numAns, gameType)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)
+
+        val adapterRangeSpinner = ArrayAdapter.createFromResource(this,
+                R.array.graph_range_array, android.R.layout.simple_spinner_dropdown_item)
+        adapterRangeSpinner.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+        spinnerGraphRange.adapter = adapterRangeSpinner
+        spinnerGraphRange.setSelection(0)
+
+        val adapterTypeSpinner = ArrayAdapter.createFromResource(this,
+                R.array.graph_type_array, android.R.layout.simple_spinner_dropdown_item)
+        adapterTypeSpinner.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+        spinnerGraphType.adapter = adapterTypeSpinner
+        spinnerGraphType.setSelection(0)
 
         getWeekly()
         getPie()
@@ -35,9 +50,13 @@ class GraphActivity : AppCompatActivity() {
     private fun getWeekly(){
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-        val sundayStr = dateFormat.format(calendar.time)
+        val sundayStr: String = dateFormat.format(calendar.time)
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-        val mondayStr = dateFormat.format(calendar.time)
+        val mondayStr: String = dateFormat.format(calendar.time)
+
+        val results2 = database.use {
+            select(DbHelper.TABLE_RESULT)
+        }
 
         val results = database.use {
             select(DbHelper.TABLE_RESULT).whereArgs("date >= '" + mondayStr + "' and date <= '" + sundayStr + "';" ).exec { parseList(parser) }

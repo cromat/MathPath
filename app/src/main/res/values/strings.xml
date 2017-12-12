@@ -38,4 +38,18 @@
         <item>hrvatski</item>
     </string-array>
 
+    <!--Spinner arrays-->
+
+    <string-array name="graph_range_array">
+        <item>7 days</item>
+        <item>1 month</item>
+    </string-array>
+
+    <string-array name="graph_type_array">
+        <item>All</item>
+        <item>Steps</item>
+        <item>Time Chase</item>
+    </string-array>
+
+
 </resources>
