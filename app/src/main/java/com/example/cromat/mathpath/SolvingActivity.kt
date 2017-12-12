@@ -45,6 +45,7 @@ class SolvingActivity : AppCompatActivity() {
         // Next
         when (equationConfig.GAME_TYPE){
             GameType.STEPS.toString() -> {
+                stepperText.text = TASK_NUM.toString() + "/" + equationConfig.STEPS_NUM.toString()
                 progressBarSolving.max = equationConfig.STEPS_NUM
                 btnNext.setOnClickListener {
                     stepGame()
@@ -52,6 +53,7 @@ class SolvingActivity : AppCompatActivity() {
             }
 
             GameType.TIME.toString() -> {
+                stepperText.visibility = View.GONE
                 timerText.visibility = View.VISIBLE
                 progressBarSolving.max = equationConfig.TIME_SEC
                 timerText.text = equationConfig.TIME_SEC.toString()
@@ -119,6 +121,7 @@ class SolvingActivity : AppCompatActivity() {
     }
 
     private fun stepGame(){
+        stepperText.text = (TASK_NUM + 1).toString() + "/" + equationConfig.STEPS_NUM.toString()
         if (TASK_NUM < equationConfig.STEPS_NUM) {
             val userAns = edtViewAnswer.text.toString()
 
@@ -131,6 +134,7 @@ class SolvingActivity : AppCompatActivity() {
             TASK_NUM++
         }
         else {
+            stepperText.visibility = View.GONE
             edtViewAnswer.visibility = View.INVISIBLE
             btnNext.text = "FINISH"
             txtViewEquation.text = "Your score: " + SCORE.toString() + "/" + equationConfig.STEPS_NUM.toString()

@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
         // Radio buttons listeners
         radioSteps.setOnClickListener {
             editTime.visibility = View.GONE
@@ -144,6 +143,9 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT, SettingsActivity.GeneralPreferenceFragment::class.java!!.getName())
                 intent.putExtra(PreferenceActivity.EXTRA_NO_HEADERS, true)
                 startActivity(intent)
+            }
+            R.id.action_stats -> {
+                startActivity(Intent(applicationContext, GraphActivity::class.java))
             }
         }
         return true

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MathPath</string>
+    <string name="action_settings">Postavke</string>
+    <string name="next">Dalje</string>
+    <string name="quit">Izlaz</string>
+    <string name="stats">Statistika</string>
+    <string name="settings">Postavke</string>
+    <string name="game_type">Tip igre</string>
+    <string name="step_num">Koraci</string>
+    <string name="numbers_range">Raspon brojeva</string>
+    <string name="operators">Operatori</string>
+    <string name="operands">Operandi</string>
+    <string name="time_seconds">Sekunde</string>
+    <string name="show_answers"><u>Prikaži odgovore</u></string>
+    <string name="check_fix_num_operands">Postavi zadan broj operanada</string>
+    <string name="start">Kreni</string>
+    <string name="valid_operators">Potrebno je postaviti barem jedan operator!</string>
+    <string name="valid_range">Neispravan raspon brojeva!</string>
+    <string name="valid_steps">Potrebno je postaviti barem jedan korak!</string>
+    <string name="valid_time">Minimalno vrijeme je 10 sekundi!</string>
+    <string name="pref_language">Jezik</string>
+    <string name="steps">Koraci</string>
+    <string name="time">Vrijeme</string>
+    <string name="pref_header_general">Glavne postavke</string>
+    <string name="title_activity_settings">Postavke</string>
+</resources>
