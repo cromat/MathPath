@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         >
 
+
         <!--Game type-->
         <RelativeLayout
             android:id="@+id/relativeGameType"
@@ -30,7 +31,11 @@
                 android:text="@string/game_type"
                 android:id="@+id/textGameType"
                 android:textSize="@dimen/default_text_view"
-                />
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                >
+                <requestFocus/>
+            </TextView>
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -76,6 +81,7 @@
                 android:text="10"
                 android:inputType="number"
                 android:textSize="@dimen/default_text"
+                android:imeOptions="flagNoExtractUi"
                 />
 
             <!--Time configuration-->
@@ -101,6 +107,7 @@
                 android:inputType="number"
                 android:textSize="@dimen/default_text"
                 android:visibility="gone"
+                android:imeOptions="flagNoExtractUi"
                 />
 
         </RelativeLayout>
@@ -147,7 +154,6 @@
                 android:layout_marginTop="40dp"
                 />
 
-            <!--TODO: Check custom inputs (e.g. if bigger than range)-->
             <EditText
                 android:id="@+id/editRangeNumStart"
                 android:layout_width="wrap_content"
@@ -161,6 +167,7 @@
                 android:layout_marginStart="100dp"
                 android:textSize="@dimen/default_text"
                 android:text="0"
+                android:imeOptions="flagNoExtractUi"
                 />
 
             <EditText
@@ -176,6 +183,7 @@
                 android:layout_marginEnd="100dp"
                 android:textSize="@dimen/default_text"
                 android:text="10"
+                android:imeOptions="flagNoExtractUi"
                 />
 
         </RelativeLayout>
@@ -217,8 +225,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/textOperators"
                 >
-
-                <!--TODO: At least one checked-->
 
                 <CheckBox
                     android:id="@+id/checkPlus"
@@ -268,7 +274,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="10dp"
-                    />
+                    android:layout_toEndOf="@id/checkMul" />
 
             </RelativeLayout>
 
@@ -294,6 +300,8 @@
             android:padding="20dp"
             >
 
+            <!--If checkbox unchecked-->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -301,6 +309,14 @@
                 android:id="@+id/textOperands"
                 android:textSize="@dimen/default_text_view"
                 android:layout_marginBottom="10dp"
+                />
+
+            <CheckBox
+                android:id="@+id/checkFixedNumOperands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textOperands"
+                android:text="@string/check_fix_num_operands"
                 />
 
             <me.bendik.simplerangeview.SimpleRangeView
@@ -316,13 +332,13 @@
                 app:endFixed="4"
                 android:layout_marginTop="40dp"
                 app:minDistance="1"
+                android:layout_below="@id/checkFixedNumOperands"
                 />
 
-            <EditText
-                android:id="@+id/editRangeOperStart"
+            <TextView
+                android:id="@+id/textRangeOperStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:layout_below="@id/rangeOperands"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentStart="true"
@@ -333,11 +349,10 @@
                 android:text="2"
                 />
 
-            <EditText
-                android:id="@+id/editRangeOperEnd"
+            <TextView
+                android:id="@+id/textRangeOperEnd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:layout_below="@id/rangeOperands"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentEnd="true"
@@ -347,6 +362,50 @@
                 android:textSize="@dimen/default_text"
                 android:text="3"
                 />
+
+            <!--If checkbox checked-->
+
+            <RadioGroup
+                android:id="@+id/radioNumOperands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:layout_below="@id/checkFixedNumOperands"
+                android:visibility="gone"
+                android:layout_marginTop="30dp"
+                >
+
+                <RadioButton
+                    android:id="@+id/radioBtnOperNum2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:layout_weight="1"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:layout_weight="1"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:layout_weight="1"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:layout_weight="1"
+                    />
+
+            </RadioGroup>
 
         </RelativeLayout>
 
@@ -370,7 +429,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Start"
+            android:text="@string/start"
             android:layout_below="@id/line4"
             android:layout_centerHorizontal="true"
             />

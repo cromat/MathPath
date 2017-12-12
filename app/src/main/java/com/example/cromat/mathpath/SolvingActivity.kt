@@ -1,17 +1,20 @@
 package com.example.cromat.mathpath
 
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.SpannableStringBuilder
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_solving.*
 import org.mvel2.MVEL
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class SolvingActivity : AppCompatActivity() {
 
@@ -25,10 +28,16 @@ class SolvingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solving)
 
+        relativeSolvingContainer.setOnClickListener {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+            edtViewAnswer.requestFocus()
+        }
+
 //        val prefs = this.defaultSharedPreferences
         equationConfig  = intent.getSerializableExtra("equationConfig") as EquationConfig
         solvingTitle.text = "Game Type: " + getString(resources.getIdentifier(equationConfig.GAME_TYPE,
-                "string", packageName));
+                "string", packageName))
 
         // Create first equation
         nextEquation()
@@ -70,12 +79,15 @@ class SolvingActivity : AppCompatActivity() {
         var equation : String = ""
         val rand = Random()
 
-        val RAND_NUM_OPERANDS = rand.nextInt(equationConfig.MAX_NUM_OPERANDS - equationConfig.MIN_NUM_OPERANDS) +
-                equationConfig.MIN_NUM_OPERANDS
+        var RAND_NUM_OPERANDS = equationConfig.MAX_NUM_OPERANDS
+        if (equationConfig.MAX_NUM_OPERANDS > equationConfig.MIN_NUM_OPERANDS) {
+            RAND_NUM_OPERANDS = rand.nextInt(equationConfig.MAX_NUM_OPERANDS + 1 - equationConfig.MIN_NUM_OPERANDS) +
+                    equationConfig.MIN_NUM_OPERANDS
+        }
 
         var OPERATOR = ""
         var RAND_NUM = 0
-        for (i in 0..RAND_NUM_OPERANDS){
+        for (i in 0 until RAND_NUM_OPERANDS){
             if(OPERATOR == "/"){
                 val lastNum = RAND_NUM
                 RAND_NUM = 1
@@ -102,7 +114,7 @@ class SolvingActivity : AppCompatActivity() {
     private fun nextEquation() {
         val equationText = generateEquation()
         txtViewEquation.text = equationText + "="
-        val evaluated : Double = MVEL.eval(equationText) as Double
+        val evaluated : Double = MVEL.eval(equationText + ".0") as Double
         RIGHT_ANS = evaluated.toInt().toString()
     }
 

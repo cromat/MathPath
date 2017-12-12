@@ -16,12 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SolvingActivity" />
+        <activity android:name=".SolvingActivity"
+            android:windowSoftInputMode="adjustResize"
+            >
+        </activity>
         <activity android:name=".GraphActivity" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".AnswerListActivity"></activity>
+        <activity android:name=".AnswerListActivity" />
     </application>
 
 </manifest>

@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.content_main.*
 import me.bendik.simplerangeview.SimpleRangeView
 import org.jetbrains.annotations.NotNull
 import android.preference.PreferenceActivity
+import android.widget.RadioButton
+import android.widget.Toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,13 +38,14 @@ class MainActivity : AppCompatActivity() {
 
         rangeOperands.onTrackRangeListener = (object : SimpleRangeView.OnTrackRangeListener {
             override fun onStartRangeChanged(@NotNull rangeView: SimpleRangeView, start: Int) {
-                editRangeOperStart.setText((start + 2).toString())
+                textRangeOperStart.setText((start + 2).toString())
             }
 
             override fun onEndRangeChanged(@NotNull rangeView: SimpleRangeView, end: Int) {
-                editRangeOperEnd.setText((end + 2).toString())
+                textRangeOperEnd.setText((end + 2).toString())
             }
         })
+
 
         // Radio buttons listeners
         radioSteps.setOnClickListener {
@@ -59,33 +62,63 @@ class MainActivity : AppCompatActivity() {
             textTime.visibility = View.VISIBLE
         }
 
+        radioNumOperands.check(radioBtnOperNum2.id)
+
+        //  Number operands checkbox
+        checkFixedNumOperands.setOnClickListener {
+            if(checkFixedNumOperands.isChecked){
+                rangeOperands.visibility = View.GONE
+                textRangeOperStart.visibility = View.GONE
+                textRangeOperEnd.visibility = View.GONE
+                radioNumOperands.visibility = View.VISIBLE
+            }
+            else{
+                rangeOperands.visibility = View.VISIBLE
+                textRangeOperStart.visibility = View.VISIBLE
+                textRangeOperEnd.visibility = View.VISIBLE
+                radioNumOperands.visibility = View.GONE
+            }
+        }
+
         // Open Db and create tables if not existing
         DbHelper(applicationContext)
 
         // Start
         btnStart.setOnClickListener {
-            val MAX_NUM_OPERANDS = editRangeOperEnd.text.toString().toInt()
-            val MIN_NUM_OPERANDS = editRangeOperStart.text.toString().toInt()
-            val MAX_NUM = editRangeNumEnd.text.toString().toInt()
-            val MIN_NUM = editRangeNumStart.text.toString().toInt()
-            val OPERATORS = ArrayList<String>()
 
-            (0 until relativeCheckboxes.childCount)
-                    .map { relativeCheckboxes.getChildAt(it) as CheckBox }
-                    .filter { it.isChecked }
-                    .mapTo(OPERATORS) { it.text.toString() }
+            if(validateFields()) {
 
-            var GAME_TYPE = GameType.STEPS.toString()
-            if (radioTime.isChecked)
-                GAME_TYPE = GameType.TIME.toString()
-            val TIME_SEC = editTime.text.toString().toInt()
-            val STEPS_NUM = editSteps.text.toString().toInt()
+                var MAX_NUM_OPERANDS = textRangeOperEnd.text.toString().toInt()
+                var MIN_NUM_OPERANDS = textRangeOperStart.text.toString().toInt()
 
-            val equationConfig = EquationConfig(MAX_NUM_OPERANDS, MIN_NUM_OPERANDS, MAX_NUM,
-                    MIN_NUM, OPERATORS, GAME_TYPE, TIME_SEC, STEPS_NUM)
-            val intent = Intent(applicationContext, SolvingActivity::class.java)
-            intent.putExtra("equationConfig", equationConfig)
-            startActivity(intent)
+                if (checkFixedNumOperands.isChecked) {
+                    val selectedId = radioNumOperands.getCheckedRadioButtonId()
+                    val selectedRadioBtn = findViewById<View>(selectedId) as RadioButton
+                    MAX_NUM_OPERANDS = selectedRadioBtn.text.toString().toInt()
+                    MIN_NUM_OPERANDS = selectedRadioBtn.text.toString().toInt()
+                }
+
+                val MAX_NUM = editRangeNumEnd.text.toString().toInt()
+                val MIN_NUM = editRangeNumStart.text.toString().toInt()
+                val OPERATORS = ArrayList<String>()
+
+                (0 until relativeCheckboxes.childCount)
+                        .map { relativeCheckboxes.getChildAt(it) as CheckBox }
+                        .filter { it.isChecked }
+                        .mapTo(OPERATORS) { it.text.toString() }
+
+                var GAME_TYPE = GameType.STEPS.toString()
+                if (radioTime.isChecked)
+                    GAME_TYPE = GameType.TIME.toString()
+                val TIME_SEC = editTime.text.toString().toInt()
+                val STEPS_NUM = editSteps.text.toString().toInt()
+
+                val equationConfig = EquationConfig(MAX_NUM_OPERANDS, MIN_NUM_OPERANDS, MAX_NUM,
+                        MIN_NUM, OPERATORS, GAME_TYPE, TIME_SEC, STEPS_NUM)
+                val intent = Intent(applicationContext, SolvingActivity::class.java)
+                intent.putExtra("equationConfig", equationConfig)
+                startActivity(intent)
+            }
         }
     }
 
@@ -116,4 +149,57 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    fun validateFields(): Boolean{
+        // Steps validation
+        if(radioSteps.isChecked && editSteps.text.toString().toInt() < 1){
+            Toast.makeText(applicationContext,
+                    applicationContext.getResources().getString(R.string.valid_steps),
+                    Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        // Time validation
+        if(radioTime.isChecked && editTime.text.toString().toInt() < 10){
+            Toast.makeText(applicationContext,
+                    applicationContext.getResources().getString(R.string.valid_time),
+                    Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        // Operators validation
+        var atLeastOneChecked = false
+        for (i in 0 until relativeCheckboxes.childCount) {
+            val checkBox = relativeCheckboxes.getChildAt(i) as CheckBox
+            if(checkBox.isChecked) {
+                atLeastOneChecked = true
+                break
+            }
+        }
+
+        if(!atLeastOneChecked){
+            Toast.makeText(applicationContext,
+                    applicationContext.getResources().getString(R.string.valid_operators),
+                    Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        // Number range validation
+        if(editRangeNumStart.text.toString().toIntOrNull() == null ||
+                editRangeNumEnd.text.toString().toIntOrNull() == null){
+            Toast.makeText(applicationContext,
+                    applicationContext.getResources().getString(R.string.valid_range),
+                    Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if(editRangeNumStart.text.toString().toInt() < rangeNumbers.startFixed ||
+                editRangeNumEnd.text.toString().toInt() > rangeNumbers.endFixed){
+            Toast.makeText(applicationContext,
+                    applicationContext.getResources().getString(R.string.valid_range),
+                    Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
+    }
 }

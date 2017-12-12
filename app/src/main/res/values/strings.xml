@@ -97,4 +97,10 @@
     <string name="operands">Operands</string>
     <string name="time_seconds">Seconds</string>
     <string name="show_answers"><u>Show Answers</u></string>
+    <string name="check_fix_num_operands">Set fixed number of operands</string>
+    <string name="start">Start</string>
+    <string name="valid_operators">Please check at least one operator!</string>
+    <string name="valid_range">Not a valid range of numbers!</string>
+    <string name="valid_steps">You need to set at least 1 step!</string>
+    <string name="valid_time">You need to set at least 10 seconds of time!</string>
 </resources>
