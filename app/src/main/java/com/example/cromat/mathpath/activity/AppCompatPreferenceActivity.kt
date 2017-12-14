@@ -1,4 +1,4 @@
-package com.example.cromat.mathpath
+package com.example.cromat.mathpath.activity
 
 import android.content.res.Configuration
 import android.os.Bundle

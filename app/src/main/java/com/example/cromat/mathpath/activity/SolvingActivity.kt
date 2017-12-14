@@ -1,4 +1,4 @@
-package com.example.cromat.mathpath
+package com.example.cromat.mathpath.activity
 
 import android.content.ContentValues
 import android.content.Context
@@ -9,6 +9,9 @@ import android.os.CountDownTimer
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.example.cromat.mathpath.*
+import com.example.cromat.mathpath.enums.GameType
+import com.example.cromat.mathpath.model.EquationConfig
 import kotlinx.android.synthetic.main.activity_solving.*
 import org.mvel2.MVEL
 import java.text.SimpleDateFormat

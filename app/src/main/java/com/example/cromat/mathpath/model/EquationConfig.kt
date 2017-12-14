@@ -1,5 +1,6 @@
-package com.example.cromat.mathpath
+package com.example.cromat.mathpath.model
 
+import com.example.cromat.mathpath.enums.GameType
 import java.io.Serializable
 
 class EquationConfig : Serializable {

@@ -1,4 +1,4 @@
-package com.example.cromat.mathpath
+package com.example.cromat.mathpath.model
 
 import java.io.Serializable
 

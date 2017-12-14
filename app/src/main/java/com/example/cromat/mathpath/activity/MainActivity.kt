@@ -1,4 +1,4 @@
-package com.example.cromat.mathpath
+package com.example.cromat.mathpath.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,6 +16,10 @@ import org.jetbrains.annotations.NotNull
 import android.preference.PreferenceActivity
 import android.widget.RadioButton
 import android.widget.Toast
+import com.example.cromat.mathpath.DbHelper
+import com.example.cromat.mathpath.model.EquationConfig
+import com.example.cromat.mathpath.enums.GameType
+import com.example.cromat.mathpath.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -81,9 +85,7 @@ class MainActivity : AppCompatActivity() {
 
         // Open Db and create tables if not existing
         DbHelper(applicationContext)
-        database.onUpgrade(database.writableDatabase, 1, 2)
 
-        database.onCreate(database.writableDatabase)
         // Start
         btnStart.setOnClickListener {
 

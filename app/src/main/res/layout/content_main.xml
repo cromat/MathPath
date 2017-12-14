@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.cromat.mathpath.MainActivity"
+    tools:context="com.example.cromat.mathpath.activity.MainActivity"
     tools:showIn="@layout/app_bar_main"
     >
 

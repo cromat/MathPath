@@ -1,7 +1,9 @@
-package com.example.cromat.mathpath
+package com.example.cromat.mathpath.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.cromat.mathpath.AnswerListAdapter
+import com.example.cromat.mathpath.R
 import kotlinx.android.synthetic.main.activity_answers_list.*
 
 class AnswerListActivity : AppCompatActivity() {

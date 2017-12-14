@@ -9,22 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SolvingActivity"
+        <activity android:name=".activity.SolvingActivity"
             android:windowSoftInputMode="adjustResize"
             >
         </activity>
-        <activity android:name=".GraphActivity" />
+        <activity android:name=".activity.GraphActivity" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".AnswerListActivity" />
+        <activity android:name=".activity.AnswerListActivity" />
     </application>
 
 </manifest>
