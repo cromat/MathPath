@@ -171,7 +171,8 @@ class GraphActivity : AppCompatActivity() {
         dataSet.setCircleColor(Color.GRAY)
         val lineData = LineData(dataSet)
         lineChart.description.isEnabled = false
-        lineChart.data = lineData
+        if(entries.size > 0)
+            lineChart.data = lineData
 
         xAxis.setValueFormatter { value, axis -> datesMap.get(value) }
         xAxis.position = XAxisPosition.BOTTOM
