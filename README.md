@@ -1,6 +1,6 @@
 # Welcome to MathPath!
 
-MathPath is simple math equation generating Android application made for elementary school students. Math solving was was never simpler and more entertaining.
+MathPath is simple math equation generating Android application made for elementary school students. Math solving was never simpler and more entertaining.
 
 
 # About application
