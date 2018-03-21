@@ -14,13 +14,16 @@ MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for bac
 # Todo
 
 * Progressbar with red or green step color depending on right or wrong answer
-* AI algorithm that will generate or repeat tasks based on former user solutions
+* AI algorithm that will generate or repeat tasks based on former user solutions:
+	User solutions will be saved to database and application will generate equations based on operators or numbers that user 	tends to solve harder.
+	Also, if user gives wrong answer, application will provide hints or give same equation but with changed input field eg. if user gives wrong answer on 2 + 5 = _ , next equation could be 2 + _ = 7.
 * More game options like parentheses and random input field placing (currently it is only behind = character)
 * Visual changes (game icon, in-game icons like graph chart, child friendly graphs and fonts)
 * Better UX:
 	* some kind of in-game awarding to keep users active
 	* more useful statistics like solving stats by operators
 	* achievements like 7 active days in row
+	* personalization (application graphics will depend on gender)
 
 # Application flowchart
 
