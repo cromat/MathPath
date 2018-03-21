@@ -22,13 +22,8 @@ MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for bac
 	* more useful statistics like solving stats by operators
 	* achievements like 7 active days in row
 
-# Application flow chart
+# Application flowchart
 
-```mermaid
-graph LR
-A[Game Configuration] --> B((Equations Loop))
-D[AI algorithm - TODO] --> B
-B --> C[Results - End]
-```
+![alt text](https://image.ibb.co/gjWy9c/Selection_068.png)
 
 If you have any remarks or suggestions to improve the app, please feel free to contact me at brabec.tomislav@gmail.com
