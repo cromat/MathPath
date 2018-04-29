@@ -1,11 +1,11 @@
 # Welcome to MathPath!
 
-MathPath is simple math equation generating Android application made for elementary school students. Math solving was never simpler and more entertaining.
+MathPath is simple math equation generating Android application/game made for elementary school students. Math solving was never simpler and more entertaining.
 
 
 # About application
 
-MathPath is fully offline application developed with "Keep it simple" methodology. No registration or any complications are needed to start solving the task. On the start screen you can only change game configurations. When you hit the "start" button, you are proceeded to solving screen where you need to input right number to solve the given equation. At the end, the results screen is displayed.
+MathPath is fully offline application developed with "Keep it simple" methodology. No registration or any complications are needed to start solving tasks. On the start screen you can only change game configurations. When you hit the "start" button, you are proceeded to solving screen where you need to input right number to solve the given equation. At the end, the results screen is displayed.
 
 # Technical stuff
 
