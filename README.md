@@ -21,6 +21,7 @@ MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for bac
 * Visual changes (game icon, in-game icons like graph chart, child friendly graphs and fonts)
 * Checkbox for possible negative results
 * Check for operators order in more complex equations (give hints next time)
+* Measure time for each task and show that info in answers list at the end
 * Better UX:
 	* some kind of in-game awarding to keep users active:
 		one of ideas is to include a pet (something like tamagochi) and if user solves enougl equations, he will be able 		to feed or buy something for their pet.
