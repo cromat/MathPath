@@ -1,6 +1,5 @@
 package com.example.cromat.mathpath.activity
 
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -21,9 +20,9 @@ import kotlin.collections.ArrayList
 
 class SolvingActivity : AppCompatActivity() {
 
-    private var SCORE : Int= 0
-    private var TASK_NUM : Int = 1
-    private var RIGHT_ANS : String = ""
+    private var SCORE: Int = 0
+    private var TASK_NUM: Int = 1
+    private var RIGHT_ANS: String = ""
     private var equationConfig: EquationConfig = EquationConfig()
     private val listAnswers = ArrayList<String>()
 
@@ -38,15 +37,20 @@ class SolvingActivity : AppCompatActivity() {
         }
 
 //        val prefs = this.defaultSharedPreferences
-        equationConfig  = intent.getSerializableExtra("equationConfig") as EquationConfig
-        solvingTitle.text = "Game Type: " + getString(resources.getIdentifier(equationConfig.GAME_TYPE,
-                "string", packageName))
+        equationConfig = intent.getSerializableExtra("equationConfig") as EquationConfig
+        solvingTitle.text = String.format(getString(R.string.game_type), ": ",getString(resources.getIdentifier(equationConfig.GAME_TYPE,
+                "string", packageName)))
+
+
+                getString(R.string.game_type) + ": " +
+                getString(resources.getIdentifier(equationConfig.GAME_TYPE,
+                        "string", packageName))
 
         // Create first equation
         nextEquation()
 
         // Next
-        when (equationConfig.GAME_TYPE){
+        when (equationConfig.GAME_TYPE) {
             GameType.STEPS.toString() -> {
                 stepperText.text = TASK_NUM.toString() + "/" + equationConfig.STEPS_NUM.toString()
                 progressBarSolving.max = equationConfig.STEPS_NUM
@@ -80,8 +84,8 @@ class SolvingActivity : AppCompatActivity() {
         }
     }
 
-    private fun generateEquation() : String {
-        var equation : String = ""
+    private fun generateEquation(): String {
+        var equation: String = ""
         val rand = Random()
 
         var RAND_NUM_OPERANDS = equationConfig.MAX_NUM_OPERANDS
@@ -92,20 +96,19 @@ class SolvingActivity : AppCompatActivity() {
 
         var OPERATOR = ""
         var RAND_NUM = 0
-        for (i in 0 until RAND_NUM_OPERANDS){
-            if(OPERATOR == "/"){
+        for (i in 0 until RAND_NUM_OPERANDS) {
+            if (OPERATOR == "/") {
                 val lastNum = RAND_NUM
                 RAND_NUM = 1
                 if (lastNum > 1) {
-                    for(j in 2 until lastNum){
-                        if(lastNum % j == 0) {
+                    for (j in 2 until lastNum) {
+                        if (lastNum % j == 0) {
                             RAND_NUM = j
                             break
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 RAND_NUM = rand.nextInt(equationConfig.MAX_NUM - equationConfig.MIN_NUM) + equationConfig.MIN_NUM
             }
             OPERATOR = equationConfig.OPERATORS[rand.nextInt(equationConfig.OPERATORS.size)]
@@ -119,11 +122,16 @@ class SolvingActivity : AppCompatActivity() {
     private fun nextEquation() {
         val equationText = generateEquation()
         txtViewEquation.text = equationText + "="
-        val evaluated : Double = MVEL.eval(equationText + ".0") as Double
-        RIGHT_ANS = evaluated.toInt().toString()
+        val evaluated: Double = MVEL.eval(equationText + ".0") as Double
+        val rightAnsInt = evaluated.toInt()
+
+        if (!equationConfig.NEGATIVE_RES && rightAnsInt < 0)
+            nextEquation()
+        else
+            RIGHT_ANS = rightAnsInt.toString()
     }
 
-    private fun stepGame(){
+    private fun stepGame() {
         stepperText.text = (TASK_NUM + 1).toString() + "/" + equationConfig.STEPS_NUM.toString()
         val userAns = edtViewAnswer.text.toString()
 
@@ -136,8 +144,7 @@ class SolvingActivity : AppCompatActivity() {
             edtViewAnswer.text = SpannableStringBuilder("")
             nextEquation()
             TASK_NUM++
-        }
-        else {
+        } else {
             stepperText.visibility = View.GONE
             edtViewAnswer.visibility = View.INVISIBLE
             btnNext.text = "FINISH"
@@ -148,14 +155,9 @@ class SolvingActivity : AppCompatActivity() {
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd")
                 val currentDateTime = dateFormat.format(Date()).toString()
 
-                val values = ContentValues()
-                values.put("score", SCORE)
-                values.put("date", currentDateTime)
-                values.put("numAns", equationConfig.STEPS_NUM)
-                values.put("gameType", GameType.STEPS.toString())
-                database.use {
-                    insert(DbHelper.TABLE_RESULT, null, values)
-                }
+                DbHelper.insertResult(SCORE, currentDateTime, equationConfig.STEPS_NUM,
+                        GameType.STEPS.toString(), applicationContext)
+
                 finish()
             }
         }
@@ -174,8 +176,8 @@ class SolvingActivity : AppCompatActivity() {
         TASK_NUM++
     }
 
-    private fun startTimer(){
-        val countDownTimer = object: CountDownTimer((equationConfig.TIME_SEC * 1000).toLong(), 1000) {
+    private fun startTimer() {
+        val countDownTimer = object : CountDownTimer((equationConfig.TIME_SEC * 1000).toLong(), 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 timerText.text = (millisUntilFinished / 1000).toString()
@@ -192,14 +194,10 @@ class SolvingActivity : AppCompatActivity() {
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd")
                     val currentDateTime = dateFormat.format(Date()).toString()
 
-                    val values = ContentValues()
-                    values.put("score", SCORE)
-                    values.put("date", currentDateTime)
-                    values.put("numAns", TASK_NUM - 1)
-                    values.put("gameType", GameType.TIME.toString())
-                    database.use {
-                        insert(DbHelper.TABLE_RESULT, null, values)
-                    }
+                    DbHelper.insertResult(SCORE, currentDateTime, TASK_NUM - 1,
+                            GameType.TIME.toString(), applicationContext)
+                    DbHelper.changeGold(SCORE, applicationContext)
+
                     finish()
                 }
             }

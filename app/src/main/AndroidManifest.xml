@@ -16,15 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SolvingActivity"
-            android:windowSoftInputMode="adjustResize"
-            >
-        </activity>
+        <activity
+            android:name=".activity.SolvingActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".activity.GraphActivity" />
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity android:name=".activity.AnswerListActivity" />
+        <activity
+            android:name=".activity.PopupDifficultyActivity"
+            android:theme="@style/AppTheme.PopMe" />
+        <activity android:name=".activity.CustomGameActivity"></activity>
     </application>
 
 </manifest>

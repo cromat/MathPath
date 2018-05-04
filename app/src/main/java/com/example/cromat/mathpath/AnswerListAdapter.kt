@@ -45,7 +45,7 @@ class AnswerListAdapter: ArrayAdapter<String> {
 
         answerListItemNum.text = "#"
         if (position == 0)
-            linearAnswerListItem.setBackgroundColor(ContextCompat.getColor(context, R.color.colorGrayLight))
+            linearAnswerListItem.setBackgroundColor(ContextCompat.getColor(context, R.color.colorYellowLight))
         else
             answerListItemNum.text = position.toString()
 

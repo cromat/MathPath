@@ -2,10 +2,7 @@ package com.example.cromat.mathpath.model
 
 import java.io.Serializable
 
-class Answer(equation: String, userAns: String, rightAns: String) : Serializable {
-    var equation = equation
-    var userAns = userAns
-    var rightAns = rightAns
+class Answer(var equation: String, var userAns: String, var rightAns: String) : Serializable {
 
     override fun toString(): String {
         return "blaaa"

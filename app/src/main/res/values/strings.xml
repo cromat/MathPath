@@ -23,6 +23,11 @@
     <string name="steps">Steps</string>
     <string name="time">Time Chase</string>
     <string name="pref_header_general">General Settings</string>
+    <string name="negative_result">Negative Result</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="custom">Custom</string>
 
     <!-- Strings related to Settings -->
 
@@ -50,6 +55,9 @@
         <item>Steps</item>
         <item>Time Chase</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

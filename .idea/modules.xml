@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MathPath.iml" filepath="$PROJECT_DIR$/MathPath.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/libs/simplerangeview/simplerangeview.iml" filepath="$PROJECT_DIR$/app/libs/simplerangeview/simplerangeview.iml" />
     </modules>
   </component>
 </project>
