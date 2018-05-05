@@ -9,14 +9,26 @@
     tools:context="com.example.cromat.mathpath.activity.MainActivity">
 
 
+    <fragment
+        android:id="@+id/goldFragmentMain"
+        android:name="com.example.cromat.mathpath.fragment.GoldFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="70dp"
+        android:tag="goldFragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="241dp"
-        android:layout_height="392dp"
+        android:layout_width="240dp"
+        android:layout_height="390dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="38dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toTopOf="@+id/btnEasy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +37,7 @@
     <Button
         android:id="@+id/btnStart"
         style="@style/BtnRed"
-        android:layout_width="146dp"
+        android:layout_width="145dp"
         android:layout_height="55dp"
         android:layout_below="@id/line4"
         android:layout_centerHorizontal="true"
@@ -33,7 +45,7 @@
         android:layout_marginLeft="119dp"
         android:layout_marginRight="119dp"
         android:layout_marginStart="119dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="490dp"
         android:text="@string/start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -46,28 +58,45 @@
         android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
         android:layout_width="@dimen/pet_item_fragment_size"
         android:layout_height="@dimen/pet_item_fragment_size"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="68dp"
-        android:shadowColor="#000000"
-        android:shadowDx="1.5"
-        android:shadowDy="1.3"
-        android:shadowRadius="1.6"
-        android:text="TextView"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <fragment
+        android:id="@+id/petItemFood"
+        android:tag="petItemFood"
+        android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
+        android:layout_width="@dimen/pet_item_fragment_size"
+        android:layout_height="@dimen/pet_item_fragment_size"
+        android:layout_marginEnd="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/petItemDrink" />
+
+    <fragment
+        android:id="@+id/petItemToy"
+        android:tag="petItemToy"
+        android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
+        android:layout_width="@dimen/pet_item_fragment_size"
+        android:layout_height="@dimen/pet_item_fragment_size"
+        android:layout_marginEnd="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/petItemFood" />
+
+
 
 </android.support.constraint.ConstraintLayout>

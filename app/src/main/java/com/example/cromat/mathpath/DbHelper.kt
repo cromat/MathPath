@@ -3,7 +3,6 @@ package com.example.cromat.mathpath
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import com.example.cromat.mathpath.enums.GameType
 import org.jetbrains.anko.db.*
 
 
@@ -23,12 +22,21 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
             return instance!!
         }
 
-        fun changeGold(value: Int, ctx: Context) {
+        fun updateGold(value: Int, ctx: Context) {
             if (instance == null) {
                 instance = DbHelper(ctx.applicationContext)
             }
             instance!!.use {
-                execSQL("UPDATE " + DbHelper.TABLE_GOLD + " SET value = value +" + value.toString())
+                execSQL("UPDATE " + TABLE_GOLD + " SET value = value + " + value.toString())
+            }
+        }
+
+        fun getGoldValue(ctx: Context): Int {
+            if (instance == null) {
+                instance = DbHelper(ctx.applicationContext)
+            }
+            return instance!!.use {
+                select(TABLE_GOLD, "value").whereArgs("id == 0").exec { parseSingle(IntParser) }
             }
         }
 
@@ -75,9 +83,8 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
         )
 
         // Default gold value to 0
-        val values = ContentValues()
-        values.put("value", 0)
-        db.insert(DbHelper.TABLE_GOLD, null, values)
+        db.execSQL("INSERT INTO $TABLE_GOLD (id, value) VALUES(0, 0)")
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

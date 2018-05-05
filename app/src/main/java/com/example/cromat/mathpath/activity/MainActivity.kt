@@ -11,32 +11,31 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import android.preference.PreferenceActivity
-import android.support.v4.content.res.ResourcesCompat
-import android.widget.TextView
 import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.R
 import com.example.cromat.mathpath.fragment.PetItemFragment
 import com.example.cromat.mathpath.model.Pet
+import kotlinx.android.synthetic.main.fragment_gold.*
 
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Open Db and create tables if not existing
+        DbHelper(applicationContext).writableDatabase
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
         val pet = Pet()
-
-
         (petItemDrink as PetItemFragment).updatePetItem(pet.petItems[0], applicationContext)
-
-
-        // Open Db and create tables if not existing
-        DbHelper(applicationContext)
+        (petItemFood as PetItemFragment).updatePetItem(pet.petItems[1], applicationContext)
+        (petItemToy as PetItemFragment).updatePetItem(pet.petItems[2], applicationContext)
 
         btnStart.setOnClickListener {
-            startActivity(Intent(applicationContext, PopupDifficultyActivity::class.java))
+            startActivityForResult(Intent(applicationContext, PopupDifficultyActivity::class.java), 1)
         }
 
     }
@@ -71,4 +70,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        textGold.text = DbHelper.getGoldValue(applicationContext).toString()
+    }
 }

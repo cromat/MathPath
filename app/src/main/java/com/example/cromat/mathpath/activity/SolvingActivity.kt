@@ -10,8 +10,10 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.example.cromat.mathpath.*
 import com.example.cromat.mathpath.enums.GameType
+import com.example.cromat.mathpath.fragment.GoldFragment
 import com.example.cromat.mathpath.model.EquationConfig
 import kotlinx.android.synthetic.main.activity_solving.*
+import kotlinx.android.synthetic.main.fragment_gold.*
 import org.mvel2.MVEL
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,8 +40,10 @@ class SolvingActivity : AppCompatActivity() {
 
 //        val prefs = this.defaultSharedPreferences
         equationConfig = intent.getSerializableExtra("equationConfig") as EquationConfig
-        solvingTitle.text = String.format(getString(R.string.game_type), ": ",getString(resources.getIdentifier(equationConfig.GAME_TYPE,
-                "string", packageName)))
+        val gameTypeStr = getString(R.string.game_type)
+        val gameTypeValStr = getString(resources.getIdentifier(equationConfig.GAME_TYPE,
+                "string", packageName))
+        solvingTitle.text = gameTypeStr.plus(": ").plus(gameTypeValStr)
 
 
                 getString(R.string.game_type) + ": " +
@@ -151,14 +155,7 @@ class SolvingActivity : AppCompatActivity() {
             txtViewEquation.text = "Your score: " + SCORE.toString() + "/" + equationConfig.STEPS_NUM.toString()
             textShowAnswers.visibility = View.VISIBLE
             btnNext.setOnClickListener {
-
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-                val currentDateTime = dateFormat.format(Date()).toString()
-
-                DbHelper.insertResult(SCORE, currentDateTime, equationConfig.STEPS_NUM,
-                        GameType.STEPS.toString(), applicationContext)
-
-                finish()
+                finishSolving()
             }
         }
 
@@ -190,17 +187,19 @@ class SolvingActivity : AppCompatActivity() {
                 btnNext.text = "FINISH"
                 txtViewEquation.text = "Your score: " + SCORE.toString() + "/" + (TASK_NUM - 1).toString()
                 btnNext.setOnClickListener {
-
-                    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-                    val currentDateTime = dateFormat.format(Date()).toString()
-
-                    DbHelper.insertResult(SCORE, currentDateTime, TASK_NUM - 1,
-                            GameType.TIME.toString(), applicationContext)
-                    DbHelper.changeGold(SCORE, applicationContext)
-
-                    finish()
+                    finishSolving()
                 }
             }
         }.start()
+    }
+
+    private fun finishSolving(){
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val currentDateTime = dateFormat.format(Date()).toString()
+        DbHelper.insertResult(SCORE, currentDateTime, equationConfig.STEPS_NUM,
+                GameType.STEPS.toString(), applicationContext)
+        DbHelper.updateGold(SCORE, applicationContext)
+        textGold.text = DbHelper.getGoldValue(applicationContext).toString()
+        finish()
     }
 }

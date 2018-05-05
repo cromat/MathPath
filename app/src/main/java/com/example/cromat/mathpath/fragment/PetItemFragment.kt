@@ -21,6 +21,7 @@ class PetItemFragment : Fragment(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         arguments?.let {
         }
+        // TODO: check in db if active, bought etc
     }
 
     override fun onClick(p0: View?) {
@@ -28,15 +29,14 @@ class PetItemFragment : Fragment(), View.OnClickListener {
     }
 
 
+    fun updatePetItem(petItemNew: PetItem, context: Context){
+        this.petItem = petItemNew
+        petItemPicture.setImageDrawable(ContextCompat.getDrawable(context, petItemNew.picture))
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_pet_item, container, false)
     }
-
-    public fun updatePetItem(petItemNew: PetItem, context: Context){
-        petItemPicture.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.item_drink))
-    }
-
-
 
 }

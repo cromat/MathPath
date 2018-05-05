@@ -26,6 +26,7 @@
         <activity android:name=".activity.AnswerListActivity" />
         <activity
             android:name=".activity.PopupDifficultyActivity"
+            android:noHistory="true"
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".activity.CustomGameActivity"></activity>
     </application>

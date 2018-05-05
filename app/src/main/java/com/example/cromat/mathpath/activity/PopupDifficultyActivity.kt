@@ -22,6 +22,9 @@ class PopupDifficultyActivity : AppCompatActivity() {
         val width: Int = dm.widthPixels
         val height: Int = dm.heightPixels
 
+        val intent = Intent()
+        setResult(1, intent)
+
         window.setLayout((width * .8).toInt(), (height * .7).toInt())
 
         val params: WindowManager.LayoutParams = window.attributes
@@ -31,6 +34,7 @@ class PopupDifficultyActivity : AppCompatActivity() {
         // Buttons
         btnCustom.setOnClickListener {
             startActivity(Intent(applicationContext, CustomGameActivity::class.java))
+            finish()
         }
 
         btnEasy.setOnClickListener {
@@ -48,6 +52,7 @@ class PopupDifficultyActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)
             startActivity(intent)
+            finish()
         }
 
         btnMedium.setOnClickListener {
@@ -65,6 +70,7 @@ class PopupDifficultyActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)
             startActivity(intent)
+            finish()
         }
 
         btnHard.setOnClickListener {
@@ -82,6 +88,7 @@ class PopupDifficultyActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)
             startActivity(intent)
+            finish()
         }
     }
 }

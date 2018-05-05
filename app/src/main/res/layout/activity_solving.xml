@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/relativeSolvingContainer"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -7,6 +8,18 @@
     android:layout_gravity="center"
     android:background="@drawable/main_background"
     tools:context="com.example.cromat.mathpath.activity.SolvingActivity">
+
+    <fragment
+        android:id="@+id/goldFragmentSolving"
+        android:name="com.example.cromat.mathpath.fragment.GoldFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/solvingHeaders"
+        android:tag="goldFragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_alignEnd="@+id/btnQuit"
+        android:layout_alignRight="@+id/btnQuit" />
 
     <RelativeLayout
         android:layout_width="match_parent"
