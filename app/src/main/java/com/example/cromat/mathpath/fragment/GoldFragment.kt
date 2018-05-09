@@ -13,7 +13,7 @@ import com.example.cromat.mathpath.R
 
 class GoldFragment : Fragment() {
     var textGold: TextView? = null
-    var fm = fragmentManager
+    var viewFrag: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +22,11 @@ class GoldFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_gold, container, false)
-        textGold = rootView.findViewById(R.id.textGold) as TextView
-        textGold!!.text = DbHelper.getGoldValue(activity!!.applicationContext).toString()
+        this.viewFrag = rootView
         return rootView
+    }
+
+    fun setText(value: String){
+        this.viewFrag!!.findViewById<TextView>(R.id.textGold).text = value
     }
 }

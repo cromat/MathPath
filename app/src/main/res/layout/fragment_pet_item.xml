@@ -3,12 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/rounded_shape"
+    android:maxHeight="70dp"
+    android:maxWidth="70dp"
+    android:padding="5dp"
     tools:context=".fragment.PetItemFragment">
 
-    <ImageView
-        android:id="@+id/petItemPicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
- />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/petItemPicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:name="com.example.cromat.mathpath.fragment.GoldFragment"
+            android:id="@+id/petItemGoldFragment"
+            android:tag="petItemGoldFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="1dp"
+            />
+
+
+    </RelativeLayout>
 
 </FrameLayout>

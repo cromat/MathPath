@@ -8,11 +8,13 @@ import android.os.CountDownTimer
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import com.example.cromat.mathpath.*
 import com.example.cromat.mathpath.enums.GameType
 import com.example.cromat.mathpath.fragment.GoldFragment
 import com.example.cromat.mathpath.model.EquationConfig
 import kotlinx.android.synthetic.main.activity_solving.*
+import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_gold.*
 import org.mvel2.MVEL
 import java.text.SimpleDateFormat
@@ -32,6 +34,9 @@ class SolvingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solving)
 
+        val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
+        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
+
         relativeSolvingContainer.setOnClickListener {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
@@ -46,7 +51,7 @@ class SolvingActivity : AppCompatActivity() {
         solvingTitle.text = gameTypeStr.plus(": ").plus(gameTypeValStr)
 
 
-                getString(R.string.game_type) + ": " +
+        getString(R.string.game_type) + ": " +
                 getString(resources.getIdentifier(equationConfig.GAME_TYPE,
                         "string", packageName))
 
@@ -193,13 +198,17 @@ class SolvingActivity : AppCompatActivity() {
         }.start()
     }
 
-    private fun finishSolving(){
+    private fun finishSolving() {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         val currentDateTime = dateFormat.format(Date()).toString()
         DbHelper.insertResult(SCORE, currentDateTime, equationConfig.STEPS_NUM,
                 GameType.STEPS.toString(), applicationContext)
         DbHelper.updateGold(SCORE, applicationContext)
-        textGold.text = DbHelper.getGoldValue(applicationContext).toString()
+
+        val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
+        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
+        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
+
         finish()
     }
 }
