@@ -104,9 +104,11 @@ class CustomGameActivity : AppCompatActivity() {
                 val TIME_SEC = editTime.text.toString().toInt()
                 val STEPS_NUM = editSteps.text.toString().toInt()
                 val NEGATIVE_RES = checkNegativeRes.isChecked
+                val RANDOMIZE_INPUT = checkRandomInputs.isChecked
 
                 val equationConfig = EquationConfig(MAX_NUM_OPERANDS, MIN_NUM_OPERANDS, MAX_NUM,
-                        MIN_NUM, OPERATORS, GAME_TYPE, TIME_SEC, STEPS_NUM, NEGATIVE_RES)
+                        MIN_NUM, OPERATORS, GAME_TYPE, TIME_SEC, STEPS_NUM, NEGATIVE_RES,
+                        RANDOMIZE_INPUT)
                 val intent = Intent(applicationContext, SolvingActivity::class.java)
                 intent.putExtra("equationConfig", equationConfig)
                 startActivity(intent)

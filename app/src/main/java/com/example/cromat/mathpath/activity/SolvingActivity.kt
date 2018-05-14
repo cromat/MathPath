@@ -8,14 +8,11 @@ import android.os.CountDownTimer
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
 import com.example.cromat.mathpath.*
 import com.example.cromat.mathpath.enums.GameType
 import com.example.cromat.mathpath.fragment.GoldFragment
 import com.example.cromat.mathpath.model.EquationConfig
 import kotlinx.android.synthetic.main.activity_solving.*
-import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.fragment_gold.*
 import org.mvel2.MVEL
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,12 +20,12 @@ import kotlin.collections.ArrayList
 
 
 class SolvingActivity : AppCompatActivity() {
-
     private var SCORE: Int = 0
     private var TASK_NUM: Int = 1
     private var RIGHT_ANS: String = ""
     private var equationConfig: EquationConfig = EquationConfig()
     private val listAnswers = ArrayList<String>()
+    private val rand = Random()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +40,6 @@ class SolvingActivity : AppCompatActivity() {
             edtViewAnswer.requestFocus()
         }
 
-//        val prefs = this.defaultSharedPreferences
         equationConfig = intent.getSerializableExtra("equationConfig") as EquationConfig
         val gameTypeStr = getString(R.string.game_type)
         val gameTypeValStr = getString(resources.getIdentifier(equationConfig.GAME_TYPE,
@@ -95,7 +91,6 @@ class SolvingActivity : AppCompatActivity() {
 
     private fun generateEquation(): String {
         var equation: String = ""
-        val rand = Random()
 
         var RAND_NUM_OPERANDS = equationConfig.MAX_NUM_OPERANDS
         if (equationConfig.MAX_NUM_OPERANDS > equationConfig.MIN_NUM_OPERANDS) {
@@ -129,25 +124,45 @@ class SolvingActivity : AppCompatActivity() {
     }
 
     private fun nextEquation() {
-        val equationText = generateEquation()
-        txtViewEquation.text = equationText + "="
-        val evaluated: Double = MVEL.eval(equationText + ".0") as Double
-        val rightAnsInt = evaluated.toInt()
+        var equationText = generateEquation()
+        var evaluated: Double = MVEL.eval("$equationText.0") as Double
+        var rightAnsInt = evaluated.toInt()
+        while (!equationConfig.NEGATIVE_RES && rightAnsInt < 0) {
+            equationText = generateEquation()
+            evaluated = MVEL.eval("$equationText.0") as Double
+            rightAnsInt = evaluated.toInt()
+        }
 
-        if (!equationConfig.NEGATIVE_RES && rightAnsInt < 0)
-            nextEquation()
-        else
-            RIGHT_ANS = rightAnsInt.toString()
+        val equationFullText = "$equationText=$rightAnsInt"
+
+        if (equationConfig.RANDOMIZE_INPUT) {
+            val operands = equationFullText.split(Regex("[\\/\\*+=-]"))
+            val randPlaceInput = rand.nextInt(operands.size)
+            rightAnsInt = operands[randPlaceInput].toInt()
+            val placeToSplit = randPlaceInput + operands
+                    .slice(0 until randPlaceInput).joinToString(separator = "").length
+
+            txtViewEquation.text = equationFullText.subSequence(0, placeToSplit).toString()
+                    .replace("/", ":")
+            txtViewEquationSecond.text = equationFullText.subSequence(placeToSplit +
+                    operands[randPlaceInput].length, equationFullText.length)
+                    .toString().replace("/", ":")
+        } else {
+            txtViewEquationSecond.text = ""
+            txtViewEquation.text = equationText.replace("/", ":") + "="
+        }
+
+//        TODO: maybe to create check function with mvel.evaltostring (full text split("="))
+        RIGHT_ANS = rightAnsInt.toString()
     }
 
     private fun stepGame() {
         stepperText.text = (TASK_NUM + 1).toString() + "/" + equationConfig.STEPS_NUM.toString()
         val userAns = edtViewAnswer.text.toString()
+        checkAnswer(userAns)
 
-        if (userAns == RIGHT_ANS)
-            SCORE++
-
-        listAnswers.add(txtViewEquation.text.toString() + ";" + userAns + ";" + RIGHT_ANS)
+        val equationForResult = txtViewEquation.text.toString() + "_" + txtViewEquationSecond.text.toString()
+        listAnswers.add("$equationForResult;$userAns;$RIGHT_ANS")
         if (TASK_NUM < equationConfig.STEPS_NUM) {
 
             edtViewAnswer.text = SpannableStringBuilder("")
@@ -156,6 +171,7 @@ class SolvingActivity : AppCompatActivity() {
         } else {
             stepperText.visibility = View.GONE
             edtViewAnswer.visibility = View.INVISIBLE
+            txtViewEquationSecond.visibility = View.INVISIBLE
             btnNext.text = "FINISH"
             txtViewEquation.text = "Your score: " + SCORE.toString() + "/" + equationConfig.STEPS_NUM.toString()
             textShowAnswers.visibility = View.VISIBLE
@@ -169,10 +185,10 @@ class SolvingActivity : AppCompatActivity() {
 
     private fun timeGame() {
         val userAns = edtViewAnswer.text.toString()
-        if (userAns == RIGHT_ANS)
-            SCORE++
+        checkAnswer(userAns)
 
-        listAnswers.add(txtViewEquation.text.toString() + ";" + userAns + ";" + RIGHT_ANS)
+        val equationForResult = txtViewEquation.text.toString() + "_" + txtViewEquationSecond.text.toString()
+        listAnswers.add("$equationForResult;$userAns;$RIGHT_ANS")
         edtViewAnswer.text = SpannableStringBuilder("")
         nextEquation()
         TASK_NUM++
@@ -210,5 +226,10 @@ class SolvingActivity : AppCompatActivity() {
         (goldFragmentSolving as GoldFragment).setText(goldCurrent)
 
         finish()
+    }
+
+    private fun checkAnswer(userAns: String) {
+        if (userAns == RIGHT_ANS)
+            SCORE++
     }
 }

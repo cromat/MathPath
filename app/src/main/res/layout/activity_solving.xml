@@ -98,6 +98,17 @@
             android:imeOptions="flagNoExtractUi"
             />
 
+        <TextView
+            android:id="@+id/txtViewEquationSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textSize="@dimen/default_text"
+            android:layout_toRightOf="@id/edtViewAnswer"
+            android:gravity="center"
+            android:text=""
+            android:layout_alignBottom="@+id/edtViewAnswer"
+            />
+
     </RelativeLayout>
 
     <TextView

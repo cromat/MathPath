@@ -47,7 +47,8 @@ class PopupDifficultyActivity : AppCompatActivity() {
                     GAME_TYPE = GameType.STEPS.toString(),
                     TIME_SEC = 60,
                     STEPS_NUM = 10,
-                    NEGATIVE_RES = false
+                    NEGATIVE_RES = false,
+                    RANDOMIZE_INPUT = false
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)
@@ -65,7 +66,8 @@ class PopupDifficultyActivity : AppCompatActivity() {
                     GAME_TYPE = GameType.STEPS.toString(),
                     TIME_SEC = 60,
                     STEPS_NUM = 15,
-                    NEGATIVE_RES = false
+                    NEGATIVE_RES = false,
+                    RANDOMIZE_INPUT = true
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)
@@ -83,7 +85,8 @@ class PopupDifficultyActivity : AppCompatActivity() {
                     GAME_TYPE = GameType.STEPS.toString(),
                     TIME_SEC = 60,
                     STEPS_NUM = 20,
-                    NEGATIVE_RES = true
+                    NEGATIVE_RES = true,
+                    RANDOMIZE_INPUT = true
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)

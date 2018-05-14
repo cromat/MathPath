@@ -384,13 +384,26 @@
             android:id="@+id/checkNegativeRes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/line5"
+            android:layout_above="@id/checkRandomInputs"
             android:layout_below="@id/line4"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:checked="false"
             android:text="@string/negative_result"
+            android:textSize="@dimen/default_text" />
+
+        <CheckBox
+            android:id="@+id/checkRandomInputs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/line5"
+            android:layout_below="@id/checkNegativeRes"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:checked="false"
+            android:text="@string/random_input"
             android:textSize="@dimen/default_text" />
 
         <View
