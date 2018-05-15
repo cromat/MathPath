@@ -55,6 +55,33 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                 insert(DbHelper.TABLE_RESULT, null, values)
             }
         }
+
+        fun updateOperations(values: MutableMap<String, Int>, ctx: Context){
+            if (instance == null) {
+                instance = DbHelper(ctx.applicationContext)
+            }
+
+            val valuesStr = mutableMapOf<String, String>()
+            for (key in values.keys){
+                if (values[key]!! < 0)
+                    valuesStr[key] = "-" + values[key].toString()
+                else
+                    valuesStr[key] = "+" + values[key].toString()
+            }
+
+            instance!!.use {
+                execSQL("UPDATE " + TABLE_OPERATIONS +
+                        " SET plus = plus " + valuesStr["+"] +
+                        ", minus = minus " + valuesStr["-"] +
+                        ", divide = divide " + valuesStr["/"] +
+                        ", multiple = multiple " + valuesStr["*"]
+                )
+                execSQL("UPDATE $TABLE_OPERATIONS SET plus = 0 WHERE plus < 0")
+                execSQL("UPDATE $TABLE_OPERATIONS SET minus = 0 WHERE minus < 0")
+                execSQL("UPDATE $TABLE_OPERATIONS SET divide = 0 WHERE divide < 0")
+                execSQL("UPDATE $TABLE_OPERATIONS SET multiple = 0 WHERE multiple < 0")
+            }
+        }
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -84,6 +111,10 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
 
         // Default gold value to 0
         db.execSQL("INSERT INTO $TABLE_GOLD (id, value) VALUES(0, 0)")
+
+        // Default operations value to 0
+        db.execSQL("INSERT INTO $TABLE_OPERATIONS (id, plus, minus, divide, multiple) " +
+                "VALUES(0, 0, 0, 0, 0)")
 
     }
 

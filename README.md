@@ -32,6 +32,8 @@ MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for bac
 	* animations and transitions
 	* ~~colon as dividing operator~~
 	* pet simple chatbot (IRIS)
+	* some in-game instructions (for difficulties)
+	* each difficulty gives different amount of money
 
 # Application flowchart
 

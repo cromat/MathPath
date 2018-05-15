@@ -161,10 +161,7 @@ class SolvingActivity : AppCompatActivity() {
         val userAns = edtViewAnswer.text.toString()
         checkAnswer(userAns)
 
-        val equationForResult = txtViewEquation.text.toString() + "_" + txtViewEquationSecond.text.toString()
-        listAnswers.add("$equationForResult;$userAns;$RIGHT_ANS")
         if (TASK_NUM < equationConfig.STEPS_NUM) {
-
             edtViewAnswer.text = SpannableStringBuilder("")
             nextEquation()
             TASK_NUM++
@@ -179,16 +176,14 @@ class SolvingActivity : AppCompatActivity() {
                 finishSolving()
             }
         }
-
         progressBarSolving.incrementProgressBy(1)
     }
+
 
     private fun timeGame() {
         val userAns = edtViewAnswer.text.toString()
         checkAnswer(userAns)
 
-        val equationForResult = txtViewEquation.text.toString() + "_" + txtViewEquationSecond.text.toString()
-        listAnswers.add("$equationForResult;$userAns;$RIGHT_ANS")
         edtViewAnswer.text = SpannableStringBuilder("")
         nextEquation()
         TASK_NUM++
@@ -229,7 +224,23 @@ class SolvingActivity : AppCompatActivity() {
     }
 
     private fun checkAnswer(userAns: String) {
-        if (userAns == RIGHT_ANS)
+        val equationForResult = txtViewEquation.text.toString() + "_" + txtViewEquationSecond.text.toString()
+        listAnswers.add("$equationForResult;$userAns;$RIGHT_ANS")
+
+        val values: MutableMap<String, Int> = mutableMapOf("+" to 0, "-" to 0, "/" to 0, "*" to 0)
+        var addVal = -1
+
+        if (userAns == RIGHT_ANS) {
             SCORE++
+            addVal = 1
+        }
+
+        for (key in values.keys){
+            if (equationForResult.contains(key))
+                values[key] = values[key]!! + addVal
+        }
+
+        DbHelper.updateOperations(values, applicationContext)
     }
 }
+
