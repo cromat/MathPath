@@ -9,7 +9,8 @@ class PetItem(
         val permanent: Boolean,
         val bought: Boolean,
         val activated: Boolean,
-        val picture: Int
+        val picture: Int,
+        val bindedElementId: Int?
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -18,6 +19,7 @@ class PetItem(
             parcel.readByte() != 0.toByte(),
             parcel.readByte() != 0.toByte(),
             parcel.readByte() != 0.toByte(),
+            parcel.readInt(),
             parcel.readInt())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -27,6 +29,9 @@ class PetItem(
         parcel.writeByte(if (bought) 1 else 0)
         parcel.writeByte(if (activated) 1 else 0)
         parcel.writeInt(picture)
+        if (bindedElementId != null) {
+            parcel.writeInt(bindedElementId)
+        }
     }
 
     override fun describeContents(): Int {

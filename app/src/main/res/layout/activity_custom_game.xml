@@ -287,7 +287,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textOperands"
-                android:text="@string/check_fix_num_operands" />
+                android:text="@string/check_fix_num_operands"
+                android:textSize="@dimen/default_text_view" />
 
             <me.bendik.simplerangeview.SimpleRangeView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/rangeOperands"
@@ -327,9 +328,8 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginRight="100dp"
                 android:text="3"
-                android:textSize="@dimen/default_text" />
 
-            If checkbox checked
+                android:textSize="@dimen/default_text" />
 
             <RadioGroup
                 android:id="@+id/radioNumOperands"
@@ -384,33 +384,31 @@
             android:id="@+id/checkNegativeRes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/checkRandomInputs"
             android:layout_below="@id/line4"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:checked="false"
             android:text="@string/negative_result"
-            android:textSize="@dimen/default_text" />
+            android:textSize="@dimen/default_text_view" />
 
         <CheckBox
             android:id="@+id/checkRandomInputs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/line5"
             android:layout_below="@id/checkNegativeRes"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:checked="false"
             android:text="@string/random_input"
-            android:textSize="@dimen/default_text" />
+            android:textSize="@dimen/default_text_view" />
 
         <View
             android:id="@+id/line5"
             android:layout_width="fill_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/relativeNumOperands"
+            android:layout_below="@id/checkRandomInputs"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
