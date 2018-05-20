@@ -10,19 +10,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 
 
-class AnswerListAdapter: ArrayAdapter<String> {
-
-    var items: ArrayList<String>
-
-    constructor(context: Context, resource: Int, items: ArrayList<String>) : super(context, resource, items){
-        this.items = items
-    }
+class AnswerListAdapter(context: Context, resource: Int, var items: ArrayList<String>)
+    : ArrayAdapter<String>(context, resource, items) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
+        var convertViewTmp = convertView
 
-        if (convertView == null) {
-            convertView = LayoutInflater.from(this.context)
+        if (convertViewTmp == null) {
+            convertViewTmp = LayoutInflater.from(this.context)
                     .inflate(R.layout.answer_list_item, parent, false)
         }
 
@@ -32,11 +27,11 @@ class AnswerListAdapter: ArrayAdapter<String> {
         val userAns = parts[1]
         val rightAns = parts[2]
 
-        val answerListItemNum = convertView!!.findViewById<TextView>(R.id.answerListItemNum)
-        val answerListItemEquation = convertView.findViewById<TextView>(R.id.answerListItemEquation)
-        val answerListItemUserAns = convertView.findViewById<TextView>(R.id.answerListItemUserAns)
-        val answerListItemRightAns = convertView.findViewById<TextView>(R.id.answerListItemRightAns)
-        val linearAnswerListItem = convertView.findViewById<LinearLayout>(R.id.linearAnswerListItem)
+        val answerListItemNum = convertViewTmp!!.findViewById<TextView>(R.id.answerListItemNum)
+        val answerListItemEquation = convertViewTmp.findViewById<TextView>(R.id.answerListItemEquation)
+        val answerListItemUserAns = convertViewTmp.findViewById<TextView>(R.id.answerListItemUserAns)
+        val answerListItemRightAns = convertViewTmp.findViewById<TextView>(R.id.answerListItemRightAns)
+        val linearAnswerListItem = convertViewTmp.findViewById<LinearLayout>(R.id.linearAnswerListItem)
 
         if (userAns == rightAns)
             linearAnswerListItem.setBackgroundColor(ContextCompat.getColor(context, R.color.colorGreenLight))
@@ -53,6 +48,6 @@ class AnswerListAdapter: ArrayAdapter<String> {
         answerListItemUserAns.text = userAns
         answerListItemRightAns.text = rightAns
 
-        return convertView!!
+        return convertViewTmp
     }
 }

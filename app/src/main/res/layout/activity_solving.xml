@@ -78,7 +78,7 @@
 
 
         <TextView
-            android:id="@+id/txtViewEquation"
+            android:id="@+id/txtViewEquationFirst"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:textSize="@dimen/default_text"
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/default_text"
-            android:layout_toRightOf="@id/txtViewEquation"
+            android:layout_toRightOf="@id/txtViewEquationFirst"
             android:gravity="center"
             android:layout_centerHorizontal="true"
             android:inputType="numberSigned"

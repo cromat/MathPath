@@ -1,6 +1,6 @@
 package com.example.cromat.mathpath.enums
 
-enum class GameType(val gameType: String){
+enum class GameType(private val gameType: String){
     ALL("all"),
     STEPS("steps"),
     TIME("time");

@@ -2,12 +2,10 @@ package com.example.cromat.mathpath.activity
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.CheckBox
 import android.widget.RadioButton
 import android.widget.Toast
@@ -17,9 +15,7 @@ import com.example.cromat.mathpath.model.EquationConfig
 import kotlinx.android.synthetic.main.activity_custom_game.*
 import me.bendik.simplerangeview.SimpleRangeView
 import org.jetbrains.annotations.NotNull
-import android.graphics.Bitmap.createScaledBitmap
 import android.graphics.drawable.BitmapDrawable
-import android.provider.MediaStore.Images.Media.getBitmap
 
 
 class CustomGameActivity : AppCompatActivity() {
@@ -28,7 +24,6 @@ class CustomGameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_game)
 
-        // TODO: Post to stackoverflow
         val img = ContextCompat.getDrawable(applicationContext, R.drawable.gold)
         val size: Int = textOperands.lineHeight
         val bitmap = (img as BitmapDrawable).bitmap
@@ -131,11 +126,11 @@ class CustomGameActivity : AppCompatActivity() {
         }
     }
 
-    fun validateFields(): Boolean {
+    private fun validateFields(): Boolean {
         // Steps validation
         if (radioSteps.isChecked && editSteps.text.toString().toInt() < 1) {
             Toast.makeText(applicationContext,
-                    applicationContext.getResources().getString(R.string.valid_steps),
+                    applicationContext.resources.getString(R.string.valid_steps),
                     Toast.LENGTH_SHORT).show()
             return false
         }
@@ -143,7 +138,7 @@ class CustomGameActivity : AppCompatActivity() {
         // Time validation
         if (radioTime.isChecked && editTime.text.toString().toInt() < 10) {
             Toast.makeText(applicationContext,
-                    applicationContext.getResources().getString(R.string.valid_time),
+                    applicationContext.resources.getString(R.string.valid_time),
                     Toast.LENGTH_SHORT).show()
             return false
         }
@@ -160,7 +155,7 @@ class CustomGameActivity : AppCompatActivity() {
 
         if (!atLeastOneChecked) {
             Toast.makeText(applicationContext,
-                    applicationContext.getResources().getString(R.string.valid_operators),
+                    applicationContext.resources.getString(R.string.valid_operators),
                     Toast.LENGTH_SHORT).show()
             return false
         }
@@ -169,7 +164,7 @@ class CustomGameActivity : AppCompatActivity() {
         if (editRangeNumStart.text.toString().toIntOrNull() == null ||
                 editRangeNumEnd.text.toString().toIntOrNull() == null) {
             Toast.makeText(applicationContext,
-                    applicationContext.getResources().getString(R.string.valid_range),
+                    applicationContext.resources.getString(R.string.valid_range),
                     Toast.LENGTH_SHORT).show()
             return false
         }
@@ -177,7 +172,7 @@ class CustomGameActivity : AppCompatActivity() {
         if (editRangeNumStart.text.toString().toInt() < rangeNumbers.startFixed ||
                 editRangeNumEnd.text.toString().toInt() > rangeNumbers.endFixed) {
             Toast.makeText(applicationContext,
-                    applicationContext.getResources().getString(R.string.valid_range),
+                    applicationContext.resources.getString(R.string.valid_range),
                     Toast.LENGTH_SHORT).show()
             return false
         }

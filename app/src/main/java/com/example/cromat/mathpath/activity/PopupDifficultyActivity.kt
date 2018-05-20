@@ -21,12 +21,9 @@ class PopupDifficultyActivity : AppCompatActivity() {
         windowManager.defaultDisplay.getMetrics(dm)
         val width: Int = dm.widthPixels
         val height: Int = dm.heightPixels
-
         val intent = Intent()
         setResult(1, intent)
-
         window.setLayout((width * .8).toInt(), (height * .7).toInt())
-
         val params: WindowManager.LayoutParams = window.attributes
         params.gravity = Gravity.CENTER
         window.attributes = params
@@ -39,16 +36,16 @@ class PopupDifficultyActivity : AppCompatActivity() {
 
         btnEasy.setOnClickListener {
             val equationConfig = EquationConfig(
-                    MAX_NUM_OPERANDS = 2,
-                    MIN_NUM_OPERANDS = 2,
-                    MAX_NUM = 10,
-                    MIN_NUM = 0,
-                    OPERATORS = listOf<String>("+", "-"),
-                    GAME_TYPE = GameType.STEPS.toString(),
-                    TIME_SEC = 60,
-                    STEPS_NUM = 10,
-                    NEGATIVE_RES = false,
-                    RANDOMIZE_INPUT = false
+                    maxNumOperands = 2,
+                    minNumOperands = 2,
+                    maxNum = 10,
+                    minNum = 0,
+                    operators = listOf("+", "-"),
+                    gameType = GameType.STEPS.toString(),
+                    timeSec = 60,
+                    stepsNum = 10,
+                    negativeRes = false,
+                    randomizeInput = false
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)
@@ -58,16 +55,16 @@ class PopupDifficultyActivity : AppCompatActivity() {
 
         btnMedium.setOnClickListener {
             val equationConfig = EquationConfig(
-                    MAX_NUM_OPERANDS = 3,
-                    MIN_NUM_OPERANDS = 2,
-                    MAX_NUM = 20,
-                    MIN_NUM = 0,
-                    OPERATORS = listOf<String>("+", "-", "*", "/"),
-                    GAME_TYPE = GameType.STEPS.toString(),
-                    TIME_SEC = 60,
-                    STEPS_NUM = 15,
-                    NEGATIVE_RES = false,
-                    RANDOMIZE_INPUT = true
+                    maxNumOperands = 3,
+                    minNumOperands = 2,
+                    maxNum = 20,
+                    minNum = 0,
+                    operators = listOf("+", "-", "*", "/"),
+                    gameType = GameType.STEPS.toString(),
+                    timeSec = 60,
+                    stepsNum = 15,
+                    negativeRes = false,
+                    randomizeInput = true
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)
@@ -77,16 +74,16 @@ class PopupDifficultyActivity : AppCompatActivity() {
 
         btnHard.setOnClickListener {
             val equationConfig = EquationConfig(
-                    MAX_NUM_OPERANDS = 5,
-                    MIN_NUM_OPERANDS = 3,
-                    MAX_NUM = 100,
-                    MIN_NUM = 0,
-                    OPERATORS = listOf<String>("+", "-", "*", "/"),
-                    GAME_TYPE = GameType.STEPS.toString(),
-                    TIME_SEC = 60,
-                    STEPS_NUM = 20,
-                    NEGATIVE_RES = true,
-                    RANDOMIZE_INPUT = true
+                    maxNumOperands = 5,
+                    minNumOperands = 3,
+                    maxNum = 100,
+                    minNum = 0,
+                    operators = listOf("+", "-", "*", "/"),
+                    gameType = GameType.STEPS.toString(),
+                    timeSec = 60,
+                    stepsNum = 20,
+                    negativeRes = true,
+                    randomizeInput = true
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)

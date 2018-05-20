@@ -28,6 +28,7 @@
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
     <string name="custom">Custom</string>
+    <string name="your_score">Your score:</string>
 
     <!-- Strings related to Settings -->
 
@@ -59,6 +60,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="random_input">Set number input at random place</string>
+    <string name="finish">FINISH</string>
 
 
 </resources>

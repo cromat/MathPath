@@ -3,10 +3,4 @@ package com.example.cromat.mathpath.model
 import java.util.*
 
 
-class Result(id: Int, date: Date, score: Int, numAns: Int, gameType: String){
-    val id: Int = id
-    val date: Date = date
-    val score: Int = score
-    val numAns: Int = numAns
-    val gameType: String = gameType
-}
+class Result(val id: Int, val date: Date, val score: Int, val numAns: Int, val gameType: String)

@@ -1,7 +1,7 @@
 package com.example.cromat.mathpath.enums
 
 
-enum class Range(val range: String) {
+enum class Range(private val range: String) {
     ALL("all"),
     WEEK("week"),
     MONTH("month");
