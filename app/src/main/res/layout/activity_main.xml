@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,17 +8,17 @@
     tools:context="com.example.cromat.mathpath.activity.MainActivity">
 
 
-    <fragment
-        android:id="@+id/goldFragmentMain"
-        android:tag="goldFragmentMain"
-        android:name="com.example.cromat.mathpath.fragment.GoldFragment"
+    <com.example.cromat.mathpath.view.GoldView
+        android:id="@+id/goldView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/imagePet"

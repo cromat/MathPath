@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         (petItemBall as PetItemFragment).updatePetItem(pet.petItems[2], applicationContext)
         (petItemShirt as PetItemFragment).updatePetItem(pet.petItems[3], applicationContext)
 
-        val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
-        (goldFragmentMain as GoldFragment).setText(goldCurrent)
+//        val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
+//        (goldFragmentMain as GoldFragment).setText(goldCurrent)
 
         btnStart.setOnClickListener {
             startActivityForResult(Intent(applicationContext, PopupDifficultyActivity::class.java), 1)

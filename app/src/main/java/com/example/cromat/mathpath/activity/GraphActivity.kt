@@ -167,7 +167,7 @@ class GraphActivity : AppCompatActivity() {
         if(range == Range.MONTH.toString())
             dataSet.label = "Monthly scores"
         dataSet.setDrawValues(false)
-        dataSet.setColor(Color.RED)
+        dataSet.color = Color.RED
         dataSet.setCircleColor(Color.GRAY)
         val lineData = LineData(dataSet)
         lineChart.description.isEnabled = false

@@ -1,10 +1,8 @@
 package com.example.cromat.mathpath.activity
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.CheckBox
 import android.widget.RadioButton
@@ -15,7 +13,6 @@ import com.example.cromat.mathpath.model.EquationConfig
 import kotlinx.android.synthetic.main.activity_custom_game.*
 import me.bendik.simplerangeview.SimpleRangeView
 import org.jetbrains.annotations.NotNull
-import android.graphics.drawable.BitmapDrawable
 
 
 class CustomGameActivity : AppCompatActivity() {
@@ -23,13 +20,6 @@ class CustomGameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_game)
-
-        val img = ContextCompat.getDrawable(applicationContext, R.drawable.gold)
-        val size: Int = textOperands.lineHeight
-        val bitmap = (img as BitmapDrawable).bitmap
-        val d = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, size, size, true))
-        textOperands.setCompoundDrawablesWithIntrinsicBounds(null, null, d, null)
-        textOperands.compoundDrawablePadding = 10
 
         // RangeView listeners
         rangeNumbers.onTrackRangeListener = (object : SimpleRangeView.OnTrackRangeListener {
