@@ -62,9 +62,9 @@ class SolvingActivity : AppCompatActivity() {
 
     private fun initView() {
         val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
-        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
+//        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
 
-        relativeSolvingContainer.setOnClickListener {
+        layoutSolving.setOnClickListener {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
             edtViewAnswer.requestFocus()
@@ -143,8 +143,8 @@ class SolvingActivity : AppCompatActivity() {
     }
 
     private fun setSolvingFinishedView() {
-        edtViewAnswer.visibility = View.INVISIBLE
-        txtViewEquationSecond.visibility = View.INVISIBLE
+        edtViewAnswer.visibility = View.GONE
+        txtViewEquationSecond.visibility = View.GONE
         btnNext.text = getString(R.string.finish)
         txtViewEquationFirst.text = "${getString(R.string.your_score)} $score/${equationConfig.stepsNum}"
         textShowAnswers.visibility = View.VISIBLE
@@ -161,8 +161,8 @@ class SolvingActivity : AppCompatActivity() {
                 GameType.STEPS.toString(), applicationContext)
         DbHelper.updateGold(score, applicationContext)
         val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
-        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
-        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
+//        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
+//        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
         finish()
     }
 
