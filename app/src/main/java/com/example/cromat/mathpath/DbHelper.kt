@@ -22,13 +22,22 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
             return instance!!
         }
 
-        fun updateGold(value: Int, ctx: Context) {
+        fun addGold(value: Int, ctx: Context): Boolean {
             if (instance == null) {
                 instance = DbHelper(ctx.applicationContext)
             }
+
+            val currGold = instance!!.use {
+                select(TABLE_GOLD, "value").whereArgs("id == 0").exec { parseSingle(IntParser) }
+            }
+
+            if (currGold + value < 0)
+                return false
+
             instance!!.use {
                 execSQL("UPDATE " + TABLE_GOLD + " SET value = value + " + value.toString())
             }
+            return true
         }
 
         fun getGoldValue(ctx: Context): Int {
@@ -88,34 +97,34 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
         // Results
         db.run {
             createTable(TABLE_RESULT, true,
-                "id" to INTEGER + PRIMARY_KEY + UNIQUE,
-                "date" to TEXT,
-                "score" to INTEGER,
-                "numAns" to INTEGER,
-                "gameType" to TEXT
-        )
+                    "id" to INTEGER + PRIMARY_KEY + UNIQUE,
+                    "date" to TEXT,
+                    "score" to INTEGER,
+                    "numAns" to INTEGER,
+                    "gameType" to TEXT
+            )
 
             // Operations statistics tracking by solving table
             createTable(TABLE_OPERATIONS, true,
-                "id" to INTEGER + PRIMARY_KEY + SqlTypeModifier.create("CHECK (id = 0)"),
-                "plus" to INTEGER + DEFAULT("0"),
-                "minus" to INTEGER + DEFAULT("0"),
-                "divide" to INTEGER + DEFAULT("0"),
-                "multiple" to INTEGER + DEFAULT("0")
-        )
+                    "id" to INTEGER + PRIMARY_KEY + SqlTypeModifier.create("CHECK (id = 0)"),
+                    "plus" to INTEGER + DEFAULT("0"),
+                    "minus" to INTEGER + DEFAULT("0"),
+                    "divide" to INTEGER + DEFAULT("0"),
+                    "multiple" to INTEGER + DEFAULT("0")
+            )
 
             // Gold
             createTable(TABLE_GOLD, true,
-                "id" to INTEGER + PRIMARY_KEY + SqlTypeModifier.create("CHECK (id = 0)"),
-                "value" to INTEGER + DEFAULT("0")
-        )
+                    "id" to INTEGER + PRIMARY_KEY + SqlTypeModifier.create("CHECK (id = 0)"),
+                    "value" to INTEGER + DEFAULT("0")
+            )
 
             // Default gold value to 0
             execSQL("INSERT INTO $TABLE_GOLD (id, value) VALUES(0, 0)")
 
             // Default operations value to 0
             execSQL("INSERT INTO $TABLE_OPERATIONS (id, plus, minus, divide, multiple) " +
-                "VALUES(0, 0, 0, 0, 0)")
+                    "VALUES(0, 0, 0, 0, 0)")
         }
 
     }

@@ -6,10 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.R
-import com.example.cromat.mathpath.fragment.GoldFragment
-import com.example.cromat.mathpath.fragment.PetItemFragment
 import com.example.cromat.mathpath.model.Pet
-import kotlinx.android.synthetic.main.fragment_gold.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,13 +19,13 @@ class MainActivity : AppCompatActivity() {
         DbHelper(applicationContext).writableDatabase
 
         val pet = Pet()
-        (petItemDrink as PetItemFragment).updatePetItem(pet.petItems[0], applicationContext)
-        (petItemFood as PetItemFragment).updatePetItem(pet.petItems[1], applicationContext)
-        (petItemBall as PetItemFragment).updatePetItem(pet.petItems[2], applicationContext)
-        (petItemShirt as PetItemFragment).updatePetItem(pet.petItems[3], applicationContext)
+        petItemDrink.petItem = pet.petItems[0]
+        petItemFood.petItem = pet.petItems[1]
+        petItemBall.petItem = pet.petItems[2]
+        petItemShirt.petItem = pet.petItems[3]
 
-//        val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
-//        (goldFragmentMain as GoldFragment).setText(goldCurrent)
+        val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
+        goldViewMain.text = goldCurrent
 
         btnStart.setOnClickListener {
             startActivityForResult(Intent(applicationContext, PopupDifficultyActivity::class.java), 1)
@@ -36,6 +33,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        textGold.text = DbHelper.getGoldValue(applicationContext).toString()
+        goldViewMain.text = DbHelper.getGoldValue(applicationContext).toString()
     }
 }

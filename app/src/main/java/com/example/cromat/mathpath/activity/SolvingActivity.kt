@@ -1,6 +1,7 @@
 package com.example.cromat.mathpath.activity
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -11,9 +12,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.example.cromat.mathpath.*
 import com.example.cromat.mathpath.enums.GameType
-import com.example.cromat.mathpath.fragment.GoldFragment
 import com.example.cromat.mathpath.model.Equation
 import com.example.cromat.mathpath.model.EquationConfig
+import com.example.cromat.mathpath.view.GoldView
 import kotlinx.android.synthetic.main.activity_solving.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -62,7 +63,7 @@ class SolvingActivity : AppCompatActivity() {
 
     private fun initView() {
         val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
-//        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
+        goldViewSolving.text = goldCurrent
 
         layoutSolving.setOnClickListener {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -159,10 +160,8 @@ class SolvingActivity : AppCompatActivity() {
         val currentDateTime = dateFormat.format(Date()).toString()
         DbHelper.insertResult(score, currentDateTime, equationConfig.stepsNum,
                 GameType.STEPS.toString(), applicationContext)
-        DbHelper.updateGold(score, applicationContext)
-        val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
-//        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
-//        (goldFragmentSolving as GoldFragment).setText(goldCurrent)
+        DbHelper.addGold(score, applicationContext)
+        goldViewSolving.text = DbHelper.getGoldValue(applicationContext).toString()
         finish()
     }
 

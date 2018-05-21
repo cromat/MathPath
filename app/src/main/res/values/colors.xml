@@ -13,9 +13,10 @@
     <color name="colorBgDark">#4a8fa8</color>
     <color name="colorBgDarker">#3a7387</color>
 
-
     <color name="colorBgGreen">#A8C45C</color>
     <color name="colorBgDarkGreen">#5e6b3c</color>
+
+    <color name="colorBgGray">#686868</color>
 
     <color name="colorBgBlue">#65B4CE</color>
     <color name="colorBgDarkBlue">#4a8fa8</color>

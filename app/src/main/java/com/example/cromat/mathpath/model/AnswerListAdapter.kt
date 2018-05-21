@@ -1,4 +1,4 @@
-package com.example.cromat.mathpath
+package com.example.cromat.mathpath.model
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import com.example.cromat.mathpath.R
 
 
 class AnswerListAdapter(context: Context, resource: Int, var items: ArrayList<String>)

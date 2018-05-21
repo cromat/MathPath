@@ -4,13 +4,13 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class PetItem(
-        val name: String,
-        val price: Int,
-        val permanent: Boolean,
-        val bought: Boolean,
-        val activated: Boolean,
-        val picture: Int,
-        val bindedElementId: Int?
+        var name: String,
+        var price: Int,
+        var permanent: Boolean,
+        var bought: Boolean,
+        var activated: Boolean,
+        var picture: Int,
+        var bindedElementId: Int?
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -30,7 +30,7 @@ class PetItem(
         parcel.writeByte(if (activated) 1 else 0)
         parcel.writeInt(picture)
         if (bindedElementId != null) {
-            parcel.writeInt(bindedElementId)
+            parcel.writeInt(bindedElementId!!)
         }
     }
 

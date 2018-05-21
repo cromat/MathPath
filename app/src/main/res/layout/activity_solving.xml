@@ -10,12 +10,13 @@
     tools:context="com.example.cromat.mathpath.activity.SolvingActivity">
 
     <com.example.cromat.mathpath.view.GoldView
-        android:id="@+id/goldView"
+        android:id="@+id/goldViewSolving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +29,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goldView" />
+        app:layout_constraintTop_toBottomOf="@+id/goldViewSolving" />
 
     <TextView
         android:id="@+id/stepperText"
@@ -58,7 +59,6 @@
         android:id="@+id/relativeSolving"
         android:layout_width="match_parent"
         android:layout_height="63dp"
-        android:layout_below="@id/solvingHeaders"
         android:layout_centerVertical="true"
         android:layout_marginBottom="70dp"
         android:gravity="center"

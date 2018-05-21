@@ -9,12 +9,13 @@
 
 
     <com.example.cromat.mathpath.view.GoldView
-        android:id="@+id/goldView"
+        android:id="@+id/goldViewMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:textSize="40sp"
         android:text="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,18 +25,16 @@
         android:id="@+id/imagePet"
         android:layout_width="240dp"
         android:layout_height="390dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnEasy"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pet" />
 
-    <fragment
+    <com.example.cromat.mathpath.view.PetItemView
         android:id="@+id/petItemDrink"
-        android:tag="petItemDrink"
         android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
         android:layout_width="@dimen/pet_item_fragment_size"
         android:layout_height="@dimen/pet_item_fragment_size"
@@ -43,12 +42,13 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="30dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="110dp"
+        android:tag="petItemDrink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imagePet"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <fragment
+    <com.example.cromat.mathpath.view.PetItemView
         android:id="@+id/petItemFood"
         android:tag="petItemFood"
         android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
@@ -63,7 +63,7 @@
         app:layout_constraintStart_toEndOf="@+id/imagePet"
         app:layout_constraintTop_toBottomOf="@+id/petItemDrink" />
 
-    <fragment
+    <com.example.cromat.mathpath.view.PetItemView
         android:id="@+id/petItemBall"
         android:tag="petItemBall"
         android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
@@ -78,9 +78,8 @@
         app:layout_constraintStart_toEndOf="@+id/imagePet"
         app:layout_constraintTop_toBottomOf="@+id/petItemFood" />
 
-    <fragment
+    <com.example.cromat.mathpath.view.PetItemView
         android:id="@+id/petItemShirt"
-        android:tag="petItemShirt"
         android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
         android:layout_width="@dimen/pet_item_fragment_size"
         android:layout_height="@dimen/pet_item_fragment_size"
@@ -89,6 +88,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:tag="petItemShirt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imagePet"
         app:layout_constraintTop_toBottomOf="@+id/petItemBall" />
@@ -140,6 +140,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.146"
