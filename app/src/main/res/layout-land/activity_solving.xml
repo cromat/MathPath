@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/main_background"
+    android:id="@+id/layoutSolving"
+    tools:context="com.example.cromat.mathpath.activity.SolvingActivity">
+
+    <com.example.cromat.mathpath.view.GoldView
+        android:id="@+id/goldViewSolving"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/solvingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goldViewSolving" />
+
+    <TextView
+        android:id="@+id/stepperText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <RelativeLayout
+        android:id="@+id/relativeSolving"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="70dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor">
+
+        <TextView
+            android:id="@+id/txtViewEquationFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="1+2="
+            android:gravity="center"
+            android:textSize="@dimen/default_text" />
+
+        <EditText
+            android:id="@+id/edtViewAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/txtViewEquationFirst"
+            android:layout_toRightOf="@+id/txtViewEquationFirst"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="numberSigned"
+            android:gravity="center"
+            android:paddingTop="13dp"
+            android:textSize="@dimen/default_text" />
+
+        <TextView
+            android:id="@+id/txtViewEquationSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/edtViewAnswer"
+            android:layout_toEndOf="@id/edtViewAnswer"
+            android:layout_toRightOf="@id/edtViewAnswer"
+            android:gravity="center"
+            android:textSize="@dimen/default_text" />
+
+    </RelativeLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_hor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <TextView
+        android:id="@+id/textShowAnswers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/show_answers"
+        android:textSize="@dimen/default_text_view"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeSolving" />
+
+    <Button
+        android:id="@+id/btnQuit"
+        style="@style/BtnGray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/btn_start_end_margin"
+        android:layout_marginStart="@dimen/btn_start_end_margin"
+        android:text="@string/quit"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/BtnRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textShowAnswers"
+        android:layout_marginEnd="@dimen/btn_start_end_margin"
+        android:layout_marginRight="@dimen/btn_start_end_margin"
+        android:text="@string/next"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--TODO: Red on wrong answer, green on right one-->
+
+    <ProgressBar
+        android:id="@+id/progressBarSolving"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginEnd="@dimen/btn_start_end_margin"
+        android:layout_marginLeft="@dimen/btn_start_end_margin"
+        android:layout_marginRight="@dimen/btn_start_end_margin"
+        android:layout_marginStart="@dimen/btn_start_end_margin"
+        android:layout_marginTop="50dp"
+        android:max="100"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_hor" />
+
+</android.support.constraint.ConstraintLayout>

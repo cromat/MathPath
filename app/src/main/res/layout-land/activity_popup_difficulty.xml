@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBgDark"
+    tools:context=".activity.PopupDifficultyActivity">
+
+    <Button
+        android:id="@+id/btnEasy"
+        style="@style/BtnGreen"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="119dp"
+        android:layout_marginLeft="119dp"
+        android:layout_marginRight="119dp"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/easy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnMedium"
+        style="@style/BtnYellow"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="119dp"
+        android:layout_marginLeft="119dp"
+        android:layout_marginRight="119dp"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEasy" />
+
+    <Button
+        android:id="@+id/btnHard"
+        style="@style/BtnRed"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="119dp"
+        android:layout_marginLeft="119dp"
+        android:layout_marginRight="119dp"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/hard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMedium" />
+
+    <Button
+        android:id="@+id/btnCustom"
+        style="@style/BtnGray"
+        android:layout_width="101dp"
+        android:layout_height="38dp"
+        android:layout_below="@id/line4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="119dp"
+        android:layout_marginLeft="119dp"
+        android:layout_marginRight="119dp"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/custom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHard" />
+
+</android.support.constraint.ConstraintLayout>

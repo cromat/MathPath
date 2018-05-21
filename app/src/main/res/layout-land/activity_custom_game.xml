@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBg"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.cromat.mathpath.activity.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--Game type-->
+        <RelativeLayout
+            android:id="@+id/relativeGameType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/textGameType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/game_type"
+                android:textSize="@dimen/default_text_view">
+
+                <requestFocus />
+            </TextView>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textGameType">
+
+                <RadioButton
+                    android:id="@+id/radioSteps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/steps" />
+
+                <RadioButton
+                    android:id="@+id/radioTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time" />
+
+            </RadioGroup>
+
+            <!--Steps configuration-->
+            <TextView
+                android:id="@+id/textSteps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/step_num"
+                android:textSize="@dimen/default_text_view" />
+
+            <EditText
+                android:id="@+id/editSteps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/textSteps"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:text="10"
+                android:textSize="@dimen/default_text" />
+
+            <!--Time configuration-->
+            <TextView
+                android:id="@+id/textTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/time_seconds"
+                android:textSize="@dimen/default_text_view"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/editTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/textTime"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:text="60"
+                android:textSize="@dimen/default_text"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/relativeGameType"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#c0c0c0" />
+
+        <!--Numbers range-->
+        <RelativeLayout
+            android:id="@+id/relativeNumRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/textNumRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/numbers_range"
+                android:textSize="@dimen/default_text_view" />
+
+            <me.bendik.simplerangeview.SimpleRangeView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rangeNumbers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                app:count="100"
+                app:end="10"
+                app:endFixed="100"
+                app:showFixedLine="true"
+                app:start="0"
+                app:startFixed="0" />
+
+            <EditText
+                android:id="@+id/editRangeNumStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/rangeNumbers"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="100dp"
+                android:layout_marginStart="100dp"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:text="0"
+                android:textSize="@dimen/default_text" />
+
+            <EditText
+                android:id="@+id/editRangeNumEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/rangeNumbers"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="number"
+                android:text="10"
+                android:textSize="@dimen/default_text" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/relativeNumRange"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#c0c0c0" />
+
+        <!--Operators-->
+        <RelativeLayout
+            android:id="@+id/relativeOperators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line2"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/textOperators"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/operators"
+                android:textSize="@dimen/default_text_view" />
+
+            <RelativeLayout
+                android:id="@+id/relativeCheckboxes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textOperators"
+                android:layout_centerHorizontal="true"
+                android:gravity="center">
+
+                <CheckBox
+                    android:id="@+id/checkPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:checked="true"
+                    android:text="+"
+                    android:textSize="@dimen/default_text" />
+
+                <CheckBox
+                    android:id="@+id/checkMinus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@id/checkPlus"
+                    android:checked="true"
+                    android:text="-"
+                    android:textSize="@dimen/default_text" />
+
+                <CheckBox
+                    android:id="@+id/checkMul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/checkPlus"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="*"
+                    android:textSize="@dimen/default_text" />
+
+                <CheckBox
+                    android:id="@+id/checkDiv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/checkMinus"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@id/checkMul"
+                    android:layout_toRightOf="@id/checkMul"
+                    android:text="/"
+                    android:textSize="@dimen/default_text" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line3"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/relativeOperators"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#c0c0c0" />
+
+        <!--Number of operands-->
+        <RelativeLayout
+            android:id="@+id/relativeNumOperands"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line3"
+            android:padding="20dp">
+
+            <!--If checkbox unchecked-->
+
+            <TextView
+                android:id="@+id/textOperands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/operands"
+                android:textSize="@dimen/default_text_view" />
+
+            <CheckBox
+                android:id="@+id/checkFixedNumOperands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textOperands"
+                android:text="@string/check_fix_num_operands"
+                android:textSize="@dimen/default_text_view" />
+
+            <me.bendik.simplerangeview.SimpleRangeView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rangeOperands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkFixedNumOperands"
+                android:layout_marginTop="40dp"
+                app:count="4"
+                app:end="1"
+                app:endFixed="4"
+                app:minDistance="1"
+                app:showFixedLine="true"
+                app:start="0"
+                app:startFixed="0" />
+
+            <TextView
+                android:id="@+id/textRangeOperStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/rangeOperands"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="100dp"
+                android:layout_marginStart="100dp"
+                android:text="2"
+                android:textSize="@dimen/default_text" />
+
+            <TextView
+                android:id="@+id/textRangeOperEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/rangeOperands"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:text="3"
+
+                android:textSize="@dimen/default_text" />
+
+            <RadioGroup
+                android:id="@+id/radioNumOperands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkFixedNumOperands"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="4">
+
+                <RadioButton
+                    android:id="@+id/radioBtnOperNum2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="5" />
+
+            </RadioGroup>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line4"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/relativeNumOperands"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#c0c0c0" />
+
+        <CheckBox
+            android:id="@+id/checkNegativeRes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line4"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:checked="false"
+            android:text="@string/negative_result"
+            android:textSize="@dimen/default_text_view" />
+
+        <CheckBox
+            android:id="@+id/checkRandomInputs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkNegativeRes"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:checked="false"
+            android:text="@string/random_input"
+            android:textSize="@dimen/default_text_view" />
+
+        <View
+            android:id="@+id/line5"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/checkRandomInputs"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#c0c0c0" />
+
+        <Button
+            android:id="@+id/btnCustomStart"
+            style="@style/BtnRed"
+            android:layout_width="146dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/line5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/start" />
+
+    </RelativeLayout>
+
+</ScrollView>
