@@ -41,3 +41,10 @@ MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for bac
 ![alt text](https://image.ibb.co/gjWy9c/Selection_068.png)
 
 If you have any remarks or suggestions to improve the app, please feel free to contact me at brabec.tomislav@gmail.com
+
+# Screenshots
+
+![alt text](https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot1.png)
+![alt text](https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot2.png)
+![alt text](https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot3.png)
+![alt text](https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot4.png)
