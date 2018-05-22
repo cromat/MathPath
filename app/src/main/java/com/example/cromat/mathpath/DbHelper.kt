@@ -3,6 +3,7 @@ package com.example.cromat.mathpath
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import com.example.cromat.mathpath.model.PetItem
 import org.jetbrains.anko.db.*
 
 
@@ -10,9 +11,20 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
     companion object {
         const val TABLE_RESULT = "result"
         const val TABLE_OPERATIONS = "operations"
+        const val TABLE_PET_ITEMS = "pet_items"
         const val TABLE_GOLD = "gold"
-
         private var instance: DbHelper? = null
+
+        private val parserPetItem = rowParser {
+            id: Int, name: String, price : Int, permanent : Int, activated: Int, bought: Int,
+            picture : Int, bindedElementId : Int ->
+            PetItem(name, price, permanent.toBoolean(), bought.toBoolean(), activated.toBoolean(),
+                    picture, bindedElementId)
+        }
+
+        private fun Int.toBoolean() = this != 0
+
+        private fun Boolean.toInt() = if (this) 1 else 0
 
         @Synchronized
         fun getInstance(ctx: Context): DbHelper {
@@ -49,6 +61,15 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
             }
         }
 
+        fun getPetItems(ctx: Context): List<PetItem> {
+            if (instance == null) {
+                instance = DbHelper(ctx.applicationContext)
+            }
+            return instance!!.use {
+                select(TABLE_PET_ITEMS).exec { parseList(parserPetItem) }
+            }
+        }
+
         fun insertResult(score: Int, dateTime: String, numAns: Int, gameType: String, ctx: Context) {
             if (instance == null) {
                 instance = DbHelper(ctx.applicationContext)
@@ -64,6 +85,24 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                 insert(DbHelper.TABLE_RESULT, null, values)
             }
         }
+
+        fun updatePetItem(petItem: PetItem, ctx: Context){
+            if (instance == null) {
+                instance = DbHelper(ctx.applicationContext)
+            }
+            instance!!.use {
+                execSQL("UPDATE " + TABLE_PET_ITEMS +
+                " SET price = " + petItem.price.toString() +
+                ", permanent = " + petItem.permanent.toInt().toString() +
+                ", activated = " + petItem.activated.toInt().toString() +
+                ", bought = " + petItem.bought.toInt().toString() +
+                ", picture = " + petItem.picture.toString() +
+                ", bindedElementId = " + petItem.bindedElementId.toString() +
+                " WHERE name = '" + petItem.name + "'"
+                )
+            }
+        }
+
 
         fun updateOperations(values: MutableMap<String, Int>, ctx: Context) {
             if (instance == null) {
@@ -113,6 +152,19 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                     "multiple" to INTEGER + DEFAULT("0")
             )
 
+            // Pet Item
+            createTable(TABLE_PET_ITEMS, true,
+                    "id" to INTEGER + PRIMARY_KEY + UNIQUE,
+                    "name" to TEXT + DEFAULT("0"),
+                    "price" to INTEGER + DEFAULT("0"),
+                    "permanent" to INTEGER + DEFAULT("0"),
+                    "activated" to INTEGER + DEFAULT("0"),
+                    "bought" to INTEGER + DEFAULT("0"),
+                    "picture" to INTEGER + DEFAULT("0"),
+                    "bindedElementId" to INTEGER + DEFAULT("0")
+            )
+
+
             // Gold
             createTable(TABLE_GOLD, true,
                     "id" to INTEGER + PRIMARY_KEY + SqlTypeModifier.create("CHECK (id = 0)"),
@@ -125,15 +177,27 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
             // Default operations value to 0
             execSQL("INSERT INTO $TABLE_OPERATIONS (id, plus, minus, divide, multiple) " +
                     "VALUES(0, 0, 0, 0, 0)")
-        }
 
+            // Default pet items
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId) VALUES('Drink', 5, 0, 0, 0, " +
+                    R.drawable.drink.toString() + ", 0)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId) VALUES('Food', 10, 0, 0, 0, " +
+                    R.drawable.food.toString() + ", 0)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId) VALUES('Ball', 25, 1, 0, 0, " +
+                    R.drawable.ball.toString() + ", " + R.id.imagePetBall.toString() + ")")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId) VALUES('Shirt', 50, 1, 0, 0, " +
+                    R.drawable.shirt.toString() + ", " + R.id.imagePetShirt.toString() + ")")
+        }
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         // Here you can upgrade tables, as usual
         db.dropTable(TABLE_RESULT, true)
     }
-
 }
 
 val Context.database: DbHelper

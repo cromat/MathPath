@@ -2,11 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutSolving"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center"
     android:background="@drawable/main_background"
-    android:id="@+id/layoutSolving"
     tools:context="com.example.cromat.mathpath.activity.SolvingActivity">
 
     <com.example.cromat.mathpath.view.GoldView
@@ -68,7 +68,6 @@
             android:id="@+id/txtViewEquationFirst"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="1+2="
             android:gravity="center"
             android:textSize="@dimen/default_text" />
 
@@ -79,9 +78,9 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/txtViewEquationFirst"
             android:layout_toRightOf="@+id/txtViewEquationFirst"
+            android:gravity="center"
             android:imeOptions="flagNoExtractUi"
             android:inputType="numberSigned"
-            android:gravity="center"
             android:paddingTop="13dp"
             android:textSize="@dimen/default_text" />
 
@@ -89,7 +88,6 @@
             android:id="@+id/txtViewEquationSecond"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/edtViewAnswer"
             android:layout_toEndOf="@id/edtViewAnswer"
             android:layout_toRightOf="@id/edtViewAnswer"
             android:gravity="center"

@@ -100,10 +100,15 @@ class SolvingActivity : AppCompatActivity() {
         equation = Equation(equationConfig)
         if (equationConfig.randomizeInput) {
             val strings = equation.splitAtOperandIndex()
-            txtViewEquationFirst.text = strings[0]
-            txtViewEquationSecond.text = strings[1]
-        } else
-            txtViewEquationFirst.text = "$equation="
+            txtViewEquationFirst.text = strings[0].replace("/", "\u00F7")
+                    .replace("*", "\u02E3")
+            txtViewEquationSecond.text = strings[1].replace("/", "\u00F7")
+                    .replace("*", "\u02E3")
+        } else {
+            val userEquation = equation.toString().replace("/", "\u00F7")
+                    .replace("*", "\u02E3")
+            txtViewEquationFirst.text = "$userEquation="
+        }
     }
 
     private fun stepGame() {

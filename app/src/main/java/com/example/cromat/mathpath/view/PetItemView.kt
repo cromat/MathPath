@@ -17,7 +17,6 @@ import com.example.cromat.mathpath.DbHelper
 
 
 class PetItemView : RelativeLayout {
-
     val goldView = GoldView(context)
     private val imgView = ImageView(context)
     var petItem: PetItem? = null
@@ -25,8 +24,24 @@ class PetItemView : RelativeLayout {
             field = petItem
             imgView.setImageDrawable(ContextCompat.getDrawable(context, petItem!!.picture))
             goldView.text = petItem.price.toString()
+
+            if (petItem.bindedElementId > 0) {
+                val imgId = petItem.bindedElementId as Int
+                val relImg = (context as Activity).findViewById(imgId) as ImageView
+                if (petItem.activated) {
+                    alpha = .5f
+                    relImg.visibility = View.VISIBLE
+                } else {
+                    alpha = 1f
+                    relImg.visibility = View.INVISIBLE
+                }
+            }
+            invalidate()
+
             invalidate()
         }
+
+
 
     constructor(context: Context) : super(context) {
         init(null)
@@ -116,7 +131,14 @@ class PetItemView : RelativeLayout {
                 Toast.makeText(context, context.getString(R.string.no_gold), Toast.LENGTH_LONG).show()
 
         val goldViewMain = (context as Activity).findViewById(R.id.goldViewMain) as GoldView
+
+        // Refresh gold text view
         goldViewMain.text = DbHelper.getGoldValue(context).toString()
+
+        // Update pet item in db
+        DbHelper.updatePetItem(petItem!!, context)
+
+        // Refresh this view
         invalidate()
     }
 

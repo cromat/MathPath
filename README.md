@@ -23,6 +23,9 @@ MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for bac
 * Check for operators order in more complex equations (give hints next time)
 * Measure time for each task and show that info in answers list at the end
 * Multilanguage support (Croatian, German, French, Spanish)
+* Third game option: PickGame with picking on of possible answers
+* Game type where will be all game type mixed
+* Short game instructions
 * Better UX:
 	* ~~some kind of in-game awarding to keep users active:
 		one of ideas is to include a pet (something like tamagochi) and if user solves enougl equations, he will be able 		to feed or buy something for their pet.~~
@@ -35,6 +38,7 @@ MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for bac
 	* pet simple chatbot (IRIS)
 	* some in-game instructions (for difficulties)
 	* each difficulty gives different amount of money
+	* pet hapiness bar
 
 # Application flowchart
 

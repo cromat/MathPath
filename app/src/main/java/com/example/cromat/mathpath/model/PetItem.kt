@@ -10,7 +10,7 @@ class PetItem(
         var bought: Boolean,
         var activated: Boolean,
         var picture: Int,
-        var bindedElementId: Int?
+        var bindedElementId: Int
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
