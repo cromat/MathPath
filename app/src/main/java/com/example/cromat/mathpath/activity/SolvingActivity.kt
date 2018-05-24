@@ -109,6 +109,7 @@ class SolvingActivity : AppCompatActivity() {
                     .replace("*", "\u02E3")
             txtViewEquationFirst.text = "$userEquation="
         }
+
     }
 
     private fun stepGame() {
