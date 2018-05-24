@@ -3,11 +3,15 @@ package com.example.cromat.mathpath.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.pet_item_list as petItemList
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.MusicManager
 import com.example.cromat.mathpath.R
+import com.example.cromat.mathpath.activity.adapters.PetItemAdapter
 import com.example.cromat.mathpath.model.PetItem
+import kotlinx.android.synthetic.main.pet_container.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,11 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         MusicManager.start(applicationContext, R.raw.bkground)
 
-        val petItems: List<PetItem> = DbHelper.getPetItems(applicationContext)
-        petItemDrink.petItem = petItems[0]
-        petItemFood.petItem = petItems[1]
-        petItemBall.petItem = petItems[2]
-        petItemShirt.petItem = petItems[3]
 
         val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
         goldViewMain.text = goldCurrent
@@ -47,5 +46,10 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         MusicManager.start(applicationContext, R.raw.bkground)
+        val petItems: List<PetItem> = DbHelper.getPetItems(applicationContext)
+        val adapter = PetItemAdapter(petItems)
+        petItemList.adapter = adapter
+        petItemList.layoutManager = LinearLayoutManager(this)
+
     }
 }

@@ -1,152 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBg"
-    tools:context="com.example.cromat.mathpath.activity.MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:weightSum="100"
+  android:layout_height="match_parent"
+  android:background="@color/colorBg"
+  android:orientation="horizontal"
+  tools:context="com.example.cromat.mathpath.activity.MainActivity">
 
 
     <com.example.cromat.mathpath.view.GoldView
-        android:id="@+id/goldViewMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:textSize="40sp"
-        android:text="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/goldViewMain"
+      android:layout_width="0dp"
+      android:layout_weight="15"
+      android:layout_height="wrap_content"
+      android:layout_gravity="left"
+      android:layout_marginTop="10dp"
+      android:layout_marginStart="10dp"
+      android:layout_marginLeft="10dp"
+      android:text="0"
+      android:textSize="40sp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
-        android:id="@+id/imagePet"
-        android:layout_width="240dp"
-        android:layout_height="390dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pet" />
+    <include layout="@layout/pet_container"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="65"
+      />
 
-    <com.example.cromat.mathpath.view.PetItemView
-        android:id="@+id/petItemDrink"
-        android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
-        android:layout_width="@dimen/pet_item_fragment_size"
-        android:layout_height="@dimen/pet_item_fragment_size"
-        android:layout_marginEnd="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="110dp"
-        android:tag="petItemDrink"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imagePet"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.example.cromat.mathpath.view.PetItemView
-        android:id="@+id/petItemFood"
-        android:tag="petItemFood"
-        android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
-        android:layout_width="@dimen/pet_item_fragment_size"
-        android:layout_height="@dimen/pet_item_fragment_size"
-        android:layout_marginEnd="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imagePet"
-        app:layout_constraintTop_toBottomOf="@+id/petItemDrink" />
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/pet_item_list"
+      android:layout_width="0dp"
+      android:layout_weight="20"
+      android:layout_height="wrap_content"
+      android:paddingTop="8dp"
+      android:paddingBottom="8dp"
+      android:layout_marginStart="16dp"
+      android:clipToPadding="false"
+      android:layout_marginEnd="16dp"
+      android:layout_marginRight="16dp"
+      android:orientation="vertical"
+      app:layout_constraintBottom_toBottomOf="@+id/imagePet"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/btnStart"
+      app:layout_constraintTop_toTopOf="@+id/imagePet" />
 
-    <com.example.cromat.mathpath.view.PetItemView
-        android:id="@+id/petItemBall"
-        android:tag="petItemBall"
-        android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
-        android:layout_width="@dimen/pet_item_fragment_size"
-        android:layout_height="@dimen/pet_item_fragment_size"
-        android:layout_marginEnd="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imagePet"
-        app:layout_constraintTop_toBottomOf="@+id/petItemFood" />
-
-    <com.example.cromat.mathpath.view.PetItemView
-        android:id="@+id/petItemShirt"
-        android:name="com.example.cromat.mathpath.fragment.PetItemFragment"
-        android:layout_width="@dimen/pet_item_fragment_size"
-        android:layout_height="@dimen/pet_item_fragment_size"
-        android:layout_marginEnd="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:tag="petItemShirt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imagePet"
-        app:layout_constraintTop_toBottomOf="@+id/petItemBall" />
-
-    <Button
-        android:id="@+id/btnStart"
-        style="@style/BtnRed"
-        android:layout_width="145dp"
-        android:layout_height="55dp"
-        android:layout_below="@id/line4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="119dp"
-        android:layout_marginLeft="119dp"
-        android:layout_marginRight="119dp"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="490dp"
-        android:text="@string/start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imagePetShirt"
-        android:layout_width="115dp"
-        android:layout_height="130dp"
-        android:layout_marginBottom="3dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.316"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7"
-        app:srcCompat="@drawable/shirt" />
-
-    <ImageView
-        android:id="@+id/imagePetBall"
-        android:layout_width="67dp"
-        android:layout_height="66dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835"
-        app:srcCompat="@drawable/ball" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -33,13 +33,13 @@ class GoldView : TextView {
         val img = ContextCompat.getDrawable(context, R.drawable.gold)
         val size: Int = (lineHeight * 0.85).toInt()
         val bitmap = (img as BitmapDrawable).bitmap
-        val d = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, size, size, true))
-        setCompoundDrawablesWithIntrinsicBounds(null, null, d, null)
+        val coinImage = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, size, size, true))
+        setCompoundDrawablesWithIntrinsicBounds(null, null, coinImage, null)
         compoundDrawablePadding = 10
         setTypeface(ResourcesCompat.getFont(context, R.font.im_wunderland_cro), Typeface.BOLD)
         setShadowLayer(1.6f, 1.5f, 1.3f, Color.BLACK)
         setTextColor(Color.WHITE)
-        gravity = Gravity.CENTER_VERTICAL
+        gravity = Gravity.RIGHT
         a.recycle()
     }
 }

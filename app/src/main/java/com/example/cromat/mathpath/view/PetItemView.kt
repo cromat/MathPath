@@ -59,7 +59,6 @@ class PetItemView : RelativeLayout {
         // Load attributes
         val a = context.obtainStyledAttributes(attrs, R.styleable.PetItemView)
         background = ContextCompat.getDrawable(context, R.drawable.rounded_shape)
-        layoutParams = LayoutParams(70, 70)
         gravity = Gravity.CENTER
         goldView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25F)
         imgView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ball))
