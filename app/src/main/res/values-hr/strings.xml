@@ -24,6 +24,15 @@
     <string name="time">Vrijeme</string>
     <string name="pref_header_general">Glavne postavke</string>
     <string name="title_activity_settings">Postavke</string>
+    <string name="negative_result">Negativan rezultat</string>
+    <string name="easy">Lagano</string>
+    <string name="medium">Srednje</string>
+    <string name="hard">Teško</string>
+    <string name="custom">Ručno</string>
+    <string name="your_score">Tvoji bodovi:</string>
+    <string name="random_input">Unos na nasumičnom polju</string>
+    <string name="finish">KRAJ</string>
+    <string name="no_gold">Nedovoljno novca!</string>
 
     <string-array name="graph_range_array">
         <item>7 dana</item>
@@ -35,5 +44,6 @@
         <item>Koraci</item>
         <item>Vrijeme</item>
     </string-array>
+
 
 </resources>

@@ -57,8 +57,6 @@
         <item>Time Chase</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="random_input">Set number input at random place</string>
     <string name="finish">FINISH</string>
     <string name="no_gold">Not enough gold!</string>
