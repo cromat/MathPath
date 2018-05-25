@@ -1,11 +1,18 @@
 package com.example.cromat.mathpath.activity
 
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import com.example.cromat.mathpath.DbHelper
+import com.example.cromat.mathpath.R
+import com.example.cromat.mathpath.database
+import com.example.cromat.mathpath.enums.GameType
+import com.example.cromat.mathpath.enums.Range
+import com.example.cromat.mathpath.model.Result
+import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.data.*
 import kotlinx.android.synthetic.main.activity_graph.*
 import org.jetbrains.anko.db.parseList
@@ -14,16 +21,10 @@ import org.jetbrains.anko.db.select
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import kotlin.collections.HashMap
-import android.widget.ArrayAdapter
-import com.example.cromat.mathpath.*
-import com.example.cromat.mathpath.enums.GameType
-import com.example.cromat.mathpath.enums.Range
-import com.example.cromat.mathpath.model.Result
 
 
-class GraphActivity : AppCompatActivity() {
+class GraphActivity : BgMusicActivity() {
 
     val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     val dateFormatCroShort = SimpleDateFormat("dd.MM.")

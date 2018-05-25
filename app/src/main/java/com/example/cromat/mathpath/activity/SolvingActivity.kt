@@ -1,26 +1,24 @@
 package com.example.cromat.mathpath.activity
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.example.cromat.mathpath.*
+import com.example.cromat.mathpath.DbHelper
+import com.example.cromat.mathpath.R
 import com.example.cromat.mathpath.enums.GameType
 import com.example.cromat.mathpath.model.Equation
 import com.example.cromat.mathpath.model.EquationConfig
-import com.example.cromat.mathpath.view.GoldView
 import kotlinx.android.synthetic.main.activity_solving.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 @SuppressLint("SetTextI18n")
-class SolvingActivity : AppCompatActivity() {
+class SolvingActivity : BgMusicActivity() {
     private var score: Int = 0
     private var taskNum: Int = 1
     private var equationConfig: EquationConfig = EquationConfig()

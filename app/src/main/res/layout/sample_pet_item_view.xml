@@ -8,7 +8,6 @@
         android:layout_height="wrap_content"
         android:background="#ccc"
         android:id="@+id/pet_item"
-        android:paddingBottom="40dp"
-        android:paddingLeft="20dp" />
+        android:paddingBottom="40dp" />
 
 </FrameLayout>

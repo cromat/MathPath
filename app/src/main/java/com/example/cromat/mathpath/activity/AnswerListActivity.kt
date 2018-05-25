@@ -1,12 +1,11 @@
 package com.example.cromat.mathpath.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.example.cromat.mathpath.model.AnswerListAdapter
 import com.example.cromat.mathpath.R
+import com.example.cromat.mathpath.model.AnswerListAdapter
 import kotlinx.android.synthetic.main.activity_answers_list.*
 
-class AnswerListActivity : AppCompatActivity() {
+class AnswerListActivity : BgMusicActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,4 +17,3 @@ class AnswerListActivity : AppCompatActivity() {
         listViewAnswers.adapter = adapter
     }
 }
-

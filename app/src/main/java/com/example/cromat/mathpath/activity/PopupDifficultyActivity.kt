@@ -1,7 +1,6 @@
 package com.example.cromat.mathpath.activity
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.Gravity
@@ -11,7 +10,7 @@ import com.example.cromat.mathpath.enums.GameType
 import com.example.cromat.mathpath.model.EquationConfig
 import kotlinx.android.synthetic.main.activity_popup_difficulty.*
 
-class PopupDifficultyActivity : AppCompatActivity() {
+class PopupDifficultyActivity : BgMusicActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

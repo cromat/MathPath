@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.cromat.mathpath.R
 import com.example.cromat.mathpath.model.PetItem
-import com.example.cromat.mathpath.view.PetItemView
 import kotlinx.android.synthetic.main.sample_pet_item_view.view.*
+
 
 class PetItemAdapter(val list: List<PetItem>) : RecyclerView.Adapter<PetItemAdapter.PetHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetHolder =

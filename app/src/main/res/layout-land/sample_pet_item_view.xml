@@ -3,10 +3,12 @@
     android:layout_height="match_parent">
 
     <com.example.cromat.mathpath.view.PetItemView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
         android:background="#ccc"
+        android:id="@+id/pet_item"
         android:paddingBottom="40dp"
-        android:paddingLeft="20dp" />
+        android:layout_marginBottom="5dp"
+ />
 
 </FrameLayout>

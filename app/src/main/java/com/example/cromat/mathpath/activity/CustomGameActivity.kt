@@ -1,7 +1,6 @@
 package com.example.cromat.mathpath.activity
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
@@ -15,7 +14,7 @@ import me.bendik.simplerangeview.SimpleRangeView
 import org.jetbrains.annotations.NotNull
 
 
-class CustomGameActivity : AppCompatActivity() {
+class CustomGameActivity : BgMusicActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +33,11 @@ class CustomGameActivity : AppCompatActivity() {
 
         rangeOperands.onTrackRangeListener = (object : SimpleRangeView.OnTrackRangeListener {
             override fun onStartRangeChanged(@NotNull rangeView: SimpleRangeView, start: Int) {
-                textRangeOperStart.setText((start + 2).toString())
+                textRangeOperStart.text = (start + 2).toString()
             }
 
             override fun onEndRangeChanged(@NotNull rangeView: SimpleRangeView, end: Int) {
-                textRangeOperEnd.setText((end + 2).toString())
+                textRangeOperEnd.text = (end + 2).toString()
             }
         })
 
@@ -76,39 +75,37 @@ class CustomGameActivity : AppCompatActivity() {
 
         // Start
         btnCustomStart.setOnClickListener {
-
             if (validateFields()) {
-
-                var MAX_NUM_OPERANDS = textRangeOperEnd.text.toString().toInt()
-                var MIN_NUM_OPERANDS = textRangeOperStart.text.toString().toInt()
+                var maxNumOperands = textRangeOperEnd.text.toString().toInt()
+                var minNumOperands = textRangeOperStart.text.toString().toInt()
 
                 if (checkFixedNumOperands.isChecked) {
-                    val selectedId = radioNumOperands.getCheckedRadioButtonId()
+                    val selectedId = radioNumOperands.checkedRadioButtonId
                     val selectedRadioBtn = findViewById<View>(selectedId) as RadioButton
-                    MAX_NUM_OPERANDS = selectedRadioBtn.text.toString().toInt()
-                    MIN_NUM_OPERANDS = selectedRadioBtn.text.toString().toInt()
+                    maxNumOperands = selectedRadioBtn.text.toString().toInt()
+                    minNumOperands = selectedRadioBtn.text.toString().toInt()
                 }
 
-                val MAX_NUM = editRangeNumEnd.text.toString().toInt()
-                val MIN_NUM = editRangeNumStart.text.toString().toInt()
-                val OPERATORS = ArrayList<String>()
+                val maxNum = editRangeNumEnd.text.toString().toInt()
+                val minNum = editRangeNumStart.text.toString().toInt()
+                val operators = ArrayList<String>()
 
                 (0 until relativeCheckboxes.childCount)
                         .map { relativeCheckboxes.getChildAt(it) as CheckBox }
                         .filter { it.isChecked }
-                        .mapTo(OPERATORS) { it.text.toString() }
+                        .mapTo(operators) { it.text.toString() }
 
-                var GAME_TYPE = GameType.STEPS.toString()
+                var gameType = GameType.STEPS.toString()
                 if (radioTime.isChecked)
-                    GAME_TYPE = GameType.TIME.toString()
-                val TIME_SEC = editTime.text.toString().toInt()
-                val STEPS_NUM = editSteps.text.toString().toInt()
-                val NEGATIVE_RES = checkNegativeRes.isChecked
-                val RANDOMIZE_INPUT = checkRandomInputs.isChecked
+                    gameType = GameType.TIME.toString()
+                val timeSec = editTime.text.toString().toInt()
+                val stepsNum = editSteps.text.toString().toInt()
+                val negativeRes = checkNegativeRes.isChecked
+                val randomizeInput = checkRandomInputs.isChecked
 
-                val equationConfig = EquationConfig(MAX_NUM_OPERANDS, MIN_NUM_OPERANDS, MAX_NUM,
-                        MIN_NUM, OPERATORS, GAME_TYPE, TIME_SEC, STEPS_NUM, NEGATIVE_RES,
-                        RANDOMIZE_INPUT)
+                val equationConfig = EquationConfig(maxNumOperands, minNumOperands, maxNum,
+                        minNum, operators, gameType, timeSec, stepsNum, negativeRes,
+                        randomizeInput)
                 val intent = Intent(applicationContext, SolvingActivity::class.java)
                 intent.putExtra("equationConfig", equationConfig)
                 startActivity(intent)

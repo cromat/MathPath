@@ -6,18 +6,18 @@ import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import com.example.cromat.mathpath.R
-import com.example.cromat.mathpath.model.PetItem
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.cromat.mathpath.DbHelper
+import com.example.cromat.mathpath.R
+import com.example.cromat.mathpath.model.PetItem
 
 
 class PetItemView : RelativeLayout {
-    val goldView = GoldView(context)
+    private val goldView = GoldView(context)
     private val imgView = ImageView(context)
     var petItem: PetItem? = null
         set(petItem) {
@@ -28,20 +28,20 @@ class PetItemView : RelativeLayout {
             if (petItem.bindedElementId > 0) {
                 val imgId = petItem.bindedElementId as Int
                 val relImg = (context as Activity).findViewById(imgId) as ImageView
-                if (petItem.activated) {
+                if (petItem.activated && petItem.bought) {
                     alpha = .5f
                     relImg.visibility = View.VISIBLE
                 } else {
                     alpha = 1f
                     relImg.visibility = View.INVISIBLE
                 }
+
+                if (petItem.bought) {
+                    goldView.visibility = View.INVISIBLE
+                }
             }
             invalidate()
-
-            invalidate()
         }
-
-
 
     constructor(context: Context) : super(context) {
         init(null)
@@ -81,21 +81,21 @@ class PetItemView : RelativeLayout {
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        OnClick()
+        onClick()
         return super.onTouchEvent(event)
     }
 
     override fun callOnClick(): Boolean {
-        OnClick()
+        onClick()
         return super.callOnClick()
     }
 
     override fun setOnClickListener(l: OnClickListener?) {
-        OnClick()
+        onClick()
         super.setOnClickListener(l)
     }
 
-    fun OnClick() {
+    fun onClick() {
         petItem!!.activated = !petItem!!.activated
 
         if (petItem!!.permanent) {
@@ -103,9 +103,10 @@ class PetItemView : RelativeLayout {
                 if (!DbHelper.addGold(petItem!!.price * -1, context))
                     Toast.makeText(context, context.getString(R.string.no_gold), Toast.LENGTH_LONG).show()
                 else {
-                    val imgId = petItem!!.bindedElementId as Int
+                    val imgId = petItem!!.bindedElementId
                     val relImg = (context as Activity).findViewById(imgId) as ImageView
                     petItem!!.bought = true
+                    goldView.visibility = View.INVISIBLE
                     if (petItem!!.activated) {
                         alpha = .5f
                         relImg.visibility = View.VISIBLE
@@ -115,7 +116,7 @@ class PetItemView : RelativeLayout {
                     }
                 }
             else {
-                val imgId = petItem!!.bindedElementId as Int
+                val imgId = petItem!!.bindedElementId
                 val relImg = (context as Activity).findViewById(imgId) as ImageView
                 if (petItem!!.activated) {
                     alpha = .5f
