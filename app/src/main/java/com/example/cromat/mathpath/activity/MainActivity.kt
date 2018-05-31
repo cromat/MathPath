@@ -19,16 +19,17 @@ class MainActivity : BgMusicActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Start music
-        if(!player.isPlaying) {
-            player = MediaPlayer.create(this, R.raw.bkground)
-            player.isLooping = true
-            player.setVolume(100f, 100f)
-            player.start()
-        }
-
         // Open Db and create tables if not existing
         DbHelper(applicationContext).writableDatabase
+
+        // Start music
+//        if(!player.isPlaying) {
+//            player = MediaPlayer.create(this, R.raw.bkground)
+//            player.isLooping = true
+//            player.setVolume(100f, 100f)
+//            player.start()
+//        }
+
 
         val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
         goldViewMain.text = goldCurrent

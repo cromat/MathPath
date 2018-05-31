@@ -57,7 +57,7 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                 instance = DbHelper(ctx.applicationContext)
             }
             return instance!!.use {
-                select(TABLE_GOLD, "value").whereArgs("id == 0").exec { parseSingle(IntParser) }
+                select(TABLE_GOLD, "value").whereArgs("id = 0").exec { parseSingle(IntParser) }
             }
         }
 

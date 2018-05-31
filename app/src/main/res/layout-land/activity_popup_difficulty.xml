@@ -12,7 +12,7 @@
     <Button
         android:id="@+id/btnEasy"
         style="@style/BtnGreen"
-        android:layout_width="146dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/easy"
         android:layout_margin="10dp" />
@@ -20,7 +20,7 @@
     <Button
         android:id="@+id/btnMedium"
         style="@style/BtnYellow"
-        android:layout_width="146dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/medium"
         android:layout_margin="10dp" />
@@ -28,7 +28,7 @@
     <Button
         android:id="@+id/btnHard"
         style="@style/BtnRed"
-        android:layout_width="146dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hard"
         android:layout_margin="10dp"/>
@@ -36,9 +36,10 @@
     <Button
         android:id="@+id/btnCustom"
         style="@style/BtnGray"
-        android:layout_width="101dp"
-        android:layout_height="38dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/custom"
+        android:textSize="@dimen/default_text"
         android:layout_margin="10dp"/>
 
 </LinearLayout>

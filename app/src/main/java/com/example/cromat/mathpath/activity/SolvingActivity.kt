@@ -1,13 +1,11 @@
 package com.example.cromat.mathpath.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.SpannableStringBuilder
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.R
 import com.example.cromat.mathpath.enums.GameType
@@ -53,7 +51,7 @@ class SolvingActivity : BgMusicActivity() {
 
         // Show Answers
         textShowAnswers.setOnClickListener {
-            val intent = Intent(applicationContext, AnswerListActivity::class.java)
+            val intent = Intent(this, AnswerListActivity::class.java)
             intent.putStringArrayListExtra("listAnswers", listAnswers)
             startActivity(intent)
         }
@@ -62,12 +60,8 @@ class SolvingActivity : BgMusicActivity() {
     private fun initView() {
         val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
         goldViewSolving.text = goldCurrent
-
-        layoutSolving.setOnClickListener {
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
-            edtViewAnswer.requestFocus()
-        }
+        edtViewAnswer.setOnTouchListener({ _, _ -> true })
+        keyboardSolving.setEditText(edtViewAnswer)
 
         val gameTypeStr = getString(R.string.game_type)
         val gameTypeValStr = getString(resources.getIdentifier(equationConfig.gameType,
@@ -140,6 +134,7 @@ class SolvingActivity : BgMusicActivity() {
                 timerText.text = (millisUntilFinished / 1000).toString()
                 progressBarSolving.incrementProgressBy(1)
             }
+
             override fun onFinish() {
                 timerText.text = "0"
                 setSolvingFinishedView()

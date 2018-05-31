@@ -21,6 +21,9 @@ class PetItemAdapter(val list: List<PetItem>) : RecyclerView.Adapter<PetItemAdap
     class PetHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(petItem: PetItem) {
             itemView.pet_item.petItem = petItem
+            itemView.pet_item.setOnClickListener{
+                itemView.pet_item.onClick()
+            }
         }
     }
 }

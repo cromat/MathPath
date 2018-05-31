@@ -2,12 +2,15 @@ package com.example.cromat.mathpath.view
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -17,11 +20,12 @@ import com.example.cromat.mathpath.model.PetItem
 
 
 class PetItemView : RelativeLayout {
-    private val goldView = GoldView(context)
+    private var goldView = GoldView(context)
     private val imgView = ImageView(context)
     var petItem: PetItem? = null
         set(petItem) {
             field = petItem
+            goldView = this.findViewById(R.id.petItemGold)
             imgView.setImageDrawable(ContextCompat.getDrawable(context, petItem!!.picture))
             goldView.text = petItem.price.toString()
 
@@ -59,40 +63,27 @@ class PetItemView : RelativeLayout {
         // Load attributes
         val a = context.obtainStyledAttributes(attrs, R.styleable.PetItemView)
         background = ContextCompat.getDrawable(context, R.drawable.rounded_shape)
-        gravity = Gravity.CENTER
-        goldView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25F)
-        imgView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ball))
+//        val dm = resources.displayMetrics
+//
+//        val goldSize = (textSize.toInt() * 2.5).toInt()
 
-        val paramsImg = RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, 200)
+        gravity = Gravity.CENTER
+//        goldView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize)
+
+        val paramsImg = RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         imgView.layoutParams = paramsImg
         imgView.setPadding(10, 10, 10, 10)
 
-        val paramsGold = RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, 70)
-        paramsGold.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-        paramsGold.addRule(RelativeLayout.ALIGN_BOTTOM)
-        paramsGold.addRule(RelativeLayout.CENTER_HORIZONTAL)
-        goldView.layoutParams = paramsGold
-        goldView.text = "0"
+//        val paramsGold = RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, goldSize)
+//        paramsGold.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
+//        paramsGold.addRule(RelativeLayout.ALIGN_BOTTOM)
+//        paramsGold.addRule(RelativeLayout.CENTER_HORIZONTAL)
+//        goldView.layoutParams = paramsGold
+//        goldView.text = "0"
 
         addView(imgView)
-        addView(goldView)
         invalidate()
         a.recycle()
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        onClick()
-        return super.onTouchEvent(event)
-    }
-
-    override fun callOnClick(): Boolean {
-        onClick()
-        return super.callOnClick()
-    }
-
-    override fun setOnClickListener(l: OnClickListener?) {
-        onClick()
-        super.setOnClickListener(l)
     }
 
     fun onClick() {
@@ -141,6 +132,4 @@ class PetItemView : RelativeLayout {
         // Refresh this view
         invalidate()
     }
-
-
 }

@@ -1,13 +1,27 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginBottom="5dp"
     android:layout_width="wrap_content"
-    android:layout_marginBottom="16dp"
     android:layout_height="wrap_content">
 
     <com.example.cromat.mathpath.view.PetItemView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/item_height"
+        android:padding="@dimen/item_padding"
+        android:layout_margin="@dimen/item_margin"
         android:background="#ccc"
         android:id="@+id/pet_item"
-        android:paddingBottom="40dp" />
+        android:clickable="true"
+        android:focusable="true">
+
+        <com.example.cromat.mathpath.view.GoldView
+            android:id="@+id/petItemGold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_text"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            />
+
+    </com.example.cromat.mathpath.view.PetItemView>
 
 </FrameLayout>

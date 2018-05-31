@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:weightSum="100"
-  android:layout_height="match_parent"
-  android:background="@color/colorBg"
-  android:orientation="horizontal"
-  tools:context="com.example.cromat.mathpath.activity.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBg"
+    android:orientation="horizontal"
+    android:weightSum="100"
+    tools:context="com.example.cromat.mathpath.activity.MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeGoldViewMain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_weight="20">
 
-    <com.example.cromat.mathpath.view.GoldView
-      android:id="@+id/goldViewMain"
-      android:layout_width="0dp"
-      android:layout_weight="15"
-      android:layout_height="wrap_content"
-      android:layout_gravity="left"
-      android:layout_marginTop="10dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginLeft="10dp"
-      android:text="0"
-      android:textSize="40sp"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+        <com.example.cromat.mathpath.view.GoldView
+            android:id="@+id/goldViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/GoldView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+    </RelativeLayout>
 
-    <include layout="@layout/pet_container"
-      android:layout_width="0dp"
-      android:layout_height="match_parent"
-      android:layout_weight="65"
-      />
-
+    <include
+        layout="@layout/pet_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="60" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/pet_item_list"
         android:layout_width="0dp"
-        android:layout_weight="20"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:clipToPadding="false"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="20"
+        android:clipToPadding="false"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imagePet"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,4 +52,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnStart"
         app:layout_constraintTop_toTopOf="@+id/imagePet" />
+
 </LinearLayout>
