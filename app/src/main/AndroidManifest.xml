@@ -30,6 +30,8 @@
         <activity android:name=".activity.CustomGameActivity" />
         <activity android:name=".activity.BgMusicActivity" />
         <activity android:name=".activity.AnswerListActivity" />
+        <service android:enabled="true" android:name=".BackgroundSoundService" />
+
     </application>
 
 </manifest>

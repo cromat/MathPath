@@ -12,6 +12,7 @@ import com.example.cromat.mathpath.model.PetItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.pet_container.*
 import kotlinx.android.synthetic.main.activity_main.pet_item_list as petItemList
+import com.example.cromat.mathpath.BackgroundSoundService
 
 
 @SuppressLint("SetTextI18n")
@@ -25,6 +26,7 @@ class MainActivity : BgMusicActivity() {
         DbHelper(applicationContext).writableDatabase
 
         // Start music
+        startService(Intent(this, BackgroundSoundService::class.java))
 
         val goldCurrent = DbHelper.getGoldValue(applicationContext).toString()
         goldViewMain.text = goldCurrent
