@@ -73,6 +73,7 @@
     <string name="finish">FINISH</string>
     <string name="no_gold">Not enough gold!</string>
     <string name="key_minus">-</string>
+    <string name="happiness">Happiness:</string>
 
 
 </resources>

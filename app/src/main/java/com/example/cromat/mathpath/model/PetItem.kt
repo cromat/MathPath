@@ -10,7 +10,8 @@ class PetItem(
         var bought: Boolean,
         var activated: Boolean,
         var picture: Int,
-        var bindedElementId: Int
+        var bindedElementId: Int,
+        var happiness: Int
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -19,6 +20,7 @@ class PetItem(
             parcel.readByte() != 0.toByte(),
             parcel.readByte() != 0.toByte(),
             parcel.readByte() != 0.toByte(),
+            parcel.readInt(),
             parcel.readInt(),
             parcel.readInt())
 
@@ -32,6 +34,7 @@ class PetItem(
         if (bindedElementId != null) {
             parcel.writeInt(bindedElementId!!)
         }
+        parcel.writeInt(happiness)
     }
 
     override fun describeContents(): Int {

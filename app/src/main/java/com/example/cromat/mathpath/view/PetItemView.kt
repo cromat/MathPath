@@ -3,6 +3,7 @@ package com.example.cromat.mathpath.view
 import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
+import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.util.DisplayMetrics
@@ -16,12 +17,14 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.R
+import com.example.cromat.mathpath.activity.MainActivity
 import com.example.cromat.mathpath.model.PetItem
 
 
 class PetItemView : RelativeLayout {
     private var goldView = GoldView(context)
     private val imgView = ImageView(context)
+
     var petItem: PetItem? = null
         set(petItem) {
             field = petItem
@@ -94,6 +97,9 @@ class PetItemView : RelativeLayout {
                 if (!DbHelper.addGold(petItem!!.price * -1, context))
                     Toast.makeText(context, context.getString(R.string.no_gold), Toast.LENGTH_LONG).show()
                 else {
+                    val ma = context as MainActivity
+                    DbHelper.addHappiness(petItem!!.happiness, context)
+                    ma.checkHappiness()
                     val imgId = petItem!!.bindedElementId
                     val relImg = (context as Activity).findViewById(imgId) as ImageView
                     petItem!!.bought = true
@@ -120,6 +126,11 @@ class PetItemView : RelativeLayout {
         } else
             if (!DbHelper.addGold(petItem!!.price * -1, context))
                 Toast.makeText(context, context.getString(R.string.no_gold), Toast.LENGTH_LONG).show()
+            else {
+                val ma = context as MainActivity
+                DbHelper.addHappiness(petItem!!.happiness, context)
+                ma.checkHappiness()
+            }
 
         val goldViewMain = (context as Activity).findViewById(R.id.goldViewMain) as GoldView
 

@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.cromat.mathpath.model.PetItem
 import org.jetbrains.anko.db.*
+import java.util.*
 
 
 class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1) {
@@ -13,13 +14,13 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
         const val TABLE_OPERATIONS = "operations"
         const val TABLE_PET_ITEMS = "pet_items"
         const val TABLE_GOLD = "gold"
+        const val TABLE_HAPPINESS = "happiness"
         private var instance: DbHelper? = null
 
-        private val parserPetItem = rowParser {
-            id: Int, name: String, price : Int, permanent : Int, activated: Int, bought: Int,
-            picture : Int, bindedElementId : Int ->
+        private val parserPetItem = rowParser { id: Int, name: String, price: Int, permanent: Int, activated: Int, bought: Int,
+                                                picture: Int, bindedElementId: Int, happiness: Int ->
             PetItem(name, price, permanent.toBoolean(), bought.toBoolean(), activated.toBoolean(),
-                    picture, bindedElementId)
+                    picture, bindedElementId, happiness)
         }
 
         private fun Int.toBoolean() = this != 0
@@ -52,6 +53,25 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
             return true
         }
 
+        fun addHappiness(value: Int, ctx: Context): Boolean {
+            var addValue = value
+            if (instance == null) {
+                instance = DbHelper(ctx.applicationContext)
+            }
+
+            val currHappiness = instance!!.use {
+                select(TABLE_HAPPINESS, "value").whereArgs("id == 0").exec { parseSingle(IntParser) }
+            }
+
+            if (currHappiness + addValue > 100)
+                addValue = 100 - currHappiness
+
+            instance!!.use {
+                execSQL("UPDATE " + TABLE_HAPPINESS + " SET value = value + " + addValue.toString())
+            }
+            return true
+        }
+
         fun getGoldValue(ctx: Context): Int {
             if (instance == null) {
                 instance = DbHelper(ctx.applicationContext)
@@ -59,6 +79,40 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
             return instance!!.use {
                 select(TABLE_GOLD, "value").whereArgs("id = 0").exec { parseSingle(IntParser) }
             }
+        }
+
+        fun getHapiness(ctx: Context): Int {
+            if (instance == null) {
+                instance = DbHelper(ctx.applicationContext)
+            }
+
+            val lastHappines = instance!!.use {
+                select(TABLE_HAPPINESS, "value").whereArgs("id = 0").exec { parseSingle(IntParser) }
+            }
+
+            var remainder = instance!!.use {
+                select(TABLE_HAPPINESS, "remainder").whereArgs("id = 0").exec { parseSingle(IntParser) }
+            }
+
+            val curDateTimeMillis = Calendar.getInstance().timeInMillis
+            val lastDateTimeMillis = instance!!.use {
+                select(TABLE_HAPPINESS, "dateTimeMillis").whereArgs("id = 0").exec { parseSingle(StringParser) }
+            }.toLong()
+
+            val deltaTimeMillis = curDateTimeMillis - lastDateTimeMillis + remainder
+            val minusHappines = deltaTimeMillis / 360000
+            remainder = deltaTimeMillis.toInt() % 360000
+            var currHappiness = (lastHappines - minusHappines).toInt()
+
+            if (currHappiness < 0)
+                currHappiness = 0
+
+            instance!!.use {
+                execSQL("UPDATE $TABLE_HAPPINESS SET value = $currHappiness, dateTimeMillis = " +
+                        "'$curDateTimeMillis', remainder = $remainder")
+            }
+
+            return currHappiness
         }
 
         fun getPetItems(ctx: Context): List<PetItem> {
@@ -86,23 +140,23 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
             }
         }
 
-        fun updatePetItem(petItem: PetItem, ctx: Context){
+        fun updatePetItem(petItem: PetItem, ctx: Context) {
             if (instance == null) {
                 instance = DbHelper(ctx.applicationContext)
             }
             instance!!.use {
                 execSQL("UPDATE " + TABLE_PET_ITEMS +
-                " SET price = " + petItem.price.toString() +
-                ", permanent = " + petItem.permanent.toInt().toString() +
-                ", activated = " + petItem.activated.toInt().toString() +
-                ", bought = " + petItem.bought.toInt().toString() +
-                ", picture = " + petItem.picture.toString() +
-                ", bindedElementId = " + petItem.bindedElementId.toString() +
-                " WHERE name = '" + petItem.name + "'"
+                        " SET price = " + petItem.price.toString() +
+                        ", permanent = " + petItem.permanent.toInt().toString() +
+                        ", activated = " + petItem.activated.toInt().toString() +
+                        ", bought = " + petItem.bought.toInt().toString() +
+                        ", picture = " + petItem.picture.toString() +
+                        ", bindedElementId = " + petItem.bindedElementId.toString() +
+                        ", happiness = " + petItem.happiness.toString() +
+                        " WHERE name = '" + petItem.name + "'"
                 )
             }
         }
-
 
         fun updateOperations(values: MutableMap<String, Int>, ctx: Context) {
             if (instance == null) {
@@ -133,6 +187,7 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
     }
 
     override fun onCreate(db: SQLiteDatabase) {
+        val dateTimeMillis = Calendar.getInstance().timeInMillis
         // Results
         db.run {
             createTable(TABLE_RESULT, true,
@@ -161,7 +216,8 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                     "activated" to INTEGER + DEFAULT("0"),
                     "bought" to INTEGER + DEFAULT("0"),
                     "picture" to INTEGER + DEFAULT("0"),
-                    "bindedElementId" to INTEGER + DEFAULT("0")
+                    "bindedElementId" to INTEGER + DEFAULT("0"),
+                    "happiness" to INTEGER + DEFAULT("0")
             )
 
 
@@ -171,8 +227,20 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                     "value" to INTEGER + DEFAULT("0")
             )
 
+            // Happiness
+            createTable(TABLE_HAPPINESS, true,
+                    "id" to INTEGER + PRIMARY_KEY + SqlTypeModifier.create("CHECK (id = 0)"),
+                    "value" to INTEGER + DEFAULT("100"),
+                    "dateTimeMillis" to TEXT + DEFAULT(dateTimeMillis.toString()),
+                    "remainder" to INTEGER + DEFAULT("0")
+            )
+
             // Default gold value to 0
             execSQL("INSERT INTO $TABLE_GOLD (id, value) VALUES(0, 0)")
+
+            // Default happiness value to 80 and millis to now
+            execSQL("INSERT INTO $TABLE_HAPPINESS (id, value, dateTimeMillis, remainder) " +
+                    "VALUES(0, 80, '$dateTimeMillis', 0)")
 
             // Default operations value to 0
             execSQL("INSERT INTO $TABLE_OPERATIONS (id, plus, minus, divide, multiple) " +
@@ -180,17 +248,17 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
 
             // Default pet items
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
-                    "bought, picture, bindedElementId) VALUES('Drink', 5, 0, 0, 0, " +
-                    R.drawable.drink.toString() + ", 0)")
+                    "bought, picture, bindedElementId, happiness) VALUES('Drink', 5, 0, 0, 0, " +
+                    R.drawable.drink.toString() + ", 0, 10)")
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
-                    "bought, picture, bindedElementId) VALUES('Food', 10, 0, 0, 0, " +
-                    R.drawable.food.toString() + ", 0)")
+                    "bought, picture, bindedElementId, happiness) VALUES('Food', 10, 0, 0, 0, " +
+                    R.drawable.food.toString() + ", 0, 20)")
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
-                    "bought, picture, bindedElementId) VALUES('Ball', 25, 1, 0, 0, " +
-                    R.drawable.ball.toString() + ", " + R.id.imagePetBall.toString() + ")")
+                    "bought, picture, bindedElementId, happiness) VALUES('Ball', 25, 1, 0, 0, " +
+                    R.drawable.ball.toString() + ", " + R.id.imagePetBall.toString() + ", 30)")
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
-                    "bought, picture, bindedElementId) VALUES('Shirt', 50, 1, 0, 0, " +
-                    R.drawable.shirt.toString() + ", " + R.id.imagePetShirt.toString() + ")")
+                    "bought, picture, bindedElementId, happiness) VALUES('Shirt', 50, 1, 0, 0, " +
+                    R.drawable.shirt.toString() + ", " + R.id.imagePetShirt.toString() + ", 50)")
         }
     }
 
