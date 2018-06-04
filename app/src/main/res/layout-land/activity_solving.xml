@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/show_answers"
-        android:textSize="@dimen/default_text_view"
+        android:textSize="@dimen/default_text"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

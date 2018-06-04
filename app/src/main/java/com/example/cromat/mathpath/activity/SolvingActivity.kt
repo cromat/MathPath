@@ -159,27 +159,27 @@ class SolvingActivity : BgMusicActivity() {
         val currentDateTime = dateFormat.format(Date()).toString()
         DbHelper.insertResult(score, currentDateTime, equationConfig.stepsNum,
                 GameType.STEPS.toString(), applicationContext)
-        DbHelper.addGold(score, applicationContext)
-        goldViewSolving.text = DbHelper.getGoldValue(applicationContext).toString()
         finish()
     }
 
     private fun checkAnswer(userAns: String) {
         val values: MutableMap<String, Int> = mutableMapOf("+" to 0, "-" to 0, "/" to 0, "*" to 0)
 
-        var addVal = +1
+        var addVal = -1
         if (equation.isCorrect(userAns)) {
             score++
-            addVal = -1
+            addVal = 1
+            DbHelper.addGold(1, applicationContext)
+            goldViewSolving.text = DbHelper.getGoldValue(applicationContext).toString()
         }
 
         listAnswers.add("${equation.toUserEquationString()};$userAns;${equation.getRightAns()}")
 
         for (key in values.keys) {
             if (equation.toString().contains(key))
-                values[key] = values[key]!! + addVal
+                values[key] = addVal
         }
 
-        DbHelper.updateOperations(values, applicationContext)
+        DbHelper.addOperations(values, applicationContext)
     }
 }

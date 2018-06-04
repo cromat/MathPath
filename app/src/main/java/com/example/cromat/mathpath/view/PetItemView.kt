@@ -66,24 +66,10 @@ class PetItemView : RelativeLayout {
         // Load attributes
         val a = context.obtainStyledAttributes(attrs, R.styleable.PetItemView)
         background = ContextCompat.getDrawable(context, R.drawable.rounded_shape)
-//        val dm = resources.displayMetrics
-//
-//        val goldSize = (textSize.toInt() * 2.5).toInt()
-
         gravity = Gravity.CENTER
-//        goldView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize)
-
         val paramsImg = RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         imgView.layoutParams = paramsImg
         imgView.setPadding(10, 10, 10, 10)
-
-//        val paramsGold = RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, goldSize)
-//        paramsGold.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM)
-//        paramsGold.addRule(RelativeLayout.ALIGN_BOTTOM)
-//        paramsGold.addRule(RelativeLayout.CENTER_HORIZONTAL)
-//        goldView.layoutParams = paramsGold
-//        goldView.text = "0"
-
         addView(imgView)
         invalidate()
         a.recycle()

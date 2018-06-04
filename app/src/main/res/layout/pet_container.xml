@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
     <TextView
         android:id="@+id/textHappiness"
@@ -25,17 +27,31 @@
         app:layout_constraintTop_toBottomOf="@id/textHappiness" />
 
     <ImageView
-      android:id="@+id/imagePet"
-      android:layout_width="wrap_content"
-      android:layout_height="0dp"
-      app:layout_constraintBottom_toTopOf="@+id/btnStart"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/progressHappiness"
-      app:layout_constraintVertical_bias="0.0"
-      app:srcCompat="@drawable/pet" />
+        android:id="@+id/imagePet"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressHappiness"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/pet" />
+
+    <ImageView
+        android:id="@+id/imagePetHat"
+        android:layout_width="202dp"
+        android:layout_height="111dp"
+        android:layout_marginBottom="68dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/petHorGuide"
+        app:layout_constraintEnd_toEndOf="@+id/imagePet"
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toStartOf="@+id/imagePet"
+        app:srcCompat="@drawable/hat" />
 
     <ImageView
         android:id="@+id/imagePetShirt"
@@ -51,43 +67,68 @@
         app:srcCompat="@drawable/shirt" />
 
     <ImageView
-      android:id="@+id/imagePetBall"
-      android:layout_width="67dp"
-      android:layout_height="61dp"
-      android:layout_marginTop="8dp"
-      android:layout_marginBottom="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginEnd="8dp"
-      android:visibility="invisible"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.195"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.664"
-      app:srcCompat="@drawable/ball" />
+        android:id="@+id/imagePetBall"
+        android:layout_width="67dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.664"
+        app:srcCompat="@drawable/ball" />
+
+    <ImageView
+        android:id="@+id/imagePetCar"
+        android:layout_width="170dp"
+        android:layout_height="142dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginRight="300dp"
+        android:layout_marginTop="170dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imagePet"
+        app:layout_constraintTop_toBottomOf="@+id/petHorGuide"
+        app:srcCompat="@drawable/car" />
 
     <android.support.constraint.Guideline
         android:id="@+id/petHorGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.493"
-        />
+        app:layout_constraintGuide_percent="0.493" />
 
     <Button
         android:id="@+id/btnStart"
         style="@style/BtnRed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_below="@id/line4"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
         android:text="@string/start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textCloud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginStart="150dp"
+        android:background="@drawable/text_cloud"
+        android:padding="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/petHorGuide"
+        app:layout_constraintEnd_toStartOf="@+id/imagePet"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

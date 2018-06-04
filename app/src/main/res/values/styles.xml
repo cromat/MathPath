@@ -90,4 +90,15 @@
         <item name="android:text">0</item>
     </style>
 
+    <style name="progressbar_statistic" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/progressbar_stat_height</item>
+        <item name="android:layout_marginTop">@dimen/progressbar_stat_marginTopBot</item>
+        <item name="android:layout_marginBottom">@dimen/progressbar_stat_marginTopBot</item>
+        <item name="android:max">100</item>
+        <item name="android:scaleY">3.0</item>
+        <item name="android:layout_marginLeft">@dimen/progressbar_stat_margintLeftRig</item>
+        <item name="android:layout_marginRight">@dimen/progressbar_stat_margintLeftRig</item>
+    </style>
+
 </resources>

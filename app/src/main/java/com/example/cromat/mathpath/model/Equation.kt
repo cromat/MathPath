@@ -74,6 +74,12 @@ class Equation(private var eConfig: EquationConfig) {
                     randNum = rand.nextInt(eConfig.maxNum - eConfig.minNum) + eConfig.minNum
                 }
                 operator = eConfig.operators[rand.nextInt(eConfig.operators.size)]
+
+                // Check division by zero
+                if (equationStr.isNotEmpty() && equationStr[equationStr.length - 1] == '/'
+                        && randNum == 0)
+                    randNum = 1
+
                 equationStr += randNum.toString() + operator
                 operands += randNum.toString()
                 operators += operator

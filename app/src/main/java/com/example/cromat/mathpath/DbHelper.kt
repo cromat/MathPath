@@ -23,6 +23,14 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                     picture, bindedElementId, happiness)
         }
 
+        private val parserOperatorsPercentage = rowParser { plus: Long?, minus: Long?, divide: Long?,
+                                                            multiple: Long? ->
+            listOf(plus.toFiftyIfNull(), minus.toFiftyIfNull(), divide.toFiftyIfNull(),
+                    multiple.toFiftyIfNull())
+        }
+
+        private fun Long?.toFiftyIfNull() = this?.toInt() ?: 50
+
         private fun Int.toBoolean() = this != 0
 
         private fun Boolean.toInt() = if (this) 1 else 0
@@ -158,31 +166,42 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
             }
         }
 
-        fun updateOperations(values: MutableMap<String, Int>, ctx: Context) {
+        fun addOperations(values: MutableMap<String, Int>, ctx: Context) {
             if (instance == null) {
                 instance = DbHelper(ctx.applicationContext)
             }
 
-            val valuesStr = mutableMapOf<String, String>()
-            for (key in values.keys) {
-                if (values[key]!! < 0)
-                    valuesStr[key] = "-" + values[key].toString()
-                else
-                    valuesStr[key] = "+" + values[key].toString()
-            }
+//            val valuesStr = mutableMapOf<String, String>()
+//            for (key in values.keys) {
+//                if (values[key]!! < 0)
+//                    valuesStr[key] = values[key].toString()
+//            }
 
             instance!!.use {
-                execSQL("UPDATE " + TABLE_OPERATIONS +
-                        " SET plus = plus " + valuesStr["+"] +
-                        ", minus = minus " + valuesStr["-"] +
-                        ", divide = divide " + valuesStr["/"] +
-                        ", multiple = multiple " + valuesStr["*"]
-                )
-                execSQL("UPDATE $TABLE_OPERATIONS SET plus = 0 WHERE plus < 0")
-                execSQL("UPDATE $TABLE_OPERATIONS SET minus = 0 WHERE minus < 0")
-                execSQL("UPDATE $TABLE_OPERATIONS SET divide = 0 WHERE divide < 0")
-                execSQL("UPDATE $TABLE_OPERATIONS SET multiple = 0 WHERE multiple < 0")
+                execSQL("INSERT INTO $TABLE_OPERATIONS (plus, minus, divide, multiple) " +
+                        "VALUES(" + values["+"].toString() + ","
+                        + values["-"].toString() + ","
+                        + values["/"].toString() + ","
+                        + values["*"].toString() + ");")
             }
+        }
+
+        fun getPercentageByOperation(ctx: Context): List<Int> {
+            if (instance == null) {
+                instance = DbHelper(ctx.applicationContext)
+            }
+
+            var percentageList = listOf(0)
+
+            instance!!.use {
+                percentageList = select(TABLE_OPERATIONS,
+                        "CAST((AVG(NULLIF(plus, 0)) + 1)/0.02 AS INTEGER) AS plus",
+                        "CAST((AVG(NULLIF(minus, 0)) + 1)/0.02 AS INTEGER) AS minus",
+                        "CAST((AVG(NULLIF(divide, 0)) + 1)/0.02 AS INTEGER) AS divide",
+                        "CAST((AVG(NULLIF(multiple, 0)) + 1)/0.02 AS INTEGER) AS multiple")
+                        .exec { parseSingle(parserOperatorsPercentage) }
+            }
+            return percentageList
         }
     }
 
@@ -200,7 +219,7 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
 
             // Operations statistics tracking by solving table
             createTable(TABLE_OPERATIONS, true,
-                    "id" to INTEGER + PRIMARY_KEY + SqlTypeModifier.create("CHECK (id = 0)"),
+                    "id" to INTEGER + PRIMARY_KEY,
                     "plus" to INTEGER + DEFAULT("0"),
                     "minus" to INTEGER + DEFAULT("0"),
                     "divide" to INTEGER + DEFAULT("0"),
@@ -251,14 +270,23 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                     "bought, picture, bindedElementId, happiness) VALUES('Drink', 5, 0, 0, 0, " +
                     R.drawable.drink.toString() + ", 0, 10)")
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId, happiness) VALUES('Ice Cream', 7, 0, 0, 0, " +
+                    R.drawable.icecream.toString() + ", 0, 15)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
                     "bought, picture, bindedElementId, happiness) VALUES('Food', 10, 0, 0, 0, " +
                     R.drawable.food.toString() + ", 0, 20)")
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
                     "bought, picture, bindedElementId, happiness) VALUES('Ball', 25, 1, 0, 0, " +
                     R.drawable.ball.toString() + ", " + R.id.imagePetBall.toString() + ", 30)")
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId, happiness) VALUES('Hat', 30, 1, 0, 0, " +
+                    R.drawable.hat.toString() + ", " + R.id.imagePetHat.toString() + ", 30)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
                     "bought, picture, bindedElementId, happiness) VALUES('Shirt', 50, 1, 0, 0, " +
                     R.drawable.shirt.toString() + ", " + R.id.imagePetShirt.toString() + ", 50)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId, happiness) VALUES('Car', 75, 1, 0, 0, " +
+                    R.drawable.car.toString() + ", " + R.id.imagePetCar.toString() + ", 50)")
         }
     }
 

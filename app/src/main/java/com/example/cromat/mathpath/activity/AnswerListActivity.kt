@@ -12,7 +12,10 @@ class AnswerListActivity : BgMusicActivity() {
         setContentView(R.layout.activity_answers_list)
 
         val listAnswers = intent.getStringArrayListExtra("listAnswers")
-        listAnswers.add(0, "Equation;Your Answer;Right Answer")
+        val eqStr = getString(R.string.equation)
+        val yourAnsStr = getString(R.string.your_answer)
+        val rightAnsStr = getString(R.string.right_ans)
+        listAnswers.add(0, "$eqStr;$yourAnsStr;$rightAnsStr")
         val adapter = AnswerListAdapter(applicationContext, R.layout.answer_list_item, listAnswers)
         listViewAnswers.adapter = adapter
     }

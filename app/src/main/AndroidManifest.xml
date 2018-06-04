@@ -21,7 +21,8 @@
         </activity>
         <activity
             android:name=".activity.SolvingActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".activity.GraphActivity" />
         <activity
             android:name=".activity.PopupDifficultyActivity"

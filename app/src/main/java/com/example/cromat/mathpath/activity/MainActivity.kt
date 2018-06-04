@@ -34,6 +34,11 @@ class MainActivity : BgMusicActivity() {
         btnStart.setOnClickListener {
             startActivityForResult(Intent(applicationContext, PopupDifficultyActivity::class.java), 1)
         }
+
+        iconChart.setOnClickListener {
+            startActivity(Intent(applicationContext, GraphActivity::class.java))
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -54,15 +59,28 @@ class MainActivity : BgMusicActivity() {
         textHappiness.text = getString(R.string.happiness) + curHappiness.toString() + "%"
         progressHappiness.progress = curHappiness
         when (curHappiness) {
-            in 66..100 -> progressHappiness.progressDrawable.setColorFilter(
-                    ContextCompat.getColor(this, R.color.colorBgGreen),
-                    android.graphics.PorterDuff.Mode.SRC_IN)
-            in 34..65 -> progressHappiness.progressDrawable.setColorFilter(
-                    ContextCompat.getColor(this, R.color.colorBtnYellow),
-                    android.graphics.PorterDuff.Mode.SRC_IN)
-            in 0..33 -> progressHappiness.progressDrawable.setColorFilter(
-                    ContextCompat.getColor(this, R.color.colorBtnRed),
-                    android.graphics.PorterDuff.Mode.SRC_IN)
+            in 66..100 -> {
+                progressHappiness.progressDrawable.setColorFilter(
+                        ContextCompat.getColor(this, R.color.colorBgGreen),
+                        android.graphics.PorterDuff.Mode.SRC_IN)
+                textCloud.text = getString(R.string.cloud_happy)
+                imagePet.setImageResource(R.drawable.pet_happy)
+            }
+            in 34..65 -> {
+                progressHappiness.progressDrawable.setColorFilter(
+                        ContextCompat.getColor(this, R.color.colorBtnYellow),
+                        android.graphics.PorterDuff.Mode.SRC_IN)
+                textCloud.text = getString(R.string.cloud_average)
+                imagePet.setImageResource(R.drawable.pet)
+            }
+            in 0..33 -> {
+                progressHappiness.progressDrawable.setColorFilter(
+                        ContextCompat.getColor(this, R.color.colorBtnRed),
+                        android.graphics.PorterDuff.Mode.SRC_IN)
+                textCloud.text = getString(R.string.cloud_unhappy)
+                imagePet.setImageResource(R.drawable.pet_unhappy)
+
+            }
         }
     }
 }
