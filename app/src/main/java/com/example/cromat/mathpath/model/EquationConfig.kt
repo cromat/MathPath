@@ -1,6 +1,8 @@
 package com.example.cromat.mathpath.model
+
 import com.example.cromat.mathpath.enums.GameType
 import java.io.Serializable
+
 
 class EquationConfig(var maxNumOperands: Int = 2,
                      var minNumOperands: Int = 2,
@@ -12,5 +14,6 @@ class EquationConfig(var maxNumOperands: Int = 2,
                      var stepsNum: Int = 10,
                      var negativeRes: Boolean = false,
                      var randomizeInput: Boolean = false,
-                     var goldPerTask: Int = 1
+                     var goldPerTask: Int = 1,
+                     var braces: Boolean = false
 ) : Serializable

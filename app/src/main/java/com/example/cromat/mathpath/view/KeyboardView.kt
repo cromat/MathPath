@@ -1,9 +1,7 @@
 package com.example.cromat.mathpath.view
 
-import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
-import android.util.DisplayMetrics
 import android.view.View
 import android.widget.EditText
 import android.widget.FrameLayout

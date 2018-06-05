@@ -282,11 +282,13 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                     "bought, picture, bindedElementId, happiness) VALUES('Hat', 30, 1, 0, 0, " +
                     R.drawable.hat.toString() + ", " + R.id.imagePetHat.toString() + ", 30)")
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
-                    "bought, picture, bindedElementId, happiness) VALUES('Shirt', 50, 1, 0, 0, " +
-                    R.drawable.shirt.toString() + ", " + R.id.imagePetShirt.toString() + ", 50)")
-            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
                     "bought, picture, bindedElementId, happiness) VALUES('Car', 75, 1, 0, 0, " +
                     R.drawable.car.toString() + ", " + R.id.imagePetCar.toString() + ", 50)")
+
+            // Coming soon
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId, happiness) VALUES('Shirt', 9999, 1, 0, 0, " +
+                    R.drawable.shirt.toString() + ", " + R.id.imagePetShirt.toString() + ", 50)")
         }
     }
 

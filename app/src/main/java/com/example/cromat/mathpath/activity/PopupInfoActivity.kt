@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.WindowManager
 import com.example.cromat.mathpath.R
 
+
 class PopupInfoActivity : BgMusicActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

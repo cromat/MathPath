@@ -3,6 +3,7 @@ package com.example.cromat.mathpath.model
 import android.os.Parcel
 import android.os.Parcelable
 
+
 class PetItem(
         var name: String,
         var price: Int,
@@ -32,7 +33,7 @@ class PetItem(
         parcel.writeByte(if (activated) 1 else 0)
         parcel.writeInt(picture)
         if (bindedElementId != null) {
-            parcel.writeInt(bindedElementId!!)
+            parcel.writeInt(bindedElementId)
         }
         parcel.writeInt(happiness)
     }

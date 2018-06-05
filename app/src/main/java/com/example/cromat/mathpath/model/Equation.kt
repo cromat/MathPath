@@ -1,9 +1,11 @@
 package com.example.cromat.mathpath.model
 
+import android.content.Context
+import com.example.cromat.mathpath.DbHelper
 import org.mvel2.MVEL
 import java.util.*
 
-class Equation(private var eConfig: EquationConfig) {
+class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
     private var operands = listOf<String>()
     private var operators = listOf<String>()
     private var equationStr = ""
@@ -12,6 +14,8 @@ class Equation(private var eConfig: EquationConfig) {
     private var firstString = ""
     private var secondString = ""
     private var rightAns = ""
+    private var braceOpen = -1
+    private var braceClose = -1
 
     init {
         generateEquation()
@@ -58,6 +62,15 @@ class Equation(private var eConfig: EquationConfig) {
 
             var operator = ""
             var randNum = 0
+
+            braceOpen = -1
+            braceClose = -1
+
+            if (eConfig.braces && rand.nextInt(2) == 1) {
+                braceOpen = rand.nextInt(randNumOperands - 1)
+                braceClose = rand.nextInt(randNumOperands - braceOpen - 1) + 1 + braceOpen
+            }
+
             for (i in 0 until randNumOperands) {
                 if (operator == "/") {
                     val lastNum = randNum
@@ -73,20 +86,47 @@ class Equation(private var eConfig: EquationConfig) {
                 } else {
                     randNum = rand.nextInt(eConfig.maxNum - eConfig.minNum) + eConfig.minNum
                 }
-                operator = eConfig.operators[rand.nextInt(eConfig.operators.size)]
+
+                // Choose operator by percentage solving
+                val perByOperators = DbHelper.getPercentageByOperation(ctx)
+                val mapPerByOp = mutableMapOf<String, Int>()
+                mapPerByOp["+"] = perByOperators[0]
+                mapPerByOp["-"] = perByOperators[1]
+                mapPerByOp["/"] = perByOperators[2]
+                mapPerByOp["*"] = perByOperators[3]
+
+                val sortedPerByOp = mapPerByOp.toList()
+                        .sortedBy { (_, value) -> value }.toMap()
+
+                operator = "+"
+                val foo = rand.nextInt(401 - sortedPerByOp.values.sum())
+                var sum = 0
+                for (key in sortedPerByOp.keys) {
+                    sum += 100 - sortedPerByOp[key]!!.toInt()
+                    if (foo < sum) {
+                        operator = key
+                        break
+                    }
+                }
 
                 // Check division by zero
                 if (equationStr.isNotEmpty() && equationStr[equationStr.length - 1] == '/'
                         && randNum == 0)
                     randNum = 1
 
-                equationStr += randNum.toString() + operator
+                if (i == braceOpen)
+                    equationStr += '('
+                equationStr += randNum.toString()
+                if (i == braceClose)
+                    equationStr += ')'
+                equationStr += operator
                 operands += randNum.toString()
                 operators += operator
             }
             equationStr = equationStr.dropLast(1)
             operators = operators.dropLast(1) + ""
-            val evaluated: Double = MVEL.eval("$equationStr.0") as Double
+            val evaluated: Double = MVEL.eval(equationStr.replace(operands[0],
+                    operands[0] + ".0")) as Double
             result = evaluated.toInt()
             rightAns = result.toString()
         }
@@ -99,10 +139,27 @@ class Equation(private var eConfig: EquationConfig) {
         rightAns = operands[index]
 
         for (i in 0 until index) {
-            firstString += operands[i] + operators[i]
+            if (i == braceOpen)
+                firstString += '('
+            firstString += operands[i]
+            if (i == braceClose)
+                firstString += ')'
+            firstString += operators[i]
         }
+
+        if (index == braceOpen)
+            firstString += '('
+
+        if (index == braceClose)
+            secondString += ')'
+
         for (i in index + 1 until operands.size) {
-            secondString += operands[i] + operators[i]
+            if (i == braceOpen && i != 0)
+                secondString += '('
+            secondString += operands[i]
+            if (i == braceClose)
+                secondString += ')'
+            secondString += operators[i]
         }
 
         secondString += "=$result"
@@ -115,7 +172,8 @@ class Equation(private var eConfig: EquationConfig) {
         if (number.matches(Regex("^[0-9]*.\$"))) {
             if (eConfig.randomizeInput) {
                 val eqToTry = (firstString + number + secondString).split("=")[0]
-                val evaluated: Double = MVEL.eval("$eqToTry.0") as Double
+                val evaluated: Double = MVEL.eval(eqToTry.replace(operands[0],
+                        operands[0] + ".0")) as Double
                 if (evaluated.toInt() == result) {
                     rightAns = number
                     return true

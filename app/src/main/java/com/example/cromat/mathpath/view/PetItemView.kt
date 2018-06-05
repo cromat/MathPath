@@ -2,7 +2,6 @@ package com.example.cromat.mathpath.view
 
 import android.app.Activity
 import android.content.Context
-import android.provider.Settings.Global.getString
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.Gravity
@@ -14,9 +13,6 @@ import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.R
 import com.example.cromat.mathpath.activity.MainActivity
 import com.example.cromat.mathpath.model.PetItem
-import kotlinx.android.synthetic.main.pet_container.*
-import kotlinx.android.synthetic.main.pet_container.view.*
-import java.util.*
 
 
 class PetItemView : RelativeLayout {
@@ -28,7 +24,12 @@ class PetItemView : RelativeLayout {
             field = petItem
             goldView = this.findViewById(R.id.petItemGold)
             imgView.setImageDrawable(ContextCompat.getDrawable(context, petItem!!.picture))
-            goldView.text = petItem.price.toString()
+            if (petItem.price == 9999) {
+                goldView.text = context.getString(R.string.coming_soon)
+                goldView.removeImage()
+            }
+            else
+                goldView.text = petItem.price.toString()
 
             if (petItem.bindedElementId > 0) {
                 val imgId = petItem.bindedElementId

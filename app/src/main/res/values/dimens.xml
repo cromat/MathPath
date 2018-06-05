@@ -1,23 +1,18 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="nav_header_vertical_spacing">8dp</dimen>
-    <dimen name="nav_header_height">176dp</dimen>
     <dimen name="btn_start_end_margin">20dp</dimen>
     <dimen name="default_text_view">20sp</dimen>
 
     <dimen name="button_text_size">50sp</dimen>
     <dimen name="default_text_large">60sp</dimen>
     <dimen name="default_text">35sp</dimen>
-    <dimen name="default_small_text">20sp</dimen>
     <dimen name="item_height">150sp</dimen>
     <dimen name="item_padding">10dp</dimen>
     <dimen name="item_margin">10dp</dimen>
     <dimen name="text_size_solving">50sp</dimen>
     <dimen name="progressbar_stat_height">20dp</dimen>
     <dimen name="progressbar_stat_marginTopBot">20dp</dimen>
-    <dimen name="progressbar_stat_margintLeftRig">100dp</dimen>
     <dimen name="checkbox_text">30sp</dimen>
 
 </resources>

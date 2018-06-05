@@ -12,7 +12,6 @@ import com.example.cromat.mathpath.enums.Range
 import com.example.cromat.mathpath.model.Result
 import com.github.mikephil.charting.data.*
 import kotlinx.android.synthetic.main.activity_graph.*
-import kotlinx.android.synthetic.main.pet_container.*
 import org.jetbrains.anko.db.parseList
 import org.jetbrains.anko.db.rowParser
 import org.jetbrains.anko.db.select
@@ -47,8 +46,8 @@ class GraphActivity : BgMusicActivity() {
         val sumRight = results.sumBy { result -> result.score }
         val sumBad = results.sumBy { result -> result.numAns } - sumRight
         val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(sumRight.toFloat(), "Right"))
-        entries.add(PieEntry(sumBad.toFloat(), "Bad"))
+        entries.add(PieEntry(sumRight.toFloat(), getString(R.string.right)))
+        entries.add(PieEntry(sumBad.toFloat(), getString(R.string.bad)))
 
         val dataSet = PieDataSet(entries, "")
         dataSet.valueTextSize = 12f
@@ -58,7 +57,7 @@ class GraphActivity : BgMusicActivity() {
         pieChart.setEntryLabelTextSize(12f)
         pieChart.data = pieData
         pieChart.description.isEnabled = false
-        pieChart.centerText = "Answers"
+        pieChart.centerText = getString(R.string.answers)
         pieChart.setBackgroundColor(Color.parseColor("#eeeeee"))
         pieChart.setCenterTextSize(18f)
         pieChart.setCenterTextColor(Color.GRAY)

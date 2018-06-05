@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v4.content.ContextCompat
 import android.text.SpannableStringBuilder
-import android.view.SoundEffectConstants
 import android.view.View
 import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.R
@@ -18,12 +17,13 @@ import kotlinx.android.synthetic.main.activity_solving.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 @SuppressLint("SetTextI18n")
 class SolvingActivity : BgMusicActivity() {
     private var score: Int = 0
     private var taskNum: Int = 1
     private var equationConfig: EquationConfig = EquationConfig()
-    private var equation = Equation(equationConfig)
+    private var equation = Equation(equationConfig, this)
     private val listAnswers = ArrayList<String>()
     private val timer = Timer(false)
 
@@ -60,6 +60,7 @@ class SolvingActivity : BgMusicActivity() {
             intent.putStringArrayListExtra("listAnswers", listAnswers)
             startActivity(intent)
         }
+
     }
 
     private fun initView() {
@@ -94,7 +95,7 @@ class SolvingActivity : BgMusicActivity() {
     }
 
     private fun nextEquation() {
-        equation = Equation(equationConfig)
+        equation = Equation(equationConfig, this)
         if (equationConfig.randomizeInput) {
             val strings = equation.splitAtOperandIndex()
             txtViewEquationFirst.text = strings[0].replace("/", "\u00F7")
@@ -106,7 +107,24 @@ class SolvingActivity : BgMusicActivity() {
                     .replace("*", "\u02E3")
             txtViewEquationFirst.text = "$userEquation="
         }
+        setHint(equation.toString())
+    }
 
+    private fun setHint(equation: String) {
+        var hints: List<String> = listOf()
+        hints += getString(R.string.hint_next)
+        if ("/" in equation || "*" in equation)
+            hints += getString(R.string.hint_div_mul)
+        if ("(" in equation)
+            hints += getString(R.string.hint_braces)
+
+        if (Random().nextInt(3) == 1) {
+            textHint.visibility = View.VISIBLE
+            val index = Random().nextInt(hints.size)
+            textHint.text = hints[index]
+        }
+        else
+            textHint.visibility = View.INVISIBLE
     }
 
     private fun stepGame() {

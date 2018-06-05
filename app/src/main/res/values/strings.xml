@@ -2,12 +2,8 @@
 
     <!--App strings-->
     <string name="app_name">MathPath</string>
-    <string name="action_settings">Settings</string>
     <string name="next">Next</string>
     <string name="quit">Quit</string>
-    <string name="stats">Stats</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="settings">Settings</string>
     <string name="game_type">Game Type</string>
     <string name="step_num">Steps</string>
     <string name="numbers_range">Numbers Range</string>
@@ -21,10 +17,8 @@
     <string name="valid_range">Not a valid range of numbers!</string>
     <string name="valid_steps">You need to set at least 1 step!</string>
     <string name="valid_time">You need to set at least 10 seconds of time!</string>
-    <string name="pref_language">Language</string>
     <string name="steps">Steps</string>
     <string name="time">Time Chase</string>
-    <string name="pref_header_general">General Settings</string>
     <string name="negative_result">Negative Result</string>
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
@@ -41,7 +35,6 @@
     <string name="number_seven">7</string>
     <string name="number_eight">8</string>
     <string name="number_nine">9</string>
-    <string name="btn_clear">Clear</string>
     <string name="btn_backspace">\u232b"</string>
     <string name="cloud_unhappy">I am hungry and thirsty.</string>
     <string name="cloud_average">Please buy me a toy.</string>
@@ -63,17 +56,15 @@
     <string name="wrong">Wrong!</string>
     <string name="popup_info">Welcome to MathPath!\n\nMathPath is math learning game. Here, you need to take care of your pet. You need to buy him food, drinks and toys to keep him happy. To earn some gold for all that stuff, you need to solve math tasks by simply tapping on start button and choosing difficulty and you are ready to go. For each right answer you will get some gold and make your pet happy. Good luck with math solving!</string>
     <string name="thank_you">Thank you!</string>
+    <string name="right">Right</string>
+    <string name="bad">Bad</string>
+    <string name="answers">Answers</string>
+    <string name="hint_div_mul">Division and multiplication are executed before addition and substitution.</string>
+    <string name="hint_next">If you don\'t know the answer, you can move to next question.</string>
+    <string name="hint_braces">Operations inside braces are executed first!</string>
+    <string name="coming_soon">Coming soon!</string>
+    <string name="braces">Braces</string>
 
     <!--Spinner arrays-->
-    <string-array name="graph_range_array">
-        <item>7 days</item>
-        <item>1 month</item>
-    </string-array>
-
-    <string-array name="graph_type_array">
-        <item>All</item>
-        <item>Steps</item>
-        <item>Time Chase</item>
-    </string-array>
 
 </resources>

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MathPath</string>
-    <string name="action_settings">Postavke</string>
     <string name="next">Dalje</string>
     <string name="quit">Izlaz</string>
-    <string name="stats">Statistika</string>
-    <string name="settings">Postavke</string>
     <string name="game_type">Tip igre</string>
     <string name="step_num">Koraci</string>
     <string name="numbers_range">Raspon brojeva</string>
@@ -19,11 +16,8 @@
     <string name="valid_range">Neispravan raspon brojeva!</string>
     <string name="valid_steps">Potrebno je postaviti barem jedan korak!</string>
     <string name="valid_time">Minimalno vrijeme je 10 sekundi!</string>
-    <string name="pref_language">Jezik</string>
     <string name="steps">Koraci</string>
     <string name="time">Vrijeme</string>
-    <string name="pref_header_general">Glavne postavke</string>
-    <string name="title_activity_settings">Postavke</string>
     <string name="negative_result">Negativan rezultat</string>
     <string name="easy">Lagano</string>
     <string name="medium">Srednje</string>
@@ -33,17 +27,6 @@
     <string name="random_input">Unos na nasumičnom polju</string>
     <string name="finish">KRAJ</string>
     <string name="no_gold">Nedovoljno novca!</string>
-
-    <string-array name="graph_range_array">
-        <item>7 dana</item>
-        <item>1 mjesec</item>
-    </string-array>
-
-    <string-array name="graph_type_array">
-        <item>Sve</item>
-        <item>Koraci</item>
-        <item>Vrijeme</item>
-    </string-array>
 
 
 </resources>

@@ -1,7 +1,6 @@
 package com.example.cromat.mathpath.activity
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
@@ -13,7 +12,6 @@ import com.example.cromat.mathpath.model.EquationConfig
 import kotlinx.android.synthetic.main.activity_custom_game.*
 import me.bendik.simplerangeview.SimpleRangeView
 import org.jetbrains.annotations.NotNull
-import android.graphics.Typeface.createFromAsset
 import android.support.v4.content.res.ResourcesCompat
 
 
@@ -49,6 +47,7 @@ class CustomGameActivity : BgMusicActivity() {
         checkRandomInputs.typeface = font
         checkNegativeRes.typeface = font
         checkFixedNumOperands.typeface = font
+        checkBraces.typeface = font
 
         // Radio buttons listeners
         radioSteps.setOnClickListener {
@@ -117,10 +116,11 @@ class CustomGameActivity : BgMusicActivity() {
                 val stepsNum = editSteps.text.toString().toInt()
                 val negativeRes = checkNegativeRes.isChecked
                 val randomizeInput = checkRandomInputs.isChecked
+                val braces = checkBraces.isChecked
 
                 val equationConfig = EquationConfig(maxNumOperands, minNumOperands, maxNum,
                         minNum, operators, gameType, timeSec, stepsNum, negativeRes,
-                        randomizeInput)
+                        randomizeInput, braces = braces)
                 val intent = Intent(applicationContext, SolvingActivity::class.java)
                 intent.putExtra("equationConfig", equationConfig)
                 startActivity(intent)

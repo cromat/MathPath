@@ -26,6 +26,7 @@ import java.util.*
 @SuppressLint("SetTextI18n")
 class MainActivity : BgMusicActivity() {
     private val timer = Timer(false)
+    private val rand = Random()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +64,10 @@ class MainActivity : BgMusicActivity() {
             imagePetBall.startAnimation(rotate)
         }
 
+        imagePet.setOnClickListener {
+            val sounds = listOf(R.raw.pet_sound1, R.raw.pet_sound2)
+            MediaPlayer.create(applicationContext, sounds[rand.nextInt(sounds.size)]).start()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -73,7 +78,7 @@ class MainActivity : BgMusicActivity() {
         super.onResume()
         val petItems: List<PetItem> = DbHelper.getPetItems(applicationContext)
 
-        for (petItem in petItems){
+        for (petItem in petItems) {
             if (petItem.bindedElementId > 0) {
                 val imgId = petItem.bindedElementId
                 val relImg = (this as Activity).findViewById(imgId) as ImageView
@@ -121,7 +126,7 @@ class MainActivity : BgMusicActivity() {
         }
     }
 
-    fun textCloudThankYou(){
+    fun textCloudThankYou() {
         textCloud.text = getString(R.string.thank_you)
         timer.schedule(object : TimerTask() {
             override fun run() {

@@ -40,19 +40,6 @@
         <item name="android:background">#8c8c8c</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="PetItem">
-        <item name="android:paddingTop">16dp</item>
-        <item name="android:paddingBottom">16dp</item>
-    </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <style name="AppTheme.PopMe">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
@@ -88,17 +75,6 @@
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:text">0</item>
-    </style>
-
-    <style name="progressbar_statistic" parent="@android:style/Widget.ProgressBar.Horizontal">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/progressbar_stat_height</item>
-        <item name="android:layout_marginTop">@dimen/progressbar_stat_marginTopBot</item>
-        <item name="android:layout_marginBottom">@dimen/progressbar_stat_marginTopBot</item>
-        <item name="android:max">100</item>
-        <item name="android:scaleY">3.0</item>
-        <item name="android:layout_marginLeft">@dimen/progressbar_stat_margintLeftRig</item>
-        <item name="android:layout_marginRight">@dimen/progressbar_stat_margintLeftRig</item>
     </style>
 
 </resources>

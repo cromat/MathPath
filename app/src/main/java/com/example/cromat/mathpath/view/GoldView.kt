@@ -70,4 +70,9 @@ class GoldView : TextView {
         setCompoundDrawablesWithIntrinsicBounds(null, null, coinImage, null)
         compoundDrawablePadding = 10
     }
+
+    fun removeImage(){
+        setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
+        invalidate()
+    }
 }

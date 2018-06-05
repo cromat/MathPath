@@ -33,7 +33,10 @@
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".activity.CustomGameActivity" />
         <activity android:name=".activity.BgMusicActivity" />
-        <activity android:name=".activity.AnswerListActivity" />
+        <activity
+            android:name=".activity.AnswerListActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateHidden" />
 
         <service
             android:name=".BackgroundSoundService"

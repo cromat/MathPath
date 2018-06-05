@@ -64,7 +64,8 @@ class PopupDifficultyActivity : BgMusicActivity() {
                     stepsNum = 15,
                     negativeRes = false,
                     randomizeInput = true,
-                    goldPerTask = 3
+                    goldPerTask = 3,
+                    braces = true
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)
@@ -84,7 +85,8 @@ class PopupDifficultyActivity : BgMusicActivity() {
                     stepsNum = 20,
                     negativeRes = true,
                     randomizeInput = true,
-                    goldPerTask = 5
+                    goldPerTask = 5,
+                    braces = true
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)

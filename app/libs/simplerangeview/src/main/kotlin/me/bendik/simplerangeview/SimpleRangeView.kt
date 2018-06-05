@@ -99,20 +99,20 @@ open class SimpleRangeView @JvmOverloads constructor(
 
     // Internal
 
-    lateinit private var paint: Paint
-    lateinit private var paintFixed: Paint
-    lateinit private var paintActive: Paint
-    lateinit private var paintTick: Paint
-    lateinit private var paintFixedTick: Paint
-    lateinit private var paintActiveTick: Paint
-    lateinit private var paintActiveThumb: Paint
-    lateinit private var paintFixedThumb: Paint
-    lateinit private var paintActiveFocusThumb: Paint
-    lateinit private var paintText: Paint
-    lateinit private var paintActiveText: Paint
-    lateinit private var paintFixedText: Paint
-    lateinit private var paintActiveThumbText: Paint
-    lateinit private var paintFixedThumbText: Paint
+    private lateinit var paint: Paint
+    private lateinit var paintFixed: Paint
+    private lateinit var paintActive: Paint
+    private lateinit var paintTick: Paint
+    private lateinit var paintFixedTick: Paint
+    private lateinit var paintActiveTick: Paint
+    private lateinit var paintActiveThumb: Paint
+    private lateinit var paintFixedThumb: Paint
+    private lateinit var paintActiveFocusThumb: Paint
+    private lateinit var paintText: Paint
+    private lateinit var paintActiveText: Paint
+    private lateinit var paintFixedText: Paint
+    private lateinit var paintActiveThumbText: Paint
+    private lateinit var paintFixedThumbText: Paint
 
     private var currentLeftFocusRadiusPx = ValueWrapper(0f)
     private var currentRightFocusRadiusPx = ValueWrapper(0f)
