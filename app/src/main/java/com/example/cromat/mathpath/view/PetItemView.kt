@@ -2,16 +2,11 @@ package com.example.cromat.mathpath.view
 
 import android.app.Activity
 import android.content.Context
-import android.content.res.Configuration
-import android.os.Handler
+import android.provider.Settings.Global.getString
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
-import android.util.DisplayMetrics
-import android.util.TypedValue
 import android.view.Gravity
-import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -19,6 +14,9 @@ import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.R
 import com.example.cromat.mathpath.activity.MainActivity
 import com.example.cromat.mathpath.model.PetItem
+import kotlinx.android.synthetic.main.pet_container.*
+import kotlinx.android.synthetic.main.pet_container.view.*
+import java.util.*
 
 
 class PetItemView : RelativeLayout {
@@ -33,7 +31,7 @@ class PetItemView : RelativeLayout {
             goldView.text = petItem.price.toString()
 
             if (petItem.bindedElementId > 0) {
-                val imgId = petItem.bindedElementId as Int
+                val imgId = petItem.bindedElementId
                 val relImg = (context as Activity).findViewById(imgId) as ImageView
                 if (petItem.activated && petItem.bought) {
                     alpha = .5f
@@ -76,6 +74,13 @@ class PetItemView : RelativeLayout {
     }
 
     fun onClick() {
+
+        fun addHappiness(){
+            val ma = context as MainActivity
+            DbHelper.addHappiness(petItem!!.happiness, context)
+            ma.textCloudThankYou()
+        }
+
         petItem!!.activated = !petItem!!.activated
 
         if (petItem!!.permanent) {
@@ -83,9 +88,7 @@ class PetItemView : RelativeLayout {
                 if (!DbHelper.addGold(petItem!!.price * -1, context))
                     Toast.makeText(context, context.getString(R.string.no_gold), Toast.LENGTH_LONG).show()
                 else {
-                    val ma = context as MainActivity
-                    DbHelper.addHappiness(petItem!!.happiness, context)
-                    ma.checkHappiness()
+                    addHappiness()
                     val imgId = petItem!!.bindedElementId
                     val relImg = (context as Activity).findViewById(imgId) as ImageView
                     petItem!!.bought = true
@@ -113,9 +116,7 @@ class PetItemView : RelativeLayout {
             if (!DbHelper.addGold(petItem!!.price * -1, context))
                 Toast.makeText(context, context.getString(R.string.no_gold), Toast.LENGTH_LONG).show()
             else {
-                val ma = context as MainActivity
-                DbHelper.addHappiness(petItem!!.happiness, context)
-                ma.checkHappiness()
+                addHappiness()
             }
 
         val goldViewMain = (context as Activity).findViewById(R.id.goldViewMain) as GoldView

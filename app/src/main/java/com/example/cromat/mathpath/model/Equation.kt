@@ -122,7 +122,7 @@ class Equation(private var eConfig: EquationConfig) {
                 }
             } else {
                 val evaluated: Double = MVEL.eval("$equationStr.0") as Double
-                if (evaluated.toInt() == result) {
+                if (evaluated.toInt() == number.toInt()) {
                     rightAns = number
                     return true
                 }

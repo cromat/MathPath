@@ -1,5 +1,5 @@
 <resources>
-    
+
     <!--App strings-->
     <string name="app_name">MathPath</string>
     <string name="action_settings">Settings</string>
@@ -60,6 +60,9 @@
     <string name="minus">-</string>
     <string name="divide">÷</string>
     <string name="multiple">ˣ</string>
+    <string name="wrong">Wrong!</string>
+    <string name="popup_info">Welcome to MathPath!\n\nMathPath is math learning game. Here, you need to take care of your pet. You need to buy him food, drinks and toys to keep him happy. To earn some gold for all that stuff, you need to solve math tasks by simply tapping on start button and choosing difficulty and you are ready to go. For each right answer you will get some gold and make your pet happy. Good luck with math solving!</string>
+    <string name="thank_you">Thank you!</string>
 
     <!--Spinner arrays-->
     <string-array name="graph_range_array">

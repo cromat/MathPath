@@ -18,5 +18,6 @@
     <dimen name="progressbar_stat_height">20dp</dimen>
     <dimen name="progressbar_stat_marginTopBot">20dp</dimen>
     <dimen name="progressbar_stat_margintLeftRig">100dp</dimen>
+    <dimen name="checkbox_text">30sp</dimen>
 
 </resources>

@@ -11,5 +11,6 @@ class EquationConfig(var maxNumOperands: Int = 2,
                      var timeSec: Int = 60,
                      var stepsNum: Int = 10,
                      var negativeRes: Boolean = false,
-                     var randomizeInput: Boolean = false
+                     var randomizeInput: Boolean = false,
+                     var goldPerTask: Int = 1
 ) : Serializable

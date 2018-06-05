@@ -2,9 +2,12 @@ package com.example.cromat.mathpath.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.support.v4.content.ContextCompat
 import android.text.SpannableStringBuilder
+import android.view.SoundEffectConstants
 import android.view.View
 import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.R
@@ -22,6 +25,8 @@ class SolvingActivity : BgMusicActivity() {
     private var equationConfig: EquationConfig = EquationConfig()
     private var equation = Equation(equationConfig)
     private val listAnswers = ArrayList<String>()
+    private val timer = Timer(false)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -165,12 +170,31 @@ class SolvingActivity : BgMusicActivity() {
     private fun checkAnswer(userAns: String) {
         val values: MutableMap<String, Int> = mutableMapOf("+" to 0, "-" to 0, "/" to 0, "*" to 0)
 
+        fun showTextGoldAdded() {
+            textGoldAdded.visibility = View.VISIBLE
+            timer.schedule(object : TimerTask() {
+                override fun run() {
+                    runOnUiThread { textGoldAdded.visibility = View.INVISIBLE }
+                }
+            }, 1000)
+        }
+
         var addVal = -1
         if (equation.isCorrect(userAns)) {
             score++
             addVal = 1
-            DbHelper.addGold(1, applicationContext)
+            textGoldAdded.text = "+" + equationConfig.goldPerTask.toString()
+            textGoldAdded.setTextColor(ContextCompat.getColor(this, R.color.colorBtnGreen))
+            MediaPlayer.create(applicationContext, R.raw.right).start()
+            showTextGoldAdded()
+
+            DbHelper.addGold(equationConfig.goldPerTask, applicationContext)
             goldViewSolving.text = DbHelper.getGoldValue(applicationContext).toString()
+        } else {
+            textGoldAdded.text = getString(R.string.wrong)
+            textGoldAdded.setTextColor(ContextCompat.getColor(this, R.color.colorBtnRed))
+            MediaPlayer.create(applicationContext, R.raw.wrong).start()
+            showTextGoldAdded()
         }
 
         listAnswers.add("${equation.toUserEquationString()};$userAns;${equation.getRightAns()}")

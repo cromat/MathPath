@@ -7,6 +7,7 @@
     android:layout_height="fill_parent"
     android:layout_gravity="center"
     android:background="@drawable/main_background"
+    android:animateLayoutChanges="true"
     tools:context="com.example.cromat.mathpath.activity.SolvingActivity">
 
     <RelativeLayout
@@ -28,6 +29,29 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/textGoldAdded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:textSize="@dimen/default_text_large"
+        android:visibility="invisible"
+        android:textColor="@color/colorBtnGreen"
+        app:layout_constraintBottom_toTopOf="@+id/relativeSolving"
+        app:layout_constraintEnd_toStartOf="@+id/stepperText"
+        app:layout_constraintStart_toEndOf="@+id/relativeGoldViewSolving" />
+
+    <TextView
+        android:id="@+id/textHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_cloud"
+        android:padding="20dp"
+        android:text="randomlabla hint"
+        android:layout_marginRight="200dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeSolving"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/solvingTitle"
@@ -173,5 +197,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

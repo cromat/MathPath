@@ -27,7 +27,8 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:text="@string/game_type"
-                android:textSize="@dimen/default_text_view">
+                android:layout_marginBottom="20dp"
+                android:textSize="@dimen/default_text">
 
                 <requestFocus />
             </TextView>
@@ -42,13 +43,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="@string/steps" />
+                    android:text="@string/steps"
+                    android:textSize="@dimen/default_text" />
 
                 <RadioButton
                     android:id="@+id/radioTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/time" />
+                    android:text="@string/time"
+                    android:textSize="@dimen/default_text" />
 
             </RadioGroup>
 
@@ -60,7 +63,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:text="@string/step_num"
-                android:textSize="@dimen/default_text_view" />
+                android:textSize="@dimen/default_text" />
 
             <EditText
                 android:id="@+id/editSteps"
@@ -123,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/numbers_range"
-                android:textSize="@dimen/default_text_view" />
+                android:textSize="@dimen/default_text" />
 
             <me.bendik.simplerangeview.SimpleRangeView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/rangeNumbers"
@@ -193,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="@string/operators"
-                android:textSize="@dimen/default_text_view" />
+                android:textSize="@dimen/default_text" />
 
             <RelativeLayout
                 android:id="@+id/relativeCheckboxes"
@@ -211,7 +214,9 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:checked="true"
-                    android:text="+"
+                    android:text="@string/plus"
+                    android:scaleX="2.0"
+                    android:scaleY="2.0"
                     android:textSize="@dimen/default_text" />
 
                 <CheckBox
@@ -223,7 +228,9 @@
                     android:layout_marginRight="30dp"
                     android:layout_toRightOf="@id/checkPlus"
                     android:checked="true"
-                    android:text="-"
+                    android:scaleX="2.0"
+                    android:scaleY="2.0"
+                    android:text="@string/minus"
                     android:textSize="@dimen/default_text" />
 
                 <CheckBox
@@ -234,7 +241,9 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginTop="10dp"
-                    android:text="*"
+                    android:scaleX="2.0"
+                    android:scaleY="2.0"
+                    android:text="@string/multiple"
                     android:textSize="@dimen/default_text" />
 
                 <CheckBox
@@ -247,7 +256,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_toEndOf="@id/checkMul"
                     android:layout_toRightOf="@id/checkMul"
-                    android:text="/"
+                    android:text="@string/divide"
+                    android:scaleX="2.0"
+                    android:scaleY="2.0"
                     android:textSize="@dimen/default_text" />
 
             </RelativeLayout>
@@ -280,15 +291,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="@string/operands"
-                android:textSize="@dimen/default_text_view" />
+                android:textSize="@dimen/default_text" />
 
             <CheckBox
                 android:id="@+id/checkFixedNumOperands"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textOperands"
+                android:fontFamily="@font/im_wunderland_cro"
                 android:text="@string/check_fix_num_operands"
-                android:textSize="@dimen/default_text_view" />
+                android:textSize="@dimen/checkbox_text" />
 
             <me.bendik.simplerangeview.SimpleRangeView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/rangeOperands"
@@ -375,9 +387,7 @@
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:layout_below="@id/relativeNumOperands"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             android:background="#c0c0c0" />
 
         <CheckBox
@@ -389,8 +399,9 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:checked="false"
+            android:fontFamily="@font/im_wunderland_cro"
             android:text="@string/negative_result"
-            android:textSize="@dimen/default_text_view" />
+            android:textSize="@dimen/checkbox_text" />
 
         <CheckBox
             android:id="@+id/checkRandomInputs"
@@ -401,8 +412,9 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:checked="false"
+            android:fontFamily="@font/im_wunderland_cro"
             android:text="@string/random_input"
-            android:textSize="@dimen/default_text_view" />
+            android:textSize="@dimen/checkbox_text" />
 
         <View
             android:id="@+id/line5"

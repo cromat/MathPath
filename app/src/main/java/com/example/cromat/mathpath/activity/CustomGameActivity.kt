@@ -1,6 +1,7 @@
 package com.example.cromat.mathpath.activity
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
@@ -12,6 +13,8 @@ import com.example.cromat.mathpath.model.EquationConfig
 import kotlinx.android.synthetic.main.activity_custom_game.*
 import me.bendik.simplerangeview.SimpleRangeView
 import org.jetbrains.annotations.NotNull
+import android.graphics.Typeface.createFromAsset
+import android.support.v4.content.res.ResourcesCompat
 
 
 class CustomGameActivity : BgMusicActivity() {
@@ -40,6 +43,12 @@ class CustomGameActivity : BgMusicActivity() {
                 textRangeOperEnd.text = (end + 2).toString()
             }
         })
+
+        // Checkboxes font family
+        val font = ResourcesCompat.getFont(this, R.font.im_wunderland_cro)
+        checkRandomInputs.typeface = font
+        checkNegativeRes.typeface = font
+        checkFixedNumOperands.typeface = font
 
         // Radio buttons listeners
         radioSteps.setOnClickListener {
@@ -93,7 +102,13 @@ class CustomGameActivity : BgMusicActivity() {
                 (0 until relativeCheckboxes.childCount)
                         .map { relativeCheckboxes.getChildAt(it) as CheckBox }
                         .filter { it.isChecked }
-                        .mapTo(operators) { it.text.toString() }
+                        .mapTo(operators) {
+                            when {
+                                it.text == getString(R.string.divide) -> "/"
+                                it.text == getString(R.string.multiple) -> "*"
+                                else -> it.text.toString()
+                            }
+                        }
 
                 var gameType = GameType.STEPS.toString()
                 if (radioTime.isChecked)

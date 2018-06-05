@@ -13,6 +13,7 @@
         android:id="@+id/btnEasy"
         style="@style/BtnGreen"
         android:layout_width="wrap_content"
+        android:minWidth="200dp"
         android:layout_height="wrap_content"
         android:text="@string/easy"
         android:layout_margin="10dp" />
@@ -20,6 +21,7 @@
     <Button
         android:id="@+id/btnMedium"
         style="@style/BtnYellow"
+        android:minWidth="200dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/medium"
@@ -28,6 +30,7 @@
     <Button
         android:id="@+id/btnHard"
         style="@style/BtnRed"
+        android:minWidth="200dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hard"

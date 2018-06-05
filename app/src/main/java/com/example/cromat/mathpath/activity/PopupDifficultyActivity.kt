@@ -56,14 +56,15 @@ class PopupDifficultyActivity : BgMusicActivity() {
             val equationConfig = EquationConfig(
                     maxNumOperands = 3,
                     minNumOperands = 2,
-                    maxNum = 20,
+                    maxNum = 15,
                     minNum = 0,
                     operators = listOf("+", "-", "*", "/"),
                     gameType = GameType.STEPS.toString(),
                     timeSec = 60,
                     stepsNum = 15,
                     negativeRes = false,
-                    randomizeInput = true
+                    randomizeInput = true,
+                    goldPerTask = 3
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)
@@ -75,14 +76,15 @@ class PopupDifficultyActivity : BgMusicActivity() {
             val equationConfig = EquationConfig(
                     maxNumOperands = 5,
                     minNumOperands = 3,
-                    maxNum = 100,
+                    maxNum = 20,
                     minNum = 0,
                     operators = listOf("+", "-", "*", "/"),
                     gameType = GameType.STEPS.toString(),
                     timeSec = 60,
                     stepsNum = 20,
                     negativeRes = true,
-                    randomizeInput = true
+                    randomizeInput = true,
+                    goldPerTask = 5
             )
             val intent = Intent(applicationContext, SolvingActivity::class.java)
             intent.putExtra("equationConfig", equationConfig)

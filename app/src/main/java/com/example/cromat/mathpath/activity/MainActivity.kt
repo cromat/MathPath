@@ -1,10 +1,17 @@
 package com.example.cromat.mathpath.activity
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
+import android.widget.ImageView
 import com.example.cromat.mathpath.DbHelper
 import com.example.cromat.mathpath.R
 import com.example.cromat.mathpath.activity.adapters.PetItemAdapter
@@ -13,10 +20,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.pet_container.*
 import kotlinx.android.synthetic.main.activity_main.pet_item_list as petItemList
 import com.example.cromat.mathpath.BackgroundSoundService
+import java.util.*
 
 
 @SuppressLint("SetTextI18n")
 class MainActivity : BgMusicActivity() {
+    private val timer = Timer(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +48,21 @@ class MainActivity : BgMusicActivity() {
             startActivity(Intent(applicationContext, GraphActivity::class.java))
         }
 
+        iconInfo.setOnClickListener {
+            startActivity(Intent(applicationContext, PopupInfoActivity::class.java))
+        }
+
+        imagePetCar.setOnClickListener {
+            MediaPlayer.create(applicationContext, R.raw.car_horn).start()
+        }
+
+        imagePetBall.setOnClickListener {
+            val rotate = RotateAnimation(0f, 720f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+            rotate.duration = 2000
+            rotate.interpolator = LinearInterpolator()
+            imagePetBall.startAnimation(rotate)
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -48,6 +72,19 @@ class MainActivity : BgMusicActivity() {
     override fun onResume() {
         super.onResume()
         val petItems: List<PetItem> = DbHelper.getPetItems(applicationContext)
+
+        for (petItem in petItems){
+            if (petItem.bindedElementId > 0) {
+                val imgId = petItem.bindedElementId
+                val relImg = (this as Activity).findViewById(imgId) as ImageView
+                if (petItem.activated && petItem.bought) {
+                    relImg.visibility = View.VISIBLE
+                } else {
+                    relImg.visibility = View.INVISIBLE
+                }
+            }
+        }
+
         val adapter = PetItemAdapter(petItems)
         petItemList.adapter = adapter
         petItemList.layoutManager = LinearLayoutManager(this)
@@ -82,5 +119,14 @@ class MainActivity : BgMusicActivity() {
 
             }
         }
+    }
+
+    fun textCloudThankYou(){
+        textCloud.text = getString(R.string.thank_you)
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                runOnUiThread { checkHappiness() }
+            }
+        }, 2000)
     }
 }
