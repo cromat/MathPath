@@ -1,32 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--App strings-->
     <string name="app_name">MathPath</string>
     <string name="next">Dalje</string>
     <string name="quit">Izlaz</string>
-    <string name="game_type">Tip igre</string>
+    <string name="game_type">Vrsta igre</string>
     <string name="step_num">Koraci</string>
     <string name="numbers_range">Raspon brojeva</string>
     <string name="operators">Operatori</string>
     <string name="operands">Operandi</string>
     <string name="time_seconds">Sekunde</string>
-    <string name="show_answers"><u>Prikaži odgovore</u></string>
-    <string name="check_fix_num_operands">Postavi zadan broj operanada</string>
-    <string name="start">Kreni</string>
-    <string name="valid_operators">Potrebno je postaviti barem jedan operator!</string>
-    <string name="valid_range">Neispravan raspon brojeva!</string>
-    <string name="valid_steps">Potrebno je postaviti barem jedan korak!</string>
-    <string name="valid_time">Minimalno vrijeme je 10 sekundi!</string>
-    <string name="steps">Koraci</string>
-    <string name="time">Vrijeme</string>
-    <string name="negative_result">Negativan rezultat</string>
-    <string name="easy">Lagano</string>
+    <string name="show_answers"><u>Prikaži odgovore </u></string>
+    <string name="check_fix_num_operands">Postavite fiksni broj operanada</string>
+    <string name="start">Počni</string>
+    <string name="valid_operators">Postavite barem jednog operatora!</string>
+    <string name="valid_range">Nije važeći raspon brojeva!</string>
+    <string name="valid_steps">Morate postaviti barem jedan korak!</string>
+    <string name="valid_time">Morate postaviti najmanje 10 sekundi vremena!</string>
+    <string name="steps">koraci</string>
+    <string name="time">vrijeme</string>
+    <string name="negative_result">Negativni rezultat</string>
+    <string name="easy">Lako</string>
     <string name="medium">Srednje</string>
     <string name="hard">Teško</string>
-    <string name="custom">Ručno</string>
-    <string name="your_score">Tvoji bodovi:</string>
-    <string name="random_input">Unos na nasumičnom polju</string>
-    <string name="finish">KRAJ</string>
-    <string name="no_gold">Nedovoljno novca!</string>
-
+    <string name="custom">Prilagođeno</string>
+    <string name="your_score">Tvoj rezultat:</string>
+    <string name="number_zero">0</string>
+    <string name="number_one">1</string>
+    <string name="number_two">2</string>
+    <string name="number_three">3</string>
+    <string name="number_four">4</string>
+    <string name="number_five">5</string>
+    <string name="number_six">6</string>
+    <string name="number_seven">7</string>
+    <string name="number_eight">8</string>
+    <string name="number_nine">9</string>
+    <string name="btn_backspace">\U232b"</string>
+    <string name="cloud_unhappy">Gladan sam i žedan.</string>
+    <string name="cloud_average">Molim te, kupi mi igračku.</string>
+    <string name="cloud_happy">Idemo učiti matematiku!</string>
+    <string name="random_input">Postavite unos broja na slučajnom mjestu</string>
+    <string name="finish">ZAVRŠI</string>
+    <string name="no_gold">Nemate dovoljno zlata!</string>
+    <string name="key_minus">-</string>
+    <string name="happiness">Sreća:</string>
+    <string name="equation">Jednadžba</string>
+    <string name="your_answer">Tvoj odgovor</string>
+    <string name="right_ans">Točan odgovor</string>
+    <string name="answer_statistics">Statistika odgovora</string>
+    <string name="statistics_by_operators">Statistika po operatoru</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="divide">÷</string>
+    <string name="multiple">ˣ</string>
+    <string name="wrong">Pogrešno!</string>
+    <string name="popup_info">Dobrodošli u MathPath!\n\nMathPath je igra za učenje matematike. Imate ljubimca za kojeg se morate brinuti tako da mu kupujete hranu, piće i igračke da bi bio sretan. Da biste zaradili nešto zlata za sve te stvari, trebate riješiti zadatke iz matematike, a možete početi jednostavnim pritiskom na gumb Počni. Za svaki ispravan odgovor dobiti ćete nešto zlata i učiniti vašeg ljubimca sretnim. Sretno s rješavanjem matematike!</string>
+    <string name="thank_you">Hvala vam!</string>
+    <string name="right">Točno</string>
+    <string name="bad">Netočno</string>
+    <string name="answers">Odgovori</string>
+    <string name="hint_div_mul">Djeljenje i množenje izvršavaju se prije zbrajanja i oduzimanja.</string>
+    <string name="hint_next">Ako ne znate odgovor, možete se prebaciti na sljedeće pitanje.</string>
+    <string name="hint_braces">Izrazi unutar zagrada izvršavaju se najprije!</string>
+    <string name="coming_soon">Dolazi uskoro!</string>
+    <string name="braces">Zagrade</string>
 
 </resources>

@@ -1,0 +1,73 @@
+<resources>
+
+    <!--App strings-->
+    <string name="app_name">MathPath</string>
+    <string name="next">Siguiente</string>
+    <string name="quit">Dejar</string>
+    <string name="game_type">Tipo de juego</string>
+    <string name="step_num">Pasos</string>
+    <string name="numbers_range">Rango de números</string>
+    <string name="operators">Operadores</string>
+    <string name="operands">Operandos</string>
+    <string name="time_seconds">Segundos</string>
+    <string name="show_answers"><u> Mostrar respuestas </ u></string>
+    <string name="check_fix_num_operands">Establecer un número fijo de operandos</string>
+    <string name="start">comienzo</string>
+    <string name="valid_operators">Por favor verifique al menos un operador!</string>
+    <string name="valid_range">¡No es un rango válido de números!</string>
+    <string name="valid_steps">¡Debes establecer al menos 1 paso!</string>
+    <string name="valid_time">¡Debe configurar al menos 10 segundos de tiempo!</string>
+    <string name="steps">Pasos</string>
+    <string name="time">Tiempo Chase</string>
+    <string name="negative_result">Resultado negativo</string>
+    <string name="easy">Fácil</string>
+    <string name="medium">Medio</string>
+    <string name="hard">Difícil</string>
+    <string name="custom">Personalizado</string>
+    <string name="your_score">Tu puntuación:</string>
+    <string name="number_zero">0</string>
+    <string name="number_one">1</string>
+    <string name="number_two">2</string>
+    <string name="number_three">3</string>
+    <string name="number_four">4</string>
+    <string name="number_five">5</string>
+    <string name="number_six">6</string>
+    <string name="number_seven">7</string>
+    <string name="number_eight">8</string>
+    <string name="number_nine">9</string>
+    <string name="btn_backspace">\u232b"</string>
+    <string name="cloud_unhappy">Estoy hambriento y sediento.</string>
+    <string name="cloud_average">Por favor, cómprame un juguete.</string>
+    <string name="cloud_happy">¡Vamos a aprender matemáticas!</string>
+    <string name="random_input">Establecer entrada de número en un lugar aleatorio</string>
+    <string name="finish">TERMINAR</string>
+    <string name="no_gold">¡Insuficiente oro!</string>
+    <string name="key_minus">-</string>
+    <string name="happiness">Felicidad:</string>
+    <string name="equation">Ecuación</string>
+    <string name="your_answer">Tu respuesta</string>
+    <string name="right_ans">Respuesta correcta</string>
+    <string name="answer_statistics">Estadísticas de respuesta</string>
+    <string name="statistics_by_operators">Estadísticas por operadores</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="divide">÷</string>
+    <string name="multiple">ˣ</string>
+    <string name="wrong">¡Incorrecto!</string>
+    <string name="popup_info">¡Bienvenido a MathPath!\n\nMathPath es un juego de aprendizaje matemático. Aquí, debes cuidar a
+    tu mascota. Necesitas comprarle comida, bebidas y juguetes para mantenerlo feliz. Para ganar
+    algo de oro por todo eso, debes resolver las tareas de matemáticas simplemente tocando el botón
+    de inicio y seleccionando la dificultad, y estarás listo para comenzar. o cada respuesta
+    correcta obtendrás algo de oro y harás feliz a tu mascota. ¡Buena suerte con la difficulty and
+    you aresolución de matemáticas!</string>
+    <string name="thank_you">¡Gracias!</string>
+    <string name="right">Derecha</string>
+    <string name="bad">Malo</string>
+    <string name="answers">Respuestas</string>
+    <string name="hint_div_mul">La división y la multiplicación se ejecutan antes de la suma y la sustitución.</string>
+    <string name="hint_next">Si no conoce la respuesta, puede pasar a la siguiente pregunta.</string>
+    <string name="hint_braces">¡Las operaciones dentro de llaves se ejecutan primero!</string>
+    <string name="coming_soon">¡Próximamente!</string>
+    <string name="braces">Tirantes</string>
+
+</resources>

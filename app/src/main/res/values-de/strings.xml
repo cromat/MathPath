@@ -1,0 +1,74 @@
+<resources>
+
+    <!--App strings-->
+    <string name="app_name">MathPath</string>
+    <string name="next">Nächster</string>
+    <string name="quit">Verlassen</string>
+    <string name="game_type">Spiel Typ</string>
+    <string name="step_num">Schritte</string>
+    <string name="numbers_range">Zahlenbereich</string>
+    <string name="operators">Betreiber</string>
+    <string name="operands">Operanden</string>
+    <string name="time_seconds">Sekunden</string>
+    <string name="show_answers"><u>Antworten anzeigen</u></string>
+    <string name="check_fix_num_operands">Stellen Sie eine feste Anzahl von Operanden ein</string>
+    <string name="start">Anfang</string>
+    <string name="valid_operators">Bitte überprüfen Sie mindestens einen Betreiber!</string>
+    <string name="valid_range">Keine gültige Anzahl von Zahlen!</string>
+    <string name="valid_steps">Sie müssen mindestens 1 Schritt setzen!</string>
+    <string name="valid_time">Sie müssen mindestens 10 Sekunden Zeit einstellen!</string>
+    <string name="steps">Schritte</string>
+    <string name="time">Zeitjagd</string>
+    <string name="negative_result">Negatives Ergebnis</string>
+    <string name="easy">Einfach</string>
+    <string name="medium">Mittel</string>
+    <string name="hard">Hart</string>
+    <string name="custom">Brauch</string>
+    <string name="your_score">Ihr Ergebnis:</string>
+    <string name="number_zero">0</string>
+    <string name="number_one">1</string>
+    <string name="number_two">2</string>
+    <string name="number_three">3</string>
+    <string name="number_four">4</string>
+    <string name="number_five">5</string>
+    <string name="number_six">6</string>
+    <string name="number_seven">7</string>
+    <string name="number_eight">8</string>
+    <string name="number_nine">9</string>
+    <string name="btn_backspace">\u232b"</string>
+    <string name="cloud_unhappy">Ich bin hungrig und durstig.</string>
+    <string name="cloud_average">Bitte kauf mir ein Spielzeug.</string>
+    <string name="cloud_happy">Lass uns Mathe lernen!</string>
+    <string name="random_input">Stellen Sie die Zahleneingabe an einem zufälligen Ort ein</string>
+    <string name="finish">FERTIG</string>
+    <string name="no_gold">Nicht genug Gold!</string>
+    <string name="key_minus">-</string>
+    <string name="happiness">Glück:</string>
+    <string name="equation">Gleichung</string>
+    <string name="your_answer">Deine Antwort</string>
+    <string name="right_ans">Richtige Antwort</string>
+    <string name="answer_statistics">Antwortstatistiken</string>
+    <string name="statistics_by_operators">Statistiken von Betreibern</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="divide">÷</string>
+    <string name="multiple">ˣ</string>
+    <string name="wrong">Falsch!</string>
+    <string name="popup_info">Willkommen bei MathPath!\n\nMathPath ist ein Mathematiklernspiel. Hier müssen Sie auf Ihr
+    Haustier aufpassen. Du musst ihm Essen, Getränke und Spielsachen kaufen, um ihn glücklich zu
+    machen. Um etwas Gold für all diese Dinge zu verdienen, musst du mathematische Aufgaben lösen,
+    indem du einfach auf den Startknopf tippst und den Schwierigkeitsgrad wählst, und schon kannst
+    du loslegen. oder jede richtige Antwort, du wirst etwas Gold bekommen und dein difficulty and
+    you aHaustier glücklich machen. Viel Glück mit Mathe lösen!</string>
+    <string name="thank_you">Vielen Dank!</string>
+    <string name="right">Recht</string>
+    <string name="bad">Schlecht</string>
+    <string name="answers">Antworten</string>
+    <string name="hint_div_mul">Division und Multiplikation werden vor Addition und Substitution ausgeführt.</string>
+    <string name="hint_next">Wenn Sie die Antwort nicht wissen, können Sie zur nächsten Frage gehen.</string>
+    <string name="hint_braces">Operationen innerhalb von Klammern werden zuerst ausgeführt!</string>
+    <string name="coming_soon">Demnächst!</string>
+    <string name="braces">Hosenträger</string>
+
+</resources>
+
