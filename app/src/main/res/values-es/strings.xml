@@ -10,7 +10,7 @@
     <string name="operators">Operadores</string>
     <string name="operands">Operandos</string>
     <string name="time_seconds">Segundos</string>
-    <string name="show_answers"><u> Mostrar respuestas </ u></string>
+    <string name="show_answers"><u>Mostrar respuestas</u></string>
     <string name="check_fix_num_operands">Establecer un número fijo de operandos</string>
     <string name="start">comienzo</string>
     <string name="valid_operators">Por favor verifique al menos un operador!</string>
