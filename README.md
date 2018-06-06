@@ -13,32 +13,31 @@ MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for bac
 
 # Todo
 
-* Progressbar with red or green step color depending on right or wrong answer
-* AI algorithm that will generate or repeat tasks based on former user solutions:
+* An algorithm that will generate or repeat tasks based on former user solutions:
 	User solutions will be saved to database and application will generate equations based on operators or numbers that user 	tends to solve harder.
 	Also, if user gives wrong answer, application will provide hints or give same equation but with changed input field eg. if user gives wrong answer on 2 + 5 = _ , next equation could be 2 + _ = 7.
-* More game options like parentheses and ~~random input field placing (currently it is only behind = character)~~
-* Visual changes (game icon, in-game icons like graph chart, child friendly graphs and fonts)
+* ~~More game options like parentheses and random input field placing (currently it is only behind = character)~~
+* ~~Visual changes (game icon, in-game icons like graph chart, child friendly graphs and fonts)~~
 * ~~Checkbox for possible negative results~~
-* Check for operators order in more complex equations (give hints next time)
+* ~~Check for operators order in more complex equations (give hints next time)~~
 * Measure time for each task and show that info in answers list at the end
-* Multilanguage support (Croatian, German, French, Spanish)
+* ~~Multilanguage support (Croatian, German, French, Spanish)~~
 * Third game option: PickGame with picking on of possible answers
 * Game type where will be all game type mixed
-* Short game instructions
+* ~~Short game instructions~~
 * Better UX:
 	* ~~some kind of in-game awarding to keep users active:
 		one of ideas is to include a pet (something like tamagochi) and if user solves enougl equations, he will be able 		to feed or buy something for their pet.~~
-	* more useful statistics like solving stats by operators
+	* ~~more useful statistics like solving stats by operators~~
 	* achievements like 7 active days in row
 	* personalization (application graphics will depend on gender)
-	* add fun music
-	* animations and transitions
+	* ~~add fun music~~
+	* ~~animations and transitions~~
 	* ~~colon as dividing operator~~
 	* pet simple chatbot (IRIS)
-	* some in-game instructions (for difficulties)
-	* each difficulty gives different amount of money
-	* pet hapiness bar
+	* ~~some in-game instructions (for difficulties)~~
+	* ~~each difficulty gives different amount of money~~
+	* ~~pet hapiness bar~~
 
 # Application flowchart
 
