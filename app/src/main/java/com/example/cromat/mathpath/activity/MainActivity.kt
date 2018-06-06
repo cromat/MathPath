@@ -64,6 +64,13 @@ class MainActivity : BgMusicActivity() {
             imagePetBall.startAnimation(rotate)
         }
 
+        imagePetPlane.setOnClickListener {
+            val rotate = RotateAnimation(0f, 350f, 15f, 15f)
+            rotate.duration = 1000
+            rotate.interpolator = LinearInterpolator()
+            imagePetBall.startAnimation(rotate)
+        }
+
         imagePet.setOnClickListener {
             val sounds = listOf(R.raw.pet_sound1, R.raw.pet_sound2)
             MediaPlayer.create(applicationContext, sounds[rand.nextInt(sounds.size)]).start()

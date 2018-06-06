@@ -276,6 +276,9 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
                     "bought, picture, bindedElementId, happiness) VALUES('Food', 10, 0, 0, 0, " +
                     R.drawable.food.toString() + ", 0, 20)")
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId, happiness) VALUES('Elixir', 50, 0, 0, 0, " +
+                    R.drawable.elixir.toString() + ", 0, 100)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
                     "bought, picture, bindedElementId, happiness) VALUES('Ball', 25, 1, 0, 0, " +
                     R.drawable.ball.toString() + ", " + R.id.imagePetBall.toString() + ", 30)")
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
@@ -284,11 +287,24 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "MathPath", null, 1)
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
                     "bought, picture, bindedElementId, happiness) VALUES('Car', 75, 1, 0, 0, " +
                     R.drawable.car.toString() + ", " + R.id.imagePetCar.toString() + ", 50)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId, happiness) VALUES('Plane', 100, 1, 0, 0, " +
+                    R.drawable.airplane.toString() + ", " + R.id.imagePetPlane.toString() + ", 60)")
+
 
             // Coming soon
             execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
                     "bought, picture, bindedElementId, happiness) VALUES('Shirt', 9999, 1, 0, 0, " +
                     R.drawable.shirt.toString() + ", " + R.id.imagePetShirt.toString() + ", 50)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId, happiness) VALUES('Fireworks', 9999, 1, 0, 0, " +
+                    R.drawable.fireworks.toString() + ", 0, 50)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId, happiness) VALUES('Cat', 9999, 1, 0, 0, " +
+                    R.drawable.cat.toString() + ", 0, 50)")
+            execSQL("INSERT INTO $TABLE_PET_ITEMS (name, price, permanent, activated, " +
+                    "bought, picture, bindedElementId, happiness) VALUES('Music', 9999, 1, 0, 0, " +
+                    R.drawable.note.toString() + ", 0, 50)")
         }
     }
 

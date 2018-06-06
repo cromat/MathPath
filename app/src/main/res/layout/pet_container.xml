@@ -39,6 +39,19 @@
         app:srcCompat="@drawable/pet" />
 
     <ImageView
+        android:id="@+id/imagePetPlane"
+        android:layout_width="170dp"
+        android:layout_height="142dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginRight="300dp"
+        android:layout_marginTop="170dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imagePet"
+        app:layout_constraintTop_toTopOf="@+id/imagePet"
+        app:srcCompat="@drawable/airplane" />
+
+    <ImageView
         android:id="@+id/imagePetHat"
         android:layout_width="202dp"
         android:layout_height="111dp"
@@ -115,8 +128,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginStart="150dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginStart="190dp"
         android:background="@drawable/text_cloud"
         android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@+id/petHorGuide"
