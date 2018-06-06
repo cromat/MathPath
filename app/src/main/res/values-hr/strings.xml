@@ -41,7 +41,7 @@
     <string name="cloud_happy">Idemo učiti matematiku!</string>
     <string name="random_input">Postavite unos broja na slučajnom mjestu</string>
     <string name="finish">ZAVRŠI</string>
-    <string name="no_gold">Nemate dovoljno zlata!</string>
+    <string name="no_gold">Nemate dovoljno novca!</string>
     <string name="key_minus">-</string>
     <string name="happiness">Sreća:</string>
     <string name="equation">Jednadžba</string>
@@ -54,7 +54,7 @@
     <string name="divide">÷</string>
     <string name="multiple">ˣ</string>
     <string name="wrong">Pogrešno!</string>
-    <string name="popup_info">Dobrodošli u MathPath!\n\nMathPath je igra za učenje matematike. Imate ljubimca za kojeg se morate brinuti tako da mu kupujete hranu, piće i igračke da bi bio sretan. Da biste zaradili nešto zlata za sve te stvari, trebate riješiti zadatke iz matematike, a možete početi jednostavnim pritiskom na gumb Počni. Za svaki ispravan odgovor dobiti ćete nešto zlata i učiniti vašeg ljubimca sretnim. Sretno s rješavanjem matematike!</string>
+    <string name="popup_info">Dobrodošli u MathPath!\n\nMathPath je igra za lako učenje matematike. Na početku imate svog ljubimca o kojem se morate brinuti. Da bi vaš ljubimac bio sretan morate mu kupovati hranu, piće i igračke. Za kupovinu potreban vam je novac kojeg ćete zaraditi rješavajući zadatke iz matematike, klikom na gumb \"Počni\". Za svaki točan odgovor dobit ćete nešto novca, ovisno o težini zadatka. Što više novca skupite, vaš ljubimac će biti sretniji. Sretno s učenjem matematike!</string>
     <string name="thank_you">Hvala vam!</string>
     <string name="right">Točno</string>
     <string name="bad">Netočno</string>

@@ -65,10 +65,11 @@ class MainActivity : BgMusicActivity() {
         }
 
         imagePetPlane.setOnClickListener {
-            val rotate = RotateAnimation(0f, 350f, 15f, 15f)
+            MediaPlayer.create(applicationContext, R.raw.airplane).start()
+            val rotate = RotateAnimation(0f, -350f, 15f, 15f)
             rotate.duration = 1000
             rotate.interpolator = LinearInterpolator()
-            imagePetBall.startAnimation(rotate)
+            imagePetPlane.startAnimation(rotate)
         }
 
         imagePet.setOnClickListener {
