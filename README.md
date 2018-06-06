@@ -7,6 +7,7 @@ MathPath is simple math equation generating Android application/game made for el
 
 MathPath is fully offline application developed with "Keep it simple" methodology. No registration or any complications are needed to start solving tasks. On the start screen you can only change game configurations. When you hit the "start" button, you are proceeded to solving screen where you need to input right number to solve the given equation. At the end, the results screen is displayed.
 
+
 # Technical stuff
 
 MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for backend (local) and MVEL library is used for equation strings evaluation.
@@ -39,14 +40,18 @@ MathPath is developed in Kotlin. SQLite with anko-sqlite library is used for bac
 	* ~~each difficulty gives different amount of money~~
 	* ~~pet hapiness bar~~
 
+
 # Application flowchart
 
 ![alt text](https://image.ibb.co/gjWy9c/Selection_068.png)
 
-If you have any remarks or suggestions to improve the app, please feel free to contact me at brabec.tomislav@gmail.com
 
 # Screenshots
-<img src="https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot1.png" width="350">
-<img src="https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot2.png" width="350">
-<img src="https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot3.png" width="350">
-<img src="https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot4.png" width="350">
+
+<img src="https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot_20180605-223800.png" width="350">
+<img src="https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot_20180605-223827.png" width="500">
+<img src="https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot_20180605-224158.png" width="350">
+<img src="https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot_20180605-224144.png" width="350">
+<img src="https://github.com/cromat/MathPath/blob/master/screenshots/Screenshot_20180605-223900.png" width="500">
+
+If you have any remarks or suggestions to improve the app, please feel free to contact me at brabec.tomislav@gmail.com
