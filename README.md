@@ -2,6 +2,8 @@
 
 MathPath is simple math equation generating Android application/game made for elementary school students. Math solving was never simpler and more entertaining.
 
+You can try application in your browser [here](https://appetize.io/app/9ck12b4958346hpz39d0ng3adm?device=nexus9&scale=50&orientation=portrait&osVersion=7.1).
+
 
 # About application
 
