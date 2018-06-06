@@ -1,6 +1,7 @@
 package com.example.cromat.mathpath.model
 
 import android.content.Context
+import android.util.Range
 import com.example.cromat.mathpath.DbHelper
 import org.mvel2.MVEL
 import java.util.*
@@ -132,6 +133,8 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
         }
     }
 
+    fun String.rotate(n: Int) = drop(n % length) + take(n % length)
+
     fun splitAtOperandIndex(index: Int = rand.nextInt(operands.size)): List<String> {
         var strings = listOf<String>()
         firstString = ""
@@ -153,13 +156,25 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
         if (index == braceClose)
             secondString += ')'
 
-        for (i in index + 1 until operands.size) {
+        for (i in (index + 1) until operands.size) {
             if (i == braceOpen && i != 0)
                 secondString += '('
             secondString += operands[i]
             if (i == braceClose)
                 secondString += ')'
             secondString += operators[i]
+        }
+
+        val brCloseIndex = secondString.indexOf(')')
+        if (brCloseIndex > 0) {
+            val chr = secondString[brCloseIndex - 1].toString()
+            if (chr in operators) {
+                val sb = StringBuilder(secondString)
+                val chrIndex = brCloseIndex - 1
+                sb[chrIndex] = ')'
+                sb[brCloseIndex] = chr.toCharArray()[0]
+                secondString = sb.toString()
+            }
         }
 
         secondString += "=$result"
@@ -169,9 +184,9 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
     }
 
     fun isCorrect(number: String): Boolean {
-        if (number.matches(Regex("^[0-9]*.\$"))) {
+        if (!number.isBlank() && number.matches(Regex("^[0-9]*.\$"))) {
             if (eConfig.randomizeInput) {
-                val eqToTry = (firstString + number + secondString).split("=")[0]
+                val eqToTry = ("$firstString$number$secondString").split("=")[0]
                 val evaluated: Double = MVEL.eval(eqToTry.replace(operands[0],
                         operands[0] + ".0")) as Double
                 if (evaluated.toInt() == result) {
@@ -179,7 +194,8 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
                     return true
                 }
             } else {
-                val evaluated: Double = MVEL.eval("$equationStr.0") as Double
+                val evaluated: Double = MVEL.eval(equationStr.replace(operands[0],
+                        operands[0] + ".0")) as Double
                 if (evaluated.toInt() == number.toInt()) {
                     rightAns = number
                     return true

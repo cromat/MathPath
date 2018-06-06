@@ -35,7 +35,7 @@
     <string name="number_seven">7</string>
     <string name="number_eight">8</string>
     <string name="number_nine">9</string>
-    <string name="btn_backspace">\U232b"</string>
+    <string name="btn_backspace">\u232b"</string>
     <string name="cloud_unhappy">Gladan sam i žedan.</string>
     <string name="cloud_average">Molim te, kupi mi igračku.</string>
     <string name="cloud_happy">Idemo učiti matematiku!</string>

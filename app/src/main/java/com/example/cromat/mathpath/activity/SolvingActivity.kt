@@ -185,7 +185,12 @@ class SolvingActivity : BgMusicActivity() {
         finish()
     }
 
-    private fun checkAnswer(userAns: String) {
+    private fun checkAnswer(userAnsArg: String) {
+        // If first digit is 0 turn string to 0
+        var userAns = userAnsArg
+        if(!userAns.isBlank() && userAns[0] == '0')
+            userAns = "0"
+
         val values: MutableMap<String, Int> = mutableMapOf("+" to 0, "-" to 0, "/" to 0, "*" to 0)
 
         fun showTextGoldAdded() {
