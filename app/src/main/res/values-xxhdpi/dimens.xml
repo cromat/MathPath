@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">8.0dp</dimen>
+    <dimen name="btn_start_end_margin">10.0dp</dimen>
+    <dimen name="default_text_view">10.0sp</dimen>
+    <dimen name="button_text_size">25.0sp</dimen>
+    <dimen name="default_text_large">30.0sp</dimen>
+    <dimen name="default_text">17.5sp</dimen>
+    <dimen name="item_height">75.0sp</dimen>
+    <dimen name="item_padding">5.0dp</dimen>
+    <dimen name="item_margin">5.0dp</dimen>
+    <dimen name="text_size_solving">25.0sp</dimen>
+    <dimen name="progressbar_stat_height">10.0dp</dimen>
+    <dimen name="progressbar_stat_marginTopBot">10.0dp</dimen>
+    <dimen name="checkbox_text">15.0sp</dimen>
+    <dimen name="custom_game_layout_padding">25.0dp</dimen>
+    <dimen name="padding_margin_20dp">10.0dp</dimen>
+    <dimen name="padding_margin_40dp">20.0dp</dimen>
+    <dimen name="padding_margin_100dp">50.0dp</dimen>
+    <dimen name="icon_size">25.0dp</dimen>
+    <dimen name="gold_added_margin_bottom">40.0dp</dimen>
+    <dimen name="text_hint_padding">10.0dp</dimen>
+    <dimen name="text_hint_margin_right">10.0dp</dimen>
+    <dimen name="text_hint_margin_bottom">15.0dp</dimen>
+    <dimen name="pet_hat_width">101.0dp</dimen>
+    <dimen name="pet_hat_height">55.5dp</dimen>
+    <dimen name="pet_hat_margin_bottom">34.0dp</dimen>
+    <dimen name="pet_hat_margin_start_end">7.5dp</dimen>
+    <dimen name="pet_ball_width">50.0dp</dimen>
+    <dimen name="pet_ball_height">50.0dp</dimen>
+    <dimen name="pet_ball_margin_top">75.0dp</dimen>
+    <dimen name="pet_car_width">85.0dp</dimen>
+    <dimen name="pet_car_height">71.0dp</dimen>
+    <dimen name="pet_car_margin_end">150.0dp</dimen>
+    <dimen name="pet_car_margin_top">85.0dp</dimen>
+    <dimen name="text_cloud_margin_bottom">40.0dp</dimen>
+    <dimen name="text_cloud_margin_left">150.0dp</dimen>
+    <dimen name="pie_chart_size">250dp</dimen>
+    <dimen name="text_title_percentage_margin_bottom">20dp</dimen>
+    <dimen name="text_progress_margin">6dp</dimen>
+    <dimen name="progress_width">225dp</dimen>
+
+    <item name="progress_scaley" type="dimen" format="float">5.0</item>
+
+</resources>

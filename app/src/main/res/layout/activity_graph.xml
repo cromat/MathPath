@@ -25,8 +25,8 @@
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChart"
-            android:layout_width="500dp"
-            android:layout_height="500dp"
+            android:layout_width="@dimen/pie_chart_size"
+            android:layout_height="@dimen/pie_chart_size"
             android:layout_below="@id/textTitlePieChart"
             android:layout_centerHorizontal="true"
             android:backgroundTint="@color/colorBg"
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/pieChart"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="@dimen/text_title_percentage_margin_bottom"
             android:layout_marginTop="50dp"
             android:text="@string/statistics_by_operators"
             android:textAlignment="center"
@@ -54,14 +54,14 @@
             android:layout_toLeftOf="@id/progressPlus"
             android:text="@string/plus"
             android:textSize="@dimen/default_text_large"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="@dimen/text_progress_margin"
             android:layout_toStartOf="@id/progressPlus"
-            android:layout_marginEnd="40dp" />
+            android:layout_marginEnd="@dimen/text_progress_margin" />
 
         <ProgressBar
             android:id="@+id/progressPlus"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="450dp"
+            android:layout_width="@dimen/progress_width"
             android:layout_height="@dimen/progressbar_stat_height"
             android:layout_below="@id/textTitlePercentageOperators"
             android:layout_gravity="center"
@@ -71,15 +71,15 @@
             android:layout_marginBottom="@dimen/progressbar_stat_marginTopBot"
             android:layout_marginTop="@dimen/progressbar_stat_marginTopBot"
             android:max="100"
-            android:scaleY="10.0" />
+            android:scaleY="@dimen/progress_scaley" />
 
         <TextView
             android:id="@+id/textPercentPlus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textTitlePercentageOperators"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="@dimen/text_progress_margin"
+            android:layout_marginRight="@dimen/text_progress_margin"
             android:layout_toEndOf="@id/progressPlus"
             android:layout_toRightOf="@id/progressPlus"
             android:gravity="center"
@@ -95,17 +95,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/progressPlus"
             android:layout_toLeftOf="@id/progressMinus"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="@dimen/text_progress_margin"
             android:gravity="center"
             android:text="@string/minus"
             android:textSize="@dimen/default_text_large"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="@dimen/text_progress_margin"
             android:layout_toStartOf="@id/progressMinus" />
 
         <ProgressBar
             android:id="@+id/progressMinus"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="450dp"
+            android:layout_width="@dimen/progress_width"
             android:layout_height="@dimen/progressbar_stat_height"
             android:layout_below="@id/progressPlus"
             android:layout_gravity="center"
@@ -115,15 +115,15 @@
             android:layout_marginBottom="@dimen/progressbar_stat_marginTopBot"
             android:layout_marginTop="@dimen/progressbar_stat_marginTopBot"
             android:max="100"
-            android:scaleY="10.0" />
+            android:scaleY="@dimen/progress_scaley" />
 
         <TextView
             android:id="@+id/textPercentMinus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/progressPlus"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="@dimen/text_progress_margin"
+            android:layout_marginRight="@dimen/text_progress_margin"
             android:layout_toEndOf="@id/progressMinus"
             android:layout_toRightOf="@id/progressMinus"
             android:gravity="center"
@@ -137,17 +137,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/progressMinus"
             android:layout_toLeftOf="@id/progressDivide"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="@dimen/text_progress_margin"
             android:gravity="center"
             android:text="@string/divide"
             android:textSize="@dimen/default_text_large"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="@dimen/text_progress_margin"
             android:layout_toStartOf="@id/progressDivide" />
 
         <ProgressBar
             android:id="@+id/progressDivide"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="450dp"
+            android:layout_width="@dimen/progress_width"
             android:layout_height="@dimen/progressbar_stat_height"
             android:layout_below="@id/progressMinus"
             android:layout_gravity="center"
@@ -157,15 +157,15 @@
             android:layout_marginBottom="@dimen/progressbar_stat_marginTopBot"
             android:layout_marginTop="@dimen/progressbar_stat_marginTopBot"
             android:max="100"
-            android:scaleY="10.0" />
+            android:scaleY="@dimen/progress_scaley" />
 
         <TextView
             android:id="@+id/textPercentDivide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/progressMinus"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="@dimen/text_progress_margin"
+            android:layout_marginRight="@dimen/text_progress_margin"
             android:layout_toEndOf="@id/progressDivide"
             android:layout_toRightOf="@id/progressDivide"
             android:gravity="center"
@@ -179,17 +179,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/progressDivide"
             android:layout_toLeftOf="@id/progressMultiple"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="@dimen/text_progress_margin"
             android:gravity="center"
             android:text="@string/multiple"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="@dimen/text_progress_margin"
             android:textSize="@dimen/default_text_large"
             android:layout_toStartOf="@id/progressMultiple" />
 
         <ProgressBar
             android:id="@+id/progressMultiple"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="450dp"
+            android:layout_width="@dimen/progress_width"
             android:layout_height="@dimen/progressbar_stat_height"
             android:layout_below="@id/progressDivide"
             android:layout_gravity="center"
@@ -199,15 +199,15 @@
             android:layout_marginBottom="@dimen/progressbar_stat_marginTopBot"
             android:layout_marginTop="@dimen/progressbar_stat_marginTopBot"
             android:max="100"
-            android:scaleY="10.0" />
+            android:scaleY="@dimen/progress_scaley" />
 
         <TextView
             android:id="@+id/textPercentMultiple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/progressDivide"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="@dimen/text_progress_margin"
+            android:layout_marginRight="@dimen/text_progress_margin"
             android:layout_toEndOf="@id/progressMultiple"
             android:layout_toRightOf="@id/progressMultiple"
             android:gravity="center"

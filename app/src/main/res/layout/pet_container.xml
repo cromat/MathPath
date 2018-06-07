@@ -22,7 +22,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="2dp"
         android:max="100"
-        android:scaleY="10.0"
+        android:scaleY="@dimen/progress_scaley"
         app:layout_constraintTop_toBottomOf="@id/textHappiness" />
 
     <ImageView
@@ -53,11 +53,11 @@
 
     <ImageView
         android:id="@+id/imagePetHat"
-        android:layout_width="202dp"
-        android:layout_height="111dp"
-        android:layout_marginBottom="68dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_width="@dimen/pet_hat_width"
+        android:layout_height="@dimen/pet_hat_height"
+        android:layout_marginBottom="@dimen/pet_hat_margin_bottom"
+        android:layout_marginEnd="@dimen/pet_hat_margin_start_end"
+        android:layout_marginRight="@dimen/pet_hat_margin_start_end"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/petHorGuide"
         app:layout_constraintEnd_toEndOf="@+id/imagePet"
@@ -80,9 +80,9 @@
 
     <ImageView
         android:id="@+id/imagePetBall"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="150dp"
+        android:layout_width="@dimen/pet_ball_width"
+        android:layout_height="@dimen/pet_ball_height"
+        android:layout_marginTop="@dimen/pet_ball_margin_top"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@id/imagePet"
         app:layout_constraintTop_toBottomOf="@id/petHorGuide"
@@ -90,11 +90,11 @@
 
     <ImageView
         android:id="@+id/imagePetCar"
-        android:layout_width="170dp"
-        android:layout_height="142dp"
-        android:layout_marginEnd="300dp"
-        android:layout_marginRight="300dp"
-        android:layout_marginTop="170dp"
+        android:layout_width="@dimen/pet_car_width"
+        android:layout_height="@dimen/pet_car_height"
+        android:layout_marginEnd="@dimen/pet_car_margin_end"
+        android:layout_marginRight="@dimen/pet_car_margin_end"
+        android:layout_marginTop="@dimen/pet_car_margin_top"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imagePet"
@@ -127,11 +127,12 @@
         android:id="@+id/textCloud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:layout_marginLeft="190dp"
-        android:layout_marginStart="190dp"
+        android:layout_marginBottom="@dimen/text_cloud_margin_bottom"
+        android:layout_marginLeft="@dimen/text_cloud_margin_left"
+        android:layout_marginStart="@dimen/text_cloud_margin_left"
         android:background="@drawable/text_cloud"
         android:padding="20dp"
+        android:textSize="@dimen/default_text"
         app:layout_constraintBottom_toTopOf="@+id/petHorGuide"
         app:layout_constraintEnd_toStartOf="@+id/imagePet"
         app:layout_constraintStart_toStartOf="parent" />
