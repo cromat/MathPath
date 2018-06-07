@@ -14,5 +14,9 @@
     <dimen name="progressbar_stat_height">20dp</dimen>
     <dimen name="progressbar_stat_marginTopBot">20dp</dimen>
     <dimen name="checkbox_text">30sp</dimen>
+    <dimen name="custom_game_layout_padding">50dp</dimen>
+    <dimen name="padding_margin_20dp">20dp</dimen>
+    <dimen name="padding_margin_40dp">40dp</dimen>
+    <dimen name="padding_margin_100dp">100dp</dimen>
 
 </resources>

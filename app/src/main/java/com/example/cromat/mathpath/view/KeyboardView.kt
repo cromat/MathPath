@@ -7,7 +7,6 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.example.cromat.mathpath.R
-import kotlinx.android.synthetic.main.notification_template_lines_media.view.*
 import kotlinx.android.synthetic.main.sample_keyboard_view.view.*
 import org.jetbrains.anko.childrenSequence
 
@@ -34,7 +33,7 @@ open class KeyboardView : FrameLayout, View.OnClickListener {
 
     private fun initViews() {
         for (row in keyboard.childrenSequence())
-            for(key in row.childrenSequence()) {
+            for (key in row.childrenSequence()) {
                 key.setOnClickListener(this)
             }
     }
@@ -44,12 +43,14 @@ open class KeyboardView : FrameLayout, View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        if ((v as TextView).tag != null && "number_button" == v.tag) {
-            if (!edtViewAnswer!!.text.isBlank() && edtViewAnswer!!.text[0] == '0')
-                edtViewAnswer!!.setText("0")
-            else
-                edtViewAnswer!!.append(v.text)
-            return
+        if (edtViewAnswer!!.text.length < 7) {
+            if ((v as TextView).tag != null && "number_button" == v.tag) {
+                if (!edtViewAnswer!!.text.isBlank() && edtViewAnswer!!.text[0] == '0')
+                    edtViewAnswer!!.setText("0")
+                else
+                    edtViewAnswer!!.append(v.text)
+                return
+            }
         }
         when (v.id) {
             t9_key_backspace.id -> {
