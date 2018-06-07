@@ -126,9 +126,8 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
             }
             equationStr = equationStr.dropLast(1)
             operators = operators.dropLast(1) + ""
-            val evaluated: Double = MVEL.eval(equationStr.replace(operands[0],
-                    operands[0] + ".0")) as Double
-            result = evaluated.toInt()
+            val evaluated = MVEL.evalToString(equationStr)
+            result = evaluated.toDouble().toInt()
             rightAns = result.toString()
         }
     }
@@ -184,19 +183,17 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
     }
 
     fun isCorrect(number: String): Boolean {
-        if (!number.isBlank() && number.matches(Regex("^[0-9]*.\$"))) {
+        if (!number.isBlank() && number.matches(Regex("^-?\\d+(\\.\\d+)?\$"))) {
             if (eConfig.randomizeInput) {
                 val eqToTry = ("$firstString$number$secondString").split("=")[0]
-                val evaluated: Double = MVEL.eval(eqToTry.replace(operands[0],
-                        operands[0] + ".0")) as Double
-                if (evaluated.toInt() == result) {
+                val evaluated = MVEL.evalToString(eqToTry)
+                if (evaluated.toDouble().toInt() == result) {
                     rightAns = number
                     return true
                 }
             } else {
-                val evaluated: Double = MVEL.eval(equationStr.replace(operands[0],
-                        operands[0] + ".0")) as Double
-                if (evaluated.toInt() == number.toInt()) {
+                val evaluated = MVEL.evalToString(equationStr)
+                if (evaluated.toDouble().toInt() == number.toInt()) {
                     rightAns = number
                     return true
                 }
