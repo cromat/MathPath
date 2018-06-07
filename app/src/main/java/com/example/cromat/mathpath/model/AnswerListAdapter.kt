@@ -45,7 +45,7 @@ class AnswerListAdapter(context: Context, resource: Int, var items: ArrayList<St
         else
             answerListItemNum.text = position.toString()
 
-        answerListItemEquation.text = equation
+        answerListItemEquation.text = equation.replace("*", "\u02E3").replace("/", "\u00F7")
         answerListItemUserAns.text = userAns
         answerListItemRightAns.text = rightAns
 
