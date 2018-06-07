@@ -132,7 +132,7 @@
         android:layout_marginStart="@dimen/text_cloud_margin_left"
         android:background="@drawable/text_cloud"
         android:padding="20dp"
-        android:textSize="@dimen/default_text"
+        android:textSize="@dimen/default_text_small"
         app:layout_constraintBottom_toTopOf="@+id/petHorGuide"
         app:layout_constraintEnd_toStartOf="@+id/imagePet"
         app:layout_constraintStart_toStartOf="parent" />
