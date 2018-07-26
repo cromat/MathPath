@@ -33,13 +33,15 @@
         android:id="@+id/textGoldAdded"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/gold_added_margin_bottom"
+        android:layout_marginBottom="@dimen/horiz_gold_added_margin_bottom"
+        android:layout_marginRight="@dimen/horiz_gold_added_margin_right"
         android:textSize="@dimen/default_text_large"
         android:visibility="invisible"
         android:textColor="@color/colorBtnGreen"
         app:layout_constraintBottom_toTopOf="@+id/relativeSolving"
         app:layout_constraintEnd_toStartOf="@+id/stepperText"
-        app:layout_constraintStart_toEndOf="@+id/relativeGoldViewSolving" />
+        app:layout_constraintStart_toEndOf="@+id/relativeGoldViewSolving"
+        android:layout_marginEnd="@dimen/horiz_gold_added_margin_right" />
 
     <TextView
         android:id="@+id/textHint"
@@ -47,12 +49,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/text_cloud"
         android:padding="@dimen/text_hint_padding"
-        android:layout_marginRight="@dimen/text_hint_margin_right"
         android:layout_marginBottom="@dimen/text_hint_margin_bottom"
         app:layout_constraintBottom_toTopOf="@+id/relativeSolving"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="@dimen/default_text"
-        android:layout_marginEnd="@dimen/text_hint_margin_right" />
+        app:layout_constraintRight_toLeftOf="@+id/stepperText"
+        android:textSize="@dimen/default_text" />
 
     <TextView
         android:id="@+id/solvingTitle"

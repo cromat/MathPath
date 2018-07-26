@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <TextView
+        android:id="@+id/textHappiness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/horiz_text_happines_margin_top"
+        android:text="@string/happiness"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressHappiness"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        android:max="100"
+        android:scaleY="@dimen/progress_scaley"
+        app:layout_constraintTop_toBottomOf="@id/textHappiness" />
+
+    <ImageView
+        android:id="@+id/imagePet"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressHappiness"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/pet" />
+
+    <ImageView
+        android:id="@+id/imagePetPlane"
+        android:layout_width="170dp"
+        android:layout_height="142dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginRight="300dp"
+        android:layout_marginTop="170dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imagePet"
+        app:layout_constraintTop_toTopOf="@+id/imagePet"
+        app:srcCompat="@drawable/airplane" />
+
+    <ImageView
+        android:id="@+id/imagePetHat"
+        android:layout_width="@dimen/pet_hat_width"
+        android:layout_height="@dimen/pet_hat_height"
+        android:layout_marginBottom="@dimen/pet_hat_margin_bottom"
+        android:layout_marginEnd="@dimen/pet_hat_margin_start_end"
+        android:layout_marginRight="@dimen/pet_hat_margin_start_end"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/petHorGuide"
+        app:layout_constraintEnd_toEndOf="@+id/imagePet"
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toStartOf="@+id/imagePet"
+        app:srcCompat="@drawable/hat" />
+
+    <ImageView
+        android:id="@+id/imagePetShirt"
+        android:layout_width="281dp"
+        android:layout_height="166dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imagePet"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="@+id/imagePet"
+        app:layout_constraintTop_toBottomOf="@+id/petHorGuide"
+        app:srcCompat="@drawable/shirt" />
+
+    <ImageView
+        android:id="@+id/imagePetBall"
+        android:layout_width="@dimen/pet_ball_width"
+        android:layout_height="@dimen/pet_ball_height"
+        android:layout_marginTop="@dimen/pet_ball_margin_top"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@id/imagePet"
+        app:layout_constraintTop_toBottomOf="@id/petHorGuide"
+        app:srcCompat="@drawable/ball" />
+
+    <ImageView
+        android:id="@+id/imagePetCar"
+        android:layout_width="@dimen/pet_car_width"
+        android:layout_height="@dimen/pet_car_height"
+        android:layout_marginEnd="@dimen/pet_car_margin_end"
+        android:layout_marginRight="@dimen/pet_car_margin_end"
+        android:layout_marginTop="@dimen/pet_car_margin_top"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imagePet"
+        app:layout_constraintTop_toBottomOf="@+id/petHorGuide"
+        app:srcCompat="@drawable/car" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/petHorGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.493" />
+
+    <Button
+        android:id="@+id/btnStart"
+        style="@style/BtnRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:text="@string/start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textCloud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/horiz_text_cloud_margin_bottom"
+        android:layout_marginLeft="@dimen/text_cloud_margin_left"
+        android:layout_marginStart="@dimen/text_cloud_margin_left"
+        android:background="@drawable/text_cloud"
+        android:padding="20dp"
+        android:textSize="@dimen/default_text_small"
+        app:layout_constraintBottom_toTopOf="@+id/petHorGuide"
+        app:layout_constraintEnd_toStartOf="@+id/imagePet"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

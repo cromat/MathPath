@@ -20,10 +20,10 @@
     <dimen name="padding_margin_40dp">20.0dp</dimen>
     <dimen name="padding_margin_100dp">50.0dp</dimen>
     <dimen name="icon_size">25.0dp</dimen>
-    <dimen name="gold_added_margin_bottom">40.0dp</dimen>
+    <dimen name="gold_added_margin_bottom">50.0dp</dimen>
     <dimen name="text_hint_padding">10.0dp</dimen>
     <dimen name="text_hint_margin_right">10.0dp</dimen>
-    <dimen name="text_hint_margin_bottom">15.0dp</dimen>
+    <dimen name="text_hint_margin_bottom">8.0dp</dimen>
     <dimen name="pet_hat_width">101.0dp</dimen>
     <dimen name="pet_hat_height">55.5dp</dimen>
     <dimen name="pet_hat_margin_bottom">34.0dp</dimen>
@@ -42,6 +42,11 @@
     <dimen name="text_progress_margin">6dp</dimen>
     <dimen name="progress_width">225dp</dimen>
     <dimen name="default_text_small">15sp</dimen>
+    <dimen name="horiz_gold_added_margin_bottom">20dp</dimen>
+    <dimen name="horiz_gold_added_margin_right">40dp</dimen>
+    <dimen name="horiz_text_happines_margin_top">10dp</dimen>
+    <dimen name="horiz_button_margin">5dp</dimen>
+    <dimen name="graph_activity_padding">35dp</dimen>
 
     <item name="progress_scaley" type="dimen" format="float">5.0</item>
 

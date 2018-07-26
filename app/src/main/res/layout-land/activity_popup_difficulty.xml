@@ -16,7 +16,7 @@
         android:minWidth="200dp"
         android:layout_height="wrap_content"
         android:text="@string/easy"
-        android:layout_margin="10dp" />
+        android:layout_margin="@dimen/horiz_button_margin" />
 
     <Button
         android:id="@+id/btnMedium"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/medium"
-        android:layout_margin="10dp" />
+        android:layout_margin="@dimen/horiz_button_margin" />
 
     <Button
         android:id="@+id/btnHard"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hard"
-        android:layout_margin="10dp"/>
+        android:layout_margin="@dimen/horiz_button_margin"/>
 
     <Button
         android:id="@+id/btnCustom"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/custom"
-        android:textSize="@dimen/default_text"
-        android:layout_margin="10dp"/>
+        android:textSize="@dimen/horiz_default_text"
+        android:layout_margin="@dimen/horiz_button_margin"/>
 
 </LinearLayout>
