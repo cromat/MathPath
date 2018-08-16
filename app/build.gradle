@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.cromat.mathpath"
+        applicationId "com.github.cromat.mathpath"
         minSdkVersion 22
         targetSdkVersion 27
         versionCode 1

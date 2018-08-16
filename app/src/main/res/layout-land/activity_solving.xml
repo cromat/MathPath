@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:background="@drawable/main_background"
     android:animateLayoutChanges="true"
-    tools:context="com.example.cromat.mathpath.activity.SolvingActivity">
+    tools:context="com.github.cromat.mathpath.activity.SolvingActivity">
 
     <RelativeLayout
         android:id="@+id/relativeGoldViewSolving"
@@ -19,7 +19,7 @@
         android:layout_marginStart="10dp"
         android:layout_weight="20">
 
-        <com.example.cromat.mathpath.view.GoldView
+        <com.github.cromat.mathpath.view.GoldView
             android:id="@+id/goldViewSolving"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnQuit" />
 
-    <com.example.cromat.mathpath.view.KeyboardView
+    <com.github.cromat.mathpath.view.KeyboardView
         android:id="@+id/keyboardSolving"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

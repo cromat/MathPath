@@ -12,7 +12,7 @@
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:padding="@dimen/graph_activity_padding"
-        tools:context="com.example.cromat.mathpath.activity.GraphActivity">
+        tools:context="com.github.cromat.mathpath.activity.GraphActivity">
 
         <TextView
             android:id="@+id/textTitlePieChart"
