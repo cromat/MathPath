@@ -4,6 +4,7 @@ MathPath is simple math equation generating Android application/game made for el
 
 You can try application in your browser [here](https://appetize.io/app/2hxyr105hzdrb3xpy62x3qrd58?device=nexus9&scale=50&orientation=portrait&osVersion=7.1).
 
+Download from Google Play [here](https://play.google.com/store/apps/details?id=com.github.cromat.mathpath).
 
 # About application
 
