@@ -5,7 +5,7 @@
     <dimen name="btn_start_end_margin">20dp</dimen>
     <dimen name="default_text_view">20sp</dimen>
     <dimen name="button_text_size">50sp</dimen>
-    <dimen name="default_text_large">60sp</dimen>
+    <dimen name="default_text_large">50sp</dimen>
     <dimen name="default_text">35sp</dimen>
     <dimen name="item_height">150sp</dimen>
     <dimen name="item_padding">10dp</dimen>
@@ -39,7 +39,7 @@
     <dimen name="pie_chart_size">500dp</dimen>
     <dimen name="text_title_percentage_margin_bottom">40dp</dimen>
     <dimen name="text_progress_margin">40dp</dimen>
-    <dimen name="progress_width">450dp</dimen>
+    <dimen name="progress_width">440dp</dimen>
     <dimen name="default_text_small">20sp</dimen>
 
     <item name="progress_scaley" type="dimen" format="float">10.0</item>

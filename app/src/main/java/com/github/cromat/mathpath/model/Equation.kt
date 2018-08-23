@@ -1,7 +1,6 @@
 package com.github.cromat.mathpath.model
 
 import android.content.Context
-import android.util.Range
 import com.github.cromat.mathpath.DbHelper
 import org.mvel2.MVEL
 import java.util.*
@@ -49,6 +48,35 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
         return rightAns
     }
 
+    private fun getOperatorByChance(): String {
+        var operator = "+"
+        val perByOperators = DbHelper.getPercentageByOperation(ctx)
+        val mapPerByOp = mutableMapOf<String, Int>()
+        val mapUsedOp = mutableMapOf<String, Int>()
+        mapPerByOp["+"] = perByOperators[0]
+        mapPerByOp["-"] = perByOperators[1]
+        mapPerByOp["/"] = perByOperators[2]
+        mapPerByOp["*"] = perByOperators[3]
+
+        for (op in eConfig.operators) {
+            mapUsedOp[op] = if (mapPerByOp[op]!! < 20) 20 else mapPerByOp[op]!!
+        }
+
+        val sortedPerByOp = mapUsedOp.toList()
+                .sortedBy { (_, value) -> value }.toMap()
+
+        val foo = rand.nextInt(100 * mapUsedOp.size + 1 - sortedPerByOp.values.sum())
+        var sum = 0
+        for (key in sortedPerByOp.keys) {
+            sum += 100 - sortedPerByOp[key]!!.toInt()
+            if (foo < sum) {
+                operator = key
+                break
+            }
+        }
+        return operator
+    }
+
     private fun generateEquation() {
         while (result == null || (!eConfig.negativeRes && result!! < 0)) {
             operands = listOf()
@@ -61,9 +89,7 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
                         - eConfig.minNumOperands) + eConfig.minNumOperands
             }
 
-            var operator = ""
             var randNum = 0
-
             braceOpen = -1
             braceClose = -1
 
@@ -73,6 +99,7 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
             }
 
             for (i in 0 until randNumOperands) {
+                val operator = getOperatorByChance()
                 if (operator == "/") {
                     val lastNum = randNum
                     randNum = 1
@@ -86,29 +113,6 @@ class Equation(private var eConfig: EquationConfig, private val ctx: Context) {
                     }
                 } else {
                     randNum = rand.nextInt(eConfig.maxNum - eConfig.minNum) + eConfig.minNum
-                }
-
-                // Choose operator by percentage solving
-                // TODO: create method getOperatorByChance, custom game can have only few operators...
-                val perByOperators = DbHelper.getPercentageByOperation(ctx)
-                val mapPerByOp = mutableMapOf<String, Int>()
-                mapPerByOp["+"] = perByOperators[0]
-                mapPerByOp["-"] = perByOperators[1]
-                mapPerByOp["/"] = perByOperators[2]
-                mapPerByOp["*"] = perByOperators[3]
-
-                val sortedPerByOp = mapPerByOp.toList()
-                        .sortedBy { (_, value) -> value }.toMap()
-
-                operator = "+"
-                val foo = rand.nextInt(401 - sortedPerByOp.values.sum())
-                var sum = 0
-                for (key in sortedPerByOp.keys) {
-                    sum += 100 - sortedPerByOp[key]!!.toInt()
-                    if (foo < sum) {
-                        operator = key
-                        break
-                    }
                 }
 
                 // Check division by zero

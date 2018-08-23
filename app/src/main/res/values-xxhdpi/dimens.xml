@@ -6,7 +6,7 @@
     <dimen name="btn_start_end_margin">10.0dp</dimen>
     <dimen name="default_text_view">10.0sp</dimen>
     <dimen name="button_text_size">25.0sp</dimen>
-    <dimen name="default_text_large">30.0sp</dimen>
+    <dimen name="default_text_large">25.0sp</dimen>
     <dimen name="default_text">17.5sp</dimen>
     <dimen name="item_height">75.0sp</dimen>
     <dimen name="item_padding">5.0dp</dimen>
@@ -40,7 +40,7 @@
     <dimen name="pie_chart_size">250dp</dimen>
     <dimen name="text_title_percentage_margin_bottom">20dp</dimen>
     <dimen name="text_progress_margin">6dp</dimen>
-    <dimen name="progress_width">225dp</dimen>
+    <dimen name="progress_width">215dp</dimen>
     <dimen name="default_text_small">15sp</dimen>
     <dimen name="horiz_gold_added_margin_bottom">20dp</dimen>
     <dimen name="horiz_gold_added_margin_right">40dp</dimen>

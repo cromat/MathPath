@@ -47,9 +47,10 @@
     </RelativeLayout>
 
     <include
+        android:layout_marginTop="@dimen/padding_margin_50dp"
         layout="@layout/pet_container"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="60" />
 
     <android.support.v7.widget.RecyclerView
